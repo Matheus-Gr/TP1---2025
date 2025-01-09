@@ -2,17 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include "arquivos.h"
+#include "../tipos.h"
 
-typedef struct {
-    int chave;
-    long dado1;
-    char dado2[5000];
-} Registro;
-
-void gerarArquivoBinario(const char *nomeArquivo, int quantidadeRegistros, int situacao) {
-    char caminhoArquivo[100];
-    snprintf(caminhoArquivo, sizeof(caminhoArquivo), "./arquivos/%s", nomeArquivo);
-
+void gerarArquivoBinario(const char *caminhoArquivo, int quantidadeRegistros, int situacao) {
     FILE *arquivo = fopen(caminhoArquivo, "wb");
     if (arquivo == NULL) {
         perror("Erro ao abrir arquivo");
@@ -34,13 +27,10 @@ void gerarArquivoBinario(const char *nomeArquivo, int quantidadeRegistros, int s
     }
 
     fclose(arquivo);
-    printf("Arquivo %s gerado com sucesso!\n", nomeArquivo);
+    printf("Arquivo %s gerado com sucesso!\n", caminhoArquivo);
 }
 
-void lerArquivoBinario(const char *nomeArquivo) {
-    char caminhoArquivo[100];
-    snprintf(caminhoArquivo, sizeof(caminhoArquivo), "./arquivos/%s", nomeArquivo);
-
+void lerArquivoBinario(const char *caminhoArquivo) {
     FILE *arquivo = fopen(caminhoArquivo, "rb");
     if (arquivo == NULL) {
         perror("Erro ao abrir arquivo");
@@ -50,7 +40,7 @@ void lerArquivoBinario(const char *nomeArquivo) {
     Registro registro;
     int contador = 0;
 
-    printf("Conteudo do arquivo %s:\n", nomeArquivo);
+    printf("Conteudo do arquivo %s:\n", caminhoArquivo);
     while (fread(&registro, sizeof(Registro), 1, arquivo) == 1) {
         printf("Registro %d:\n", ++contador);
         printf("  Chave: %d\n", registro.chave);
@@ -72,6 +62,9 @@ int main(int argc, char *argv[]) {
     const char *comando = argv[1];
     const char *nomeArquivo = argv[2];
 
+    char caminhoArquivo[100];
+    snprintf(caminhoArquivo, sizeof(caminhoArquivo), "%s.bin", nomeArquivo);
+
     if (strcmp(comando, "gerar") == 0) {
         if (argc != 5) {
             printf("Uso para gerar: %s gerar <nome_arquivo> <quantidade> <situacao>\n", argv[0]);
@@ -85,9 +78,9 @@ int main(int argc, char *argv[]) {
             return 1;
         }
 
-        gerarArquivoBinario(nomeArquivo, quantidade, situacao);
+        gerarArquivoBinario(caminhoArquivo, quantidade, situacao);
     } else if (strcmp(comando, "ler") == 0) {
-        lerArquivoBinario(nomeArquivo);
+        lerArquivoBinario(caminhoArquivo);
     } else {
         printf("Comando invalido! Use 'gerar' ou 'ler'.\n");
         return 1;
