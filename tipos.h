@@ -27,5 +27,6 @@ typedef struct {
     int chave;
 } Indice;
 
+void lerRegistro(Registro* registro);
 
 #endif

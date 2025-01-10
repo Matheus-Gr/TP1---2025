@@ -49,8 +49,25 @@ int pesquisaIndexada(
 
     if(debug) printf("A chave %d esta na pagina %d.\n", registro->chave, pagina);
 
-    
+    if (pagina == -1) {
+        free(tabelaIndices);
+        return 0;  
+    }
 
+    fseek(arquivo, tabelaIndices[pagina - 1].posicao * sizeof(Registro), SEEK_SET);
+    for (int i = 0; i < ITENSPAGINA; i++) {
+        estatisticas->transferencias++;
+        if (fread(&tempoRegistro, sizeof(Registro), 1, arquivo) != 1) {
+            break; 
+        }
+        estatisticas->comparacoes++;
+        if (tempoRegistro.chave == registro->chave) {
+            *registro = tempoRegistro;
+            free(tabelaIndices);
+            return 1;
+        }
+    }
 
-    return 1;
+    free(tabelaIndices);
+    return 0;
 }

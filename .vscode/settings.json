@@ -1,8 +1,0 @@
-{
-  "files.associations": {
-    "indexado.h": "c",
-    "stdio.h": "c",
-    "stdbool.h": "c",
-    "tipos.h": "c"
-  }
-}

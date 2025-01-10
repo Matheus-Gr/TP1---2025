@@ -59,6 +59,7 @@ int main(int argc, char *argv[]) {
         printf("Situacao do arquivo: %d\n", situacao);
         printf("Chave a ser pesquisada: %d\n", chave);
         printf("Opcao de imprimir chaves ativada.\n");
+        printf("____________________________________\n");
     }
 
     Registro registro;
@@ -76,7 +77,7 @@ int main(int argc, char *argv[]) {
             if (resultado) {
                 printf("Registro encontrado!\n");
             } else {
-                printf("Registro não encontrado.\n");
+                printf("Registro nao encontrado.\n");
             }
 
             // metodo1();
@@ -91,9 +92,12 @@ int main(int argc, char *argv[]) {
             metodo4();
             break;
         default:
-            printf("Método inválido! Escolha entre 1, 2, 3 ou 4.\n");
+            printf("Metodo inválido! Escolha entre 1, 2, 3 ou 4.\n");
             return 1;
     }
+
+    if (resultado) lerRegistro(&registro);
+    
 
     return 0;
 }
