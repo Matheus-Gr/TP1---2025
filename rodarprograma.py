@@ -1,6 +1,13 @@
 import subprocess
 import os
 
-subprocess.run(['gcc', '*.c', '-o', 'teste.exe'])
-subprocess.run(['teste.exe', '1', '100', '1', '1', '-P'])
-os.remove('teste.exe')
+comando_base = 'teste.exe'
+metodo = str(1)
+quantidade = str(2000)
+ordem = str(1)
+chave = str(1678)
+imprimir = '-P'
+
+subprocess.run(['gcc', '*.c', '-o', comando_base])
+subprocess.run([comando_base, metodo, quantidade, ordem, chave, imprimir])
+os.remove(comando_base)

@@ -1,4 +1,5 @@
 import subprocess
+import os
 
 quantidades = [100, 200,  2000, 20000, 200000, 2000000]
 situacoes = [1, 2, 3]
@@ -16,3 +17,5 @@ def gerar_arquivos(quantidade, situacao):
 for quantidade in quantidades:
     for situacao in situacoes:
         gerar_arquivos(quantidade, situacao)
+
+os.remove(comando_base)
