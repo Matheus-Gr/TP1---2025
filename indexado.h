@@ -7,7 +7,8 @@
 
 int pesquisaIndexada(
     Registro* registro,
-    int tamanho,
+    int tamanho, 
+    int ordem,
     FILE* arquivo,
     Estatisticas* estatisticas,
     int debug);

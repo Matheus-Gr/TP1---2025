@@ -17,15 +17,15 @@ typedef struct {
 } Estatisticas;
 
 typedef struct {
-    int chaveEncontrada; 
-    Registro registro; 
-    Estatisticas estatisticas; 
-} Resposta;
-
-typedef struct {
     int posicao;
     int chave;
 } Indice;
+
+typedef struct {
+    Registro registro;
+    int esquerda;
+    int direita;
+} NoBinario;
 
 void lerRegistro(Registro* registro);
 

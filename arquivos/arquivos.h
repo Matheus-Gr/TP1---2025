@@ -7,7 +7,7 @@
 #include <time.h>
 #include "../tipos.h"
 
-void gerarArquivoBinario(const char *caminhoArquivo, int quantidadeRegistros, int situacao);
+void gerarArquivoBinario(const char *caminhoArquivo, int quantidadeRegistros, int situacao, const char *arquivoIndices);
 void lerArquivoBinario(const char *caminhoArquivo);
 
 #endif

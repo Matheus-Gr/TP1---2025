@@ -3,7 +3,28 @@
 #include <string.h>
 #include "indexado.h"
 #include "estatisticas.h"
+#include "arvorebinaria.h"
 
+void lerArquivoBinario(const char *caminhoArquivo) {
+    FILE *arquivo = fopen(caminhoArquivo, "rb");
+    if (arquivo == NULL) {
+        perror("Erro ao abrir arquivo");
+        exit(1);
+    }
+
+    Registro registro;
+    int contador = 0;
+
+    printf("Conteudo do arquivo %s:\n", caminhoArquivo);
+    while (fread(&registro, sizeof(Registro), 1, arquivo) == 1) {
+        printf("Registro %d:\n", ++contador);
+        printf("  Chave: %d\n", registro.chave);
+        printf("  Dado1: %ld\n", registro.dado1);
+        printf("  Dado2: %s\n", registro.dado2);
+    }
+
+    fclose(arquivo);
+}
 
 void metodo1() {
     printf("Executando o Metodo 1: Acesso Sequencial Indexado\n");
@@ -44,6 +65,7 @@ int main(int argc, char *argv[]) {
     char nomeArquivo[100];
     snprintf(nomeArquivo, sizeof(nomeArquivo), "./arquivos/arquivo-%d-%d.bin", quantidade, situacao);
 
+    printf("Nome do arquivo: %s\n", nomeArquivo);
     
 
     FILE *arquivo = fopen(nomeArquivo, "rb");
@@ -51,9 +73,11 @@ int main(int argc, char *argv[]) {
         perror("Erro ao abrir o arquivo");
         return 1;
     }
+    
+    // lerArquivoBinario(nomeArquivo);
+
 
     if (debug) {
-        printf("Nome do arquivo: %s\n", nomeArquivo);
         printf("Metodo escolhido: %d\n", metodo);
         printf("Quantidade de registros: %d\n", quantidade);
         printf("Situacao do arquivo: %d\n", situacao);
@@ -72,18 +96,17 @@ int main(int argc, char *argv[]) {
 
     switch (metodo) {
         case 1:
-            resultado = pesquisaIndexada(&registro,quantidade,arquivo,&estatisticas, debug);
-            
-            if (resultado) {
-                printf("Registro encontrado!\n");
-            } else {
-                printf("Registro nao encontrado.\n");
-            }
-
-            // metodo1();
+            resultado = pesquisaIndexada(
+                &registro,
+                quantidade,
+                situacao,
+                arquivo,
+                &estatisticas,
+                debug);
             break;
         case 2:
-            metodo2();
+            criarArvore(arquivo,"arvorebin.bin");
+            resultado = buscarArvore("arvorebin.bin",&registro,&estatisticas,debug);
             break;
         case 3:
             metodo3();
@@ -95,8 +118,17 @@ int main(int argc, char *argv[]) {
             printf("Metodo inválido! Escolha entre 1, 2, 3 ou 4.\n");
             return 1;
     }
-
-    if (resultado) lerRegistro(&registro);
+             
+            
+    printf("_______________________________________________________________\n");
+    if (resultado){
+        printf("Nome do arquivo: %s\n", nomeArquivo);
+        printf("Registro encontrado!\n");
+        lerRegistro(&registro);
+        finalizarEstatisticas(&estatisticas);
+    } else {
+        printf("Registro nao encontrado.\n");
+    }
     
 
     return 0;
