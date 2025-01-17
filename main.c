@@ -47,10 +47,10 @@ void metodo4() {
 
 int main(int argc, char *argv[]) {
     if (argc < 5) {
-        printf("Uso: %s <metodo> <quantidade> <situacao> <chave> [-P]\n", argv[0]);
+        printf("Uso: %s <metodo> <quantidade> <ordem> <chave> [-P]\n", argv[0]);
         printf("<metodo>: 1 - Seq. Indexado, 2 - Arvore Binaria, 3 - Arvore B, 4 - Arvore B*\n");
         printf("<quantidade>: numero de registros do arquivo\n");
-        printf("<situacao>: 1 - Ascendente, 2 - Descendente, 3 - Aleatorio\n");
+        printf("<ordem>: 1 - Ascendente, 2 - Descendente, 3 - Aleatorio\n");
         printf("<chave>: chave a ser pesquisada\n");
         printf("[-P]: opcional, imprime chaves pesquisadas\n");
         return 1;
@@ -58,12 +58,12 @@ int main(int argc, char *argv[]) {
 
     int metodo = atoi(argv[1]);
     int quantidade = atoi(argv[2]);
-    int situacao = atoi(argv[3]);
+    int ordem = atoi(argv[3]);
     int chave = atoi(argv[4]);
     int debug = (argc == 6 && strcmp(argv[5], "-P") == 0);
 
     char nomeArquivo[100];
-    snprintf(nomeArquivo, sizeof(nomeArquivo), "./arquivos/arquivo-%d-%d.bin", quantidade, situacao);
+    snprintf(nomeArquivo, sizeof(nomeArquivo), "./arquivos/arquivo-%d-%d.bin", quantidade, ordem);
 
     printf("Nome do arquivo: %s\n", nomeArquivo);
     
@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
     if (debug) {
         printf("Metodo escolhido: %d\n", metodo);
         printf("Quantidade de registros: %d\n", quantidade);
-        printf("Situacao do arquivo: %d\n", situacao);
+        printf("Ordem do arquivo: %d\n", ordem);
         printf("Chave a ser pesquisada: %d\n", chave);
         printf("Opcao de imprimir chaves ativada.\n");
         printf("____________________________________\n");
@@ -92,6 +92,8 @@ int main(int argc, char *argv[]) {
     Estatisticas estatisticas;
     inicializarEstatisticas(&estatisticas);
 
+    const char* arvorebin = "arvorebin.bin";
+
     int resultado = 0;
 
     switch (metodo) {
@@ -99,14 +101,16 @@ int main(int argc, char *argv[]) {
             resultado = pesquisaIndexada(
                 &registro,
                 quantidade,
-                situacao,
+                ordem,
                 arquivo,
                 &estatisticas,
                 debug);
             break;
         case 2:
-            criarArvore(arquivo,"arvorebin.bin");
-            resultado = buscarArvore("arvorebin.bin",&registro,&estatisticas,debug);
+            criarArvore(arquivo, arvorebin);
+            printf("Criado\n");
+            lerArvore(arvorebin);
+            resultado = buscarArvore(arvorebin,&registro,&estatisticas,debug);
             break;
         case 3:
             metodo3();

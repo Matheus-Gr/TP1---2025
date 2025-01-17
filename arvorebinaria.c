@@ -3,105 +3,120 @@
 #include <string.h>
 #include "tipos.h"
 
-int inserirArvore(FILE* arquivoArvore, int posicaoAtual, Registro novoRegistro) {
-    if (posicaoAtual == -1) {
-        NoBinario novoNo = {novoRegistro, -1, -1};
-        fseek(arquivoArvore, 0, SEEK_END);
-        int posicao = ftell(arquivoArvore) / sizeof(NoBinario);
-        fwrite(&novoNo, sizeof(NoBinario), 1, arquivoArvore);
-        return posicao;
-    }
+void atualizaPonteiros(FILE* arquivoArvore, NoBinario* itemInserir)
+{   
+    fseek(arquivoArvore, 0, SEEK_END);
+    long qtdItensArquivo = ftell(arquivoArvore) / sizeof(NoBinario);
+    fseek(arquivoArvore, 0, SEEK_SET);
 
-    NoBinario noAtual;
-    fseek(arquivoArvore, posicaoAtual * sizeof(NoBinario), SEEK_SET);
-    fread(&noAtual, sizeof(NoBinario), 1, arquivoArvore);
 
-    if (novoRegistro.chave < noAtual.registro.chave) {
-        if (noAtual.esquerda == -1) {
-            noAtual.esquerda = inserirArvore(arquivoArvore, noAtual.esquerda, novoRegistro);
-        } else {
-            noAtual.esquerda = inserirArvore(arquivoArvore, noAtual.esquerda, novoRegistro);
-        }
-    } else {
-        if (noAtual.direita == -1) {
-            noAtual.direita = inserirArvore(arquivoArvore, noAtual.direita, novoRegistro);
-        } else {
-            noAtual.direita = inserirArvore(arquivoArvore, noAtual.direita, novoRegistro);
-        }
-    }
 
-    fseek(arquivoArvore, posicaoAtual * sizeof(NoBinario), SEEK_SET);
-    fwrite(&noAtual, sizeof(NoBinario), 1, arquivoArvore);
+    if(qtdItensArquivo == 1) return;
+    
+    NoBinario lido;
 
-    return posicaoAtual;
+    long ponteiro = 1;
+    long desloc;
+    
+
+    do{
+        desloc = (ponteiro - 1) * sizeof(NoBinario);
+        fseek(arquivoArvore, desloc, SEEK_SET);
+        fread(&lido, sizeof(NoBinario), 1, arquivoArvore);
+
+        ponteiro = (itemInserir->registro.chave > lido.registro.chave) ? lido.direita : lido.esquerda;
+    }while(ponteiro != -1);
+
+    fseek(arquivoArvore, -(sizeof(NoBinario)), SEEK_CUR);
+    
+    if(itemInserir->registro.chave > lido.registro.chave)
+        lido.direita = qtdItensArquivo;
+    else 
+        lido.esquerda = qtdItensArquivo;   
+
+    fwrite(&lido, sizeof(NoBinario), 1, arquivoArvore);
+    return;
 }
 
 void criarArvore(FILE* arquivoEntrada, const char* nomeArquivoArvore) {
-
-    FILE* arquivoArvore = fopen(nomeArquivoArvore, "wb+");
+    FILE* arquivoArvore = fopen(nomeArquivoArvore, "wb+"); 
     if (!arquivoArvore) {
         perror("Erro ao criar o arquivo da arvore binaria");
         exit(1);
     }
 
-    Registro registro;
-    int raiz = -1;
+    Registro lido;
 
-    while (fread(&registro, sizeof(Registro), 1, arquivoEntrada) == 1) {
-        raiz = inserirArvore(arquivoArvore, raiz, registro);
+    while (fread(&lido, sizeof(Registro), 1, arquivoEntrada) == 1) {
+
+        // printf("%d\n", lido.chave);
+
+        NoBinario no;
+        no.registro = lido;
+        no.esquerda = -1;
+        no.direita = -1;
+        fseek(arquivoArvore, 0, SEEK_END);
+        if (fwrite(&no, sizeof(NoBinario), 1, arquivoArvore) != 1) {
+            perror("Erro ao escrever no arquivo");
+            exit(1);
+        }
+        atualizaPonteiros(arquivoArvore, &no);
     }
 
-    fclose(arquivoEntrada);
     fclose(arquivoArvore);
-
     printf("Arvore binaria criada com sucesso no arquivo: %s\n", nomeArquivoArvore);
 }
 
-int buscarArvore( const char* nomeArquivoArvore, Registro* registro, Estatisticas* estatisticas, int debug) {
 
+
+int buscarArvore(const char* nomeArquivoArvore, Registro* registro, Estatisticas* estatisticas, int debug) {
     FILE* arquivoArvore = fopen(nomeArquivoArvore, "rb");
     if (!arquivoArvore) {
-        perror("Erro ao criar o arquivo da arvore binaria");
+        perror("Erro ao abrir o arquivo da árvore binária");
         exit(1);
     }
 
-    NoBinario noAtual;
-    int posicao = 0;
+    NoBinario lido;
+    long ponteiro = 1;
+    long desloc;
 
-    while (1) {
-        fseek(arquivoArvore, posicao * sizeof(NoBinario), SEEK_SET);
-        fread(&noAtual, sizeof(NoBinario), 1, arquivoArvore);
-        if (estatisticas) estatisticas->transferencias++;
+    do{
+        //Calcula o deslocamento necessario, a partir do inicio do arquivo, para chegar ao no filho do pai
+        desloc = (ponteiro - 1) * sizeof(NoBinario);
+        fseek(arquivoArvore, desloc, SEEK_SET);
+        fread(&lido, sizeof(NoBinario), 1, arquivoArvore);
+        estatisticas->transferencias += 1;
 
-        if (debug) {
-            printf("Visitando nó na posição %d: chave=%d\n", posicao, noAtual.registro.chave);
-        }
-
-        if (noAtual.registro.chave == registro->chave) {
-            *registro = noAtual.registro;
-            if (debug) {
-                printf("Chave %d encontrada na posição %d.\n", registro->chave, posicao);
-            }
+        //Caminhando o ponteiro pelo arquivo ate encontrar uma "folha" = (-1)
+        if(registro->chave == lido.registro.chave){
+            estatisticas->comparacoes += 1;
+            *registro = lido.registro;
             return 1;
         }
+        ponteiro = (registro->chave > lido.registro.chave) ? lido.direita : lido.esquerda;
+        estatisticas->comparacoes += 1;
 
-        if (estatisticas) estatisticas->comparacoes++;
-        if (registro->chave < noAtual.registro.chave) {
-            if (noAtual.esquerda == -1) {
-                break; 
-            }
-            posicao = noAtual.esquerda; 
-        } else {
-            if (noAtual.direita == -1) {
-                break; 
-            }
-            posicao = noAtual.direita; 
-        }
-    }
-
-    if (debug) {
-        printf("Chave %d não encontrada.\n", registro->chave);
-    }
-
+    }while(ponteiro != -1);
+    
     return 0;
+}
+
+void lerArvore(const char* nomeArquivoArvore) {
+    FILE* arquivoArvore = fopen(nomeArquivoArvore, "rb");
+    if (!arquivoArvore) {
+        perror("Erro ao abrir o arquivo da árvore binária");
+        return;
+    }
+
+    NoBinario no;
+    int posicao = 0;
+    printf("Posicao | Chave | Esquerda | Direita\n");
+    printf("----------------------------------\n");
+    
+    while (fread(&no, sizeof(NoBinario), 1, arquivoArvore) == 1) {
+        printf("%8d | %5d | %8d | %6d\n", posicao, no.registro.chave, no.esquerda, no.direita);
+        posicao++;
+    }
+
+    fclose(arquivoArvore);
 }

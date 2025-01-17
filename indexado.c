@@ -12,7 +12,7 @@ int pesquisaIndexada(
     FILE* arquivo, 
     Estatisticas* estatisticas,
     int debug
-    ) {  // Adiciona parâmetro para especificar a ordem (1 = ascendente, 2 = descendente)
+    ) {
     int nPaginas = (tamanho + ITENSPAGINA - 1) / ITENSPAGINA;
 
     Indice* tabelaIndices = malloc(nPaginas * sizeof(Indice));
@@ -23,7 +23,6 @@ int pesquisaIndexada(
 
     Registro tempoRegistro;
 
-    // Construção da tabela de índices
     for (int i = 0; i < nPaginas; i++) {
         fseek(arquivo, i * ITENSPAGINA * sizeof(Registro), SEEK_SET);
         estatisticas->transferencias++;
@@ -44,7 +43,6 @@ int pesquisaIndexada(
     
     int pagina = -1;
 
-    // Busca na tabela de índices, adaptada para ascendente ou descendente
     for (int i = 0; i < nPaginas; i++) {
         estatisticas->comparacoes++;
         if ((ordem == 1 && tabelaIndices[i].chave > registro->chave) || 
