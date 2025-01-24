@@ -5,15 +5,15 @@
 #include <stdlib.h>
 #include "tipos.h"
 
-void inicializa(Apontador arvore);
+void inicializa(Apontador *arvore);
 
 void criaArvoreB(Apontador arvore,
                  FILE* arquivoEntrada,
-                 Estatisticas * estatisticas);
+                 Estatisticas *estatisticas);
 
 void Insere(Registro registro,
             Apontador *apontador,
-            Estatisticas * estatisticas);
+            Estatisticas *estatisticas);
 
 void InsereNaPagina (Apontador apontador,
                      Registro registro, 
@@ -29,7 +29,6 @@ void Ins(Registro registro,
 
 int pesquisaArvoreB(Registro *registro,
                     Apontador apontador,
-                    Estatisticas *estatisticas) {
+                    Estatisticas *estatisticas);
 
-}
 #endif

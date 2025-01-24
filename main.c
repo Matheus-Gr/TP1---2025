@@ -76,6 +76,9 @@ int main(int argc, char *argv[]) {
     Registro registro;
     registro.chave = chave;
 
+    Apontador arvore;
+
+
     Estatisticas estatisticas;
     inicializarEstatisticas(&estatisticas);
 
@@ -100,15 +103,16 @@ int main(int argc, char *argv[]) {
             resultado = buscarArvore(arvorebin,&registro,&estatisticas,debug);
             break;
         case 3:
-            Apontador Arvore;
-            criaArvoreB(Arvore, arquivo, &estatisticas);
-            
+            printf("INSERINDO...\n");
 
-            
-                
+            inicializa(&arvore);
+            Registro lido;
 
-
-            metodo3();
+            while (fread(&lido, sizeof(Registro), 1, arquivo) == 1) {
+                Insere(lido, &arvore, &estatisticas);
+            }
+            printf("INSERIDO\n");
+            resultado = pesquisaArvoreB(&registro, arvore, &estatisticas);
             break;
         case 4:
             metodo4();

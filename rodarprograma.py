@@ -2,10 +2,10 @@ import subprocess
 import os
 
 comando_base = 'teste.exe'
-metodo = str(1)
+metodo = str(3)
 quantidade = str(200000)
 ordem = str(1)
-chave = str(80000)
+chave = str(180030)
 imprimir = '-P'
 
 subprocess.run(['gcc', '*.c', '-o', comando_base, '-Wall'])

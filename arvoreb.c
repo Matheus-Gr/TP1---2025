@@ -2,39 +2,33 @@
 #include <stdlib.h>
 #include "tipos.h"
 
-void inicializa(Apontador arvore){
-    arvore = NULL;
+void inicializa(Apontador *arvore){
+    *arvore = NULL;
 }
 
-void criaArvoreB(Apontador arvore,
-                 FILE* arquivoEntrada,
-                 Estatisticas * estatisticas) {
-    Registro lido;
-    inicializa(arvore);
 
-    while (fread(&lido, sizeof(Registro), 1, arquivoEntrada) == 1) {
-        Insere(lido, arvore, &estatisticas);
-    }
-}
-
-void Insere(Registro registro,
-            Apontador *apontador,
-            Estatisticas *estatisticas){
-    short cresceu;
-    Registro regRetorno;
-    Pagina *apRetorno, *apTemp;
-
-    Ins(registro, *apontador, &cresceu, &regRetorno, &apRetorno, estatisticas);
+void InsereNaPagina (Apontador apontador, Registro Reg, Apontador ApDir, Estatisticas *estatisticas){
+    int NaoAchouPosicao;
+    int k = apontador->nFilhos; 
+    NaoAchouPosicao = (k > 0);
     
-    //Verifica se a raiz da arvore vai crescer a raiz
-    if(cresceu){
-        apTemp = (Pagina*) malloc(sizeof(Pagina));
-        apTemp->nFilhos = 1;
-        apTemp->registros[0] = regRetorno;
-        apTemp->ponteiros[1] = apRetorno;
-        apTemp->ponteiros[0] = *apontador; 
-        *apontador = apTemp;
+    //Procura em qual posicao o item devera ser inserido na pagina
+    while(NaoAchouPosicao){
+        // estatisticas->preProcessamento.comparacoes += 1;
+        if(Reg.chave >= apontador->registros[k-1].chave){
+            NaoAchouPosicao = 0;
+            break;
+        }
+        apontador->registros[k] = apontador->registros[k-1];
+        apontador->ponteiros[k+1] = apontador->ponteiros[k];
+        k--;
+        if(k < 1)
+            NaoAchouPosicao = 0;
     }
+
+    apontador->registros[k] = Reg;
+    apontador->ponteiros[k+1] = ApDir;
+    apontador->nFilhos++;
 }
 
 void Ins(Registro registro,
@@ -121,26 +115,55 @@ void Ins(Registro registro,
     *apRetorno = apTemp;
 }
 
-void InsereNaPagina (Apontador apontador, Registro Reg, Apontador ApDir, Estatisticas *estatisticas){
-    int NaoAchouPosicao;
-    int k = apontador->nFilhos; 
-    NaoAchouPosicao = (k > 0);
+
+
+void Insere(Registro registro,
+            Apontador *folha,
+            Estatisticas *estatisticas){
+    short cresceu;
+    Registro regRetorno;
+    Pagina *apRetorno, *apTemp;
+
+    Ins(registro, *folha, &cresceu, &regRetorno, &apRetorno, estatisticas);
     
-    //Procura em qual posicao o item devera ser inserido na pagina
-    while(NaoAchouPosicao){
-        // resultados->preProcessamento.comparacoes += 1;
-        if(Reg.chave >= apontador->registros[k-1].chave){
-            NaoAchouPosicao = 0;
-            break;
-        }
-        apontador->registros[k] = apontador->registros[k-1];
-        apontador->ponteiros[k+1] = apontador->ponteiros[k];
-        k--;
-        if(k < 1)
-            NaoAchouPosicao = 0;
+    //Verifica se a raiz da arvore vai crescer a raiz
+    if(cresceu){
+        apTemp = (Pagina*) malloc(sizeof(Pagina));
+        apTemp->nFilhos = 1;
+        apTemp->registros[0] = regRetorno;
+        apTemp->ponteiros[1] = apRetorno;
+        apTemp->ponteiros[0] = *folha; 
+        *folha = apTemp;
+    }
+}
+
+
+int pesquisaArvoreB(Registro *registro,
+                    Apontador apontador,
+                    Estatisticas *estatisticas){
+                        
+    if(apontador == NULL) return 0;
+
+    long i = 1;
+    estatisticas->comparacoes += 1;
+    while(i < apontador->nFilhos && registro->chave > apontador->registros[i-1].chave){
+        i++;
+        estatisticas->comparacoes += 1;
     }
 
-    apontador->registros[k] = Reg;
-    apontador->ponteiros[k+1] = ApDir;
-    apontador->nFilhos++;
+    estatisticas->comparacoes += 1;
+    if(registro->chave == apontador->registros[i-1].chave){
+        *registro = apontador->registros[i-1];
+        estatisticas->comparacoes += 1;
+        return 1;
+    }
+
+    estatisticas->comparacoes += 1;
+    if(registro->chave < apontador->registros[i-1].chave) {
+        return pesquisaArvoreB(registro, apontador->ponteiros[i-1], estatisticas);
+    }else {
+        return pesquisaArvoreB(registro, apontador->ponteiros[i], estatisticas);
+    } 
+
+    
 }
