@@ -4,6 +4,7 @@
 #include "indexado.h"
 #include "estatisticas.h"
 #include "arvorebinaria.h"
+#include "arvoreb.h"
 
 void lerArquivoBinario(const char *caminhoArquivo) {
     FILE *arquivo = fopen(caminhoArquivo, "rb");
@@ -24,20 +25,6 @@ void lerArquivoBinario(const char *caminhoArquivo) {
     }
 
     fclose(arquivo);
-}
-
-void metodo1() {
-    printf("Executando o Metodo 1: Acesso Sequencial Indexado\n");
-}
-
-void metodo2() {
-    printf("Executando o Metodo 2: Árvore Binária de Pesquisa para Memória Externa\n");
-    // Placeholder para implementação futura.
-}
-
-void metodo3() {
-    printf("Executando o Metodo 3: Árvore B\n");
-    // Placeholder para implementação futura.
 }
 
 void metodo4() {
@@ -113,6 +100,14 @@ int main(int argc, char *argv[]) {
             resultado = buscarArvore(arvorebin,&registro,&estatisticas,debug);
             break;
         case 3:
+            Apontador Arvore;
+            criaArvoreB(Arvore, arquivo, &estatisticas);
+            
+
+            
+                
+
+
             metodo3();
             break;
         case 4:

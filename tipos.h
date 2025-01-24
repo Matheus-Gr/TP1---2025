@@ -27,6 +27,17 @@ typedef struct {
     int direita;
 } NoBinario;
 
+#define M 2
+#define MM 2 * M
+
+typedef struct Pagina* Apontador;
+
+typedef struct Pagina {
+    short nFilhos;
+    Registro registros[MM];
+    Apontador ponteiros[MM + 1];
+} Pagina;
+
 void lerRegistro(Registro* registro);
 
 #endif
