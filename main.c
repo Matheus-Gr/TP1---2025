@@ -5,6 +5,8 @@
 #include "estatisticas.h"
 #include "arvorebinaria.h"
 
+double prepross;
+
 void lerArquivoBinario(const char *caminhoArquivo) {
     FILE *arquivo = fopen(caminhoArquivo, "rb");
     if (arquivo == NULL) {
@@ -107,9 +109,10 @@ int main(int argc, char *argv[]) {
                 debug);
             break;
         case 2:
-            criarArvore(arquivo, arvorebin);
+            prepross = calcularTempoPreProcessamento(arquivo, arvorebin);
             printf("Criado\n");
             lerArvore(arvorebin);
+            printf("Tempo de pré-processamento: %.2lf ms\n", prepross);
             resultado = buscarArvore(arvorebin,&registro,&estatisticas,debug);
             break;
         case 3:
