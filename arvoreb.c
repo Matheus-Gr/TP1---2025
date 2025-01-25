@@ -6,129 +6,93 @@ void inicializa(Apontador *arvore){
     *arvore = NULL;
 }
 
-
-void InsereNaPagina (Apontador apontador, Registro Reg, Apontador ApDir, Estatisticas *estatisticas){
-    int NaoAchouPosicao;
-    int k = apontador->nFilhos; 
-    NaoAchouPosicao = (k > 0);
+void InsereNaPagina(Apontador apontador, Registro Reg, Apontador ApDir, Estatisticas *estatisticas) {
+    if (apontador == NULL) return;
     
-    //Procura em qual posicao o item devera ser inserido na pagina
-    while(NaoAchouPosicao){
-        // estatisticas->preProcessamento.comparacoes += 1;
-        if(Reg.chave >= apontador->registros[k-1].chave){
+    int k = apontador->nFilhos;
+    int NaoAchouPosicao = (k > 0);
+    
+    while (NaoAchouPosicao) {
+        if (Reg.chave >= apontador->registros[k-1].chave) {
             NaoAchouPosicao = 0;
             break;
         }
         apontador->registros[k] = apontador->registros[k-1];
         apontador->ponteiros[k+1] = apontador->ponteiros[k];
         k--;
-        if(k < 1)
+        if (k < 1)
             NaoAchouPosicao = 0;
     }
-
     apontador->registros[k] = Reg;
     apontador->ponteiros[k+1] = ApDir;
     apontador->nFilhos++;
 }
 
-void Ins(Registro registro,
-         Apontador apontador,
-         short *cresceu,
-         Registro *regRetorno, 
-         Apontador *apRetorno,
-         Estatisticas *estatisticas){
-        
-    long i = 1; //Onde o item deve ser inserido
-    long j;
-    
-    Apontador apTemp;
-    
-    //Verifica se a arvore esta vazia ou se chegou no nodo folha
-    if(apontador == NULL){
+void Ins(Registro registro, Apontador apontador, short *cresceu, Registro *regRetorno, Apontador *apRetorno, Estatisticas *estatisticas) {
+    if (apontador == NULL) {
         *cresceu = 1;
-        (*regRetorno) = registro;
-        (*apRetorno) = NULL;
-
+        *regRetorno = registro;
+        *apRetorno = NULL;
         return;
     }
 
-    //Realiza uma pesquisa na pagina para saber se ele existe nela
-    // estatisticas->preProcessamento.comparacoes += 1;
-    while(i < apontador->nFilhos &&
-          registro.chave > apontador->registros[i-1].chave){
+    long i = 1;
+    while (i < apontador->nFilhos && registro.chave > apontador->registros[i-1].chave) {
         i++;
-        //  estatisticas->preProcessamento.comparacoes += 1;
     }
-
-    // estatisticas->preProcessamento.comparacoes += 1;
-    if(registro.chave == apontador->registros[i-1].chave){
-        //!Erro: Registro ja esta presente
+    if (registro.chave == apontador->registros[i-1].chave) {
         *cresceu = 0;
         return;
     }
 
-    //Verifica se iremos para a sub arvore a esquerda (true) ou direita (0)
-    // estatisticas->preProcessamento.comparacoes += 1;
-    if(registro.chave < apontador->registros[i-1].chave) i--;
-    
+    if (registro.chave < apontador->registros[i-1].chave) i--;
 
     Ins(registro, apontador->ponteiros[i], cresceu, regRetorno, apRetorno, estatisticas);
+    if (!*cresceu) return;
 
-    //Quando passar por este if, significa que chegou no nodo folha, entao podemos inserir
-    //Tambem ira passar quando o no filho deu overflow e a arvore ira crescer, pois um item subiu
-    if(!*cresceu) return;
-        
-    //Verifica se a pagina NAO ira crescer, mesmo apos a recursao e adiciona o item no nodo
-    if(apontador->nFilhos < MM){ 
+    if (apontador->nFilhos < MM) {
         InsereNaPagina(apontador, *regRetorno, *apRetorno, estatisticas);
         *cresceu = 0;
-
         return;
     }
 
-    //Overflow: Pagina tem que ser dividida
-    //Criando uma nova pagina
-    apTemp = (Apontador) malloc(sizeof(Pagina));
+    Apontador apTemp = (Apontador) malloc(sizeof(Pagina));
+    if (apTemp == NULL) {
+        printf("Erro: Falha na alocacao de memoria em 'Ins'!\n");
+        exit(1);
+    }
     apTemp->nFilhos = 0;
     apTemp->ponteiros[0] = NULL;
 
-    //Verifica para onde a chave ira
-    if(i < M + 1){
-        //Insere o item na pagina que ja existe
-        //Coloca o ultimo registro na nova pagina
+    if (i < M + 1) {
         InsereNaPagina(apTemp, apontador->registros[MM - 1], apontador->ponteiros[MM], estatisticas);
         apontador->nFilhos--;
-        //Insere o novo item na pagina atual
         InsereNaPagina(apontador, *regRetorno, *apRetorno, estatisticas);
+    } else {
+        InsereNaPagina(apTemp, *regRetorno, *apRetorno, estatisticas);
     }
-    
-    // Inserindo o item que deu o overflow na pagina vizinha
-    else InsereNaPagina(apTemp, *regRetorno, *apRetorno, estatisticas);
-        
-    //Colocando os valores excedentes e colocando na pagina nova
-    for(j = M + 2; j <= MM; j++)
+
+    for (long j = M + 2; j <= MM; j++)
         InsereNaPagina(apTemp, apontador->registros[j-1], apontador->ponteiros[j], estatisticas);
-        
+    
     apontador->nFilhos = M;
     apTemp->ponteiros[0] = apontador->ponteiros[M + 1];
     *regRetorno = apontador->registros[M];
     *apRetorno = apTemp;
 }
 
-
-
-void Insere(Registro registro,
-            Apontador *folha,
-            Estatisticas *estatisticas){
+void Insere(Registro registro, Apontador *folha, Estatisticas *estatisticas) {
     short cresceu;
     Registro regRetorno;
-    Pagina *apRetorno, *apTemp;
-
+    Apontador apRetorno;
     Ins(registro, *folha, &cresceu, &regRetorno, &apRetorno, estatisticas);
     
-    //Verifica se a raiz da arvore vai crescer a raiz
-    if(cresceu){
-        apTemp = (Pagina*) malloc(sizeof(Pagina));
+    if (cresceu) {
+        Apontador apTemp = (Apontador) malloc(sizeof(Pagina));
+        if (apTemp == NULL) {
+            printf("Erro: Falha na alocacao de memoria em 'Insere'!\n");
+            exit(1);
+        }
         apTemp->nFilhos = 1;
         apTemp->registros[0] = regRetorno;
         apTemp->ponteiros[1] = apRetorno;
@@ -137,33 +101,30 @@ void Insere(Registro registro,
     }
 }
 
-
-int pesquisaArvoreB(Registro *registro,
-                    Apontador apontador,
-                    Estatisticas *estatisticas){
-                        
-    if(apontador == NULL) return 0;
-
-    long i = 1;
-    estatisticas->comparacoes += 1;
-    while(i < apontador->nFilhos && registro->chave > apontador->registros[i-1].chave){
-        i++;
-        estatisticas->comparacoes += 1;
+int pesquisaArvoreB(Registro *registro, Apontador apontador, Estatisticas *estatisticas) {
+    if (apontador == NULL) {
+        printf("Erro: Arvore vazia!\n");
+        exit(1);
     }
 
-    estatisticas->comparacoes += 1;
-    if(registro->chave == apontador->registros[i-1].chave){
+    long i = 1;
+    estatisticas->comparacoes++;
+    while (i < apontador->nFilhos && registro->chave > apontador->registros[i-1].chave) {
+        i++;
+        estatisticas->comparacoes++;
+    }
+
+    estatisticas->comparacoes++;
+    if (registro->chave == apontador->registros[i-1].chave) {
         *registro = apontador->registros[i-1];
-        estatisticas->comparacoes += 1;
+        estatisticas->comparacoes++;
         return 1;
     }
 
-    estatisticas->comparacoes += 1;
-    if(registro->chave < apontador->registros[i-1].chave) {
+    estatisticas->comparacoes++;
+    if (registro->chave < apontador->registros[i-1].chave) {
         return pesquisaArvoreB(registro, apontador->ponteiros[i-1], estatisticas);
-    }else {
+    } else {
         return pesquisaArvoreB(registro, apontador->ponteiros[i], estatisticas);
     } 
-
-    
 }

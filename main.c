@@ -106,12 +106,21 @@ int main(int argc, char *argv[]) {
             printf("INSERINDO...\n");
 
             inicializa(&arvore);
-            Registro lido;
 
+            Registro lido;
             while (fread(&lido, sizeof(Registro), 1, arquivo) == 1) {
                 Insere(lido, &arvore, &estatisticas);
             }
             printf("INSERIDO\n");
+
+            if (arvore == NULL) {
+                printf("Arvore binaria nn foi criada corretamente!\n");
+                return 0;
+            }else {
+                printf("Arvore binaria criada corretamente!\n");
+                printf("Iniciando pesquisa...\n");
+            }
+
             resultado = pesquisaArvoreB(&registro, arvore, &estatisticas);
             break;
         case 4:
