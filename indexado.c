@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define ITENSPAGINA 6
+#define ITENSPAGINA 100000
 
 int pesquisaIndexada(
     Registro* registro,
@@ -24,13 +24,15 @@ int pesquisaIndexada(
     Registro tempoRegistro;
 
     for (int i = 0; i < nPaginas; i++) {
-        fseek(arquivo, i * ITENSPAGINA * sizeof(Registro), SEEK_SET);
+        _fseeki64(arquivo, i * ITENSPAGINA * sizeof(Registro), SEEK_SET);
         estatisticas->transferencias++;
         fread(&tempoRegistro, sizeof(Registro), 1, arquivo);
         
         tabelaIndices[i].posicao = i * ITENSPAGINA;
         tabelaIndices[i].chave = tempoRegistro.chave;
     }
+
+
 
     if (debug) {
         printf("Numero de paginas: %d\n", nPaginas);
@@ -62,7 +64,7 @@ int pesquisaIndexada(
     }
 
     // Busca sequencial na página encontrada
-    fseek(arquivo, tabelaIndices[pagina - 1].posicao * sizeof(Registro), SEEK_SET);
+    _fseeki64(arquivo, tabelaIndices[pagina - 1].posicao * sizeof(Registro), SEEK_SET);
     for (int i = 0; i < ITENSPAGINA; i++) {
         estatisticas->transferencias++;
         if (fread(&tempoRegistro, sizeof(Registro), 1, arquivo) != 1) {

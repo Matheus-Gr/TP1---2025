@@ -19,7 +19,7 @@ void lerIndicesDoArquivo(const char *nomeArquivo, int *indices, int quantidadeRe
             exit(1);
         }
 
-        printf("Indice %d: %d\n", i, indices[i]);
+        // printf("Indice %d: %d\n", i, indices[i]);
     }
 
     fclose(arquivo);
@@ -43,6 +43,8 @@ void gerarArquivoBinario(const char *caminhoArquivo, int quantidadeRegistros, in
         lerIndicesDoArquivo(arquivoIndices, indicesAleatorios, quantidadeRegistros);
     }
 
+    size_t elementosGravados = 0;
+
     for (int i = 0; i < quantidadeRegistros; i++) {
         int chave;
 
@@ -58,12 +60,15 @@ void gerarArquivoBinario(const char *caminhoArquivo, int quantidadeRegistros, in
         }
 
         registro.chave = chave;
-        registro.dado1 = rand() % 100000;
+        registro.dado1 = chave + 13;
         snprintf(registro.dado2, sizeof(registro.dado2), "Registro %d", chave);
 
-        fwrite(&registro, sizeof(Registro), 1, arquivo);
+        size_t gravado = fwrite(&registro, sizeof(Registro), 1, arquivo);
+        elementosGravados += gravado;
     }
 
+    printf("Registros gravados: %zu\n", elementosGravados);
+    
     fclose(arquivo);
     free(chavesGeradas);
     free(indicesAleatorios);  // Liberar memória usada pelos índices aleatórios

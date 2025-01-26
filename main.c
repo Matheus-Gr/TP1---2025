@@ -1,3 +1,4 @@
+#define __USE_MINGW_ANSI_STDIO 1
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -5,6 +6,7 @@
 #include "estatisticas.h"
 #include "arvorebinaria.h"
 #include "arvoreb.h"
+#include "tipos.h"
 
 void lerArquivoBinario(const char *caminhoArquivo) {
     FILE *arquivo = fopen(caminhoArquivo, "rb");
@@ -18,10 +20,34 @@ void lerArquivoBinario(const char *caminhoArquivo) {
 
     printf("Conteudo do arquivo %s:\n", caminhoArquivo);
     while (fread(&registro, sizeof(Registro), 1, arquivo) == 1) {
+        if(registro.chave % 500000 == 0){
         printf("Registro %d:\n", ++contador);
-        printf("  Chave: %d\n", registro.chave);
+        printf("  Chave -lendo a um por um: %d\n", registro.chave);
         printf("  Dado1: %ld\n", registro.dado1);
         printf("  Dado2: %s\n", registro.dado2);
+    }}
+
+    fclose(arquivo);
+}
+
+void lerChavesArquivoBinario(const char *caminhoArquivo) {
+    FILE *arquivo = fopen(caminhoArquivo, "rb");
+    if (arquivo == NULL) {
+        perror("Erro ao abrir arquivo");
+        exit(1);
+    }
+
+    Registro registro;
+    int contador = 0;
+    long tamanhoRegistro = sizeof(Registro);
+
+    printf("Chaves a cada 10000 registros do arquivo %s:\n", caminhoArquivo);
+    while (fread(&registro, tamanhoRegistro, 1, arquivo) == 1) {
+        printf("Registro %d - Chave: %d\n", contador + 1, registro.chave);
+        contador += 10000;
+        if (fseek(arquivo, contador * tamanhoRegistro, SEEK_SET) != 0) {
+            break;
+        }
     }
 
     fclose(arquivo);
@@ -53,16 +79,11 @@ int main(int argc, char *argv[]) {
     snprintf(nomeArquivo, sizeof(nomeArquivo), "./arquivos/arquivo-%d-%d.bin", quantidade, ordem);
 
     printf("Nome do arquivo: %s\n", nomeArquivo);
-    
-
     FILE *arquivo = fopen(nomeArquivo, "rb");
     if (arquivo == NULL) {
         perror("Erro ao abrir o arquivo");
         return 1;
     }
-    
-    // lerArquivoBinario(nomeArquivo);
-
 
     if (debug) {
         printf("Metodo escolhido: %d\n", metodo);
@@ -78,9 +99,13 @@ int main(int argc, char *argv[]) {
 
     Apontador arvore;
 
-
     Estatisticas estatisticas;
     inicializarEstatisticas(&estatisticas);
+
+    Registro *registros = (Registro *) malloc( quantidade * sizeof(Registro));
+    fread(registros, sizeof(Registro), quantidade, arquivo);
+    printf("Chave 1000900: %d", registros[1000900].chave);
+
 
     const char* arvorebin = "arvorebin.bin";
 
@@ -97,21 +122,23 @@ int main(int argc, char *argv[]) {
                 debug);
             break;
         case 2:
+            break;
             criarArvore(arquivo, arvorebin);
             printf("Criado\n");
             lerArvore(arvorebin);
             resultado = buscarArvore(arvorebin,&registro,&estatisticas,debug);
-            break;
         case 3:
-            printf("INSERINDO...\n");
 
             inicializa(&arvore);
 
-            Registro lido;
-            while (fread(&lido, sizeof(Registro), 1, arquivo) == 1) {
-                Insere(lido, &arvore, &estatisticas);
-            }
+            printf("INSERINDO NA ARVORE...\n");
+
+
+            for(int i = 0; i < quantidade; i++)
+                Insere(registros[i], &arvore, &estatisticas);
+            
             printf("INSERIDO\n");
+            fclose(arquivo);
 
             if (arvore == NULL) {
                 printf("Arvore binaria nn foi criada corretamente!\n");

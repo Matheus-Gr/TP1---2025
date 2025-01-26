@@ -3,6 +3,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <windows.h>
+#include <psapi.h>
+
 #include "tipos.h"
 
 void inicializa(Apontador *arvore);

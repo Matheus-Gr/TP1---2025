@@ -4,6 +4,7 @@
 
 void inicializa(Apontador *arvore){
     *arvore = NULL;
+    printf("Arvore inicializada!\n");
 }
 
 void InsereNaPagina(Apontador apontador, Registro Reg, Apontador ApDir, Estatisticas *estatisticas) {
@@ -29,6 +30,13 @@ void InsereNaPagina(Apontador apontador, Registro Reg, Apontador ApDir, Estatist
 }
 
 void Ins(Registro registro, Apontador apontador, short *cresceu, Registro *regRetorno, Apontador *apRetorno, Estatisticas *estatisticas) {
+    //i informa onde será inserido o registro
+    long i = 1; 
+    long j;
+
+    Apontador apTemp;
+
+    //verifica se a arovre esta vazia ou se chegou na folha
     if (apontador == NULL) {
         *cresceu = 1;
         *regRetorno = registro;
@@ -36,18 +44,22 @@ void Ins(Registro registro, Apontador apontador, short *cresceu, Registro *regRe
         return;
     }
 
-    long i = 1;
+    //pesquisa na pagina se ele ja existe nela
     while (i < apontador->nFilhos && registro.chave > apontador->registros[i-1].chave) {
         i++;
     }
+
     if (registro.chave == apontador->registros[i-1].chave) {
+        //Registro já esta presente
         *cresceu = 0;
         return;
     }
 
+    //verifica se sera direcionado a direita ou esquerda
     if (registro.chave < apontador->registros[i-1].chave) i--;
 
     Ins(registro, apontador->ponteiros[i], cresceu, regRetorno, apRetorno, estatisticas);
+
     if (!*cresceu) return;
 
     if (apontador->nFilhos < MM) {
@@ -56,7 +68,8 @@ void Ins(Registro registro, Apontador apontador, short *cresceu, Registro *regRe
         return;
     }
 
-    Apontador apTemp = (Apontador) malloc(sizeof(Pagina));
+    // printMemoryUsage();
+    apTemp = (Apontador) malloc(sizeof(Pagina));
     if (apTemp == NULL) {
         printf("Erro: Falha na alocacao de memoria em 'Ins'!\n");
         exit(1);
@@ -72,9 +85,10 @@ void Ins(Registro registro, Apontador apontador, short *cresceu, Registro *regRe
         InsereNaPagina(apTemp, *regRetorno, *apRetorno, estatisticas);
     }
 
-    for (long j = M + 2; j <= MM; j++)
+    for (j = M + 2; j <= MM; j++){
         InsereNaPagina(apTemp, apontador->registros[j-1], apontador->ponteiros[j], estatisticas);
-    
+    }
+        
     apontador->nFilhos = M;
     apTemp->ponteiros[0] = apontador->ponteiros[M + 1];
     *regRetorno = apontador->registros[M];
@@ -84,11 +98,14 @@ void Ins(Registro registro, Apontador apontador, short *cresceu, Registro *regRe
 void Insere(Registro registro, Apontador *folha, Estatisticas *estatisticas) {
     short cresceu;
     Registro regRetorno;
-    Apontador apRetorno;
+    Pagina *apRetorno, *apTemp;
+
+    if (registro.chave % 100000 == 0) printf("Inserindo ->%d\n", registro.chave);
+
     Ins(registro, *folha, &cresceu, &regRetorno, &apRetorno, estatisticas);
     
     if (cresceu) {
-        Apontador apTemp = (Apontador) malloc(sizeof(Pagina));
+        apTemp = (Pagina *) malloc(sizeof(Pagina));
         if (apTemp == NULL) {
             printf("Erro: Falha na alocacao de memoria em 'Insere'!\n");
             exit(1);

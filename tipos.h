@@ -27,7 +27,7 @@ typedef struct {
     int direita;
 } NoBinario;
 
-#define M 4
+#define M 2
 #define MM 2 * M
 
 typedef struct Pagina* Apontador;

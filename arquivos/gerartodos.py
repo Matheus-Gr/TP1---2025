@@ -3,6 +3,7 @@ import os
 import random
 import struct
 
+# 100, 200,  2000, 20000, 200000, 2000000
 quantidades = [100, 200,  2000, 20000, 200000, 2000000]
 situacoes = [1, 2, 3]
 comando_base = 'arquivos.exe'

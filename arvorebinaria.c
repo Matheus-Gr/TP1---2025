@@ -27,7 +27,7 @@ void atualizaPonteiros(FILE* arquivoArvore, NoBinario* itemInserir)
         ponteiro = (itemInserir->registro.chave > lido.registro.chave) ? lido.direita : lido.esquerda;
     }while(ponteiro != -1);
 
-    fseek(arquivoArvore, -(sizeof(NoBinario)), SEEK_CUR);
+    fseek(arquivoArvore, (long) -(sizeof(NoBinario)), SEEK_CUR);
     
     if(itemInserir->registro.chave > lido.registro.chave)
         lido.direita = qtdItensArquivo;
