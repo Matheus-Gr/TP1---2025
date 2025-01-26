@@ -8,7 +8,7 @@
 
 void criarArvore(FILE* arquivoEntrada, const char* nomeArquivoArvore);
 
-double calcularTempoPreProcessamento(FILE* arquivoEntrada, const char* nomeArquivoArvore);
+void calcularTempoPreProcessamento(FILE* arquivoEntrada, const char* nomeArquivoArvore, Estatisticas* estatisticas);
 
 int buscarArvore(const char* nomeArquivoArvore, Registro* registro, Estatisticas* estatisticas, int debug);
 

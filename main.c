@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "tipos.h"          // Inclui a definição de Registro e TipoRegistro
 #include "indexado.h"
 #include "estatisticas.h"
 #include "arvorebinaria.h"
+#include "arvorebestrela.h"
 
 double prepross;
 
@@ -20,9 +22,7 @@ void lerArquivoBinario(const char *caminhoArquivo) {
     printf("Conteudo do arquivo %s:\n", caminhoArquivo);
     while (fread(&registro, sizeof(Registro), 1, arquivo) == 1) {
         printf("Registro %d:\n", ++contador);
-        printf("  Chave: %d\n", registro.chave);
-        printf("  Dado1: %ld\n", registro.dado1);
-        printf("  Dado2: %s\n", registro.dado2);
+        lerRegistro(&registro);  // Usa a função lerRegistro de tipos.c
     }
 
     fclose(arquivo);
@@ -68,16 +68,12 @@ int main(int argc, char *argv[]) {
     snprintf(nomeArquivo, sizeof(nomeArquivo), "./arquivos/arquivo-%d-%d.bin", quantidade, ordem);
 
     printf("Nome do arquivo: %s\n", nomeArquivo);
-    
 
     FILE *arquivo = fopen(nomeArquivo, "rb");
     if (arquivo == NULL) {
         perror("Erro ao abrir o arquivo");
         return 1;
     }
-    
-    // lerArquivoBinario(nomeArquivo);
-
 
     if (debug) {
         printf("Metodo escolhido: %d\n", metodo);
@@ -109,34 +105,51 @@ int main(int argc, char *argv[]) {
                 debug);
             break;
         case 2:
-            prepross = calcularTempoPreProcessamento(arquivo, arvorebin);
-            printf("Criado\n");
-            lerArvore(arvorebin);
-            printf("Tempo de pré-processamento: %.2lf ms\n", prepross);
-            resultado = buscarArvore(arvorebin,&registro,&estatisticas,debug);
-            break;
+            calcularTempoPreProcessamento(arquivo, arvorebin, &estatisticas); // Adicione o 3º argumento
+        printf("Arvore criada\n");
+        if (debug) lerArvore(arvorebin);
+        resultado = buscarArvore(arvorebin, &registro, &estatisticas, debug);
+        break;
         case 3:
             metodo3();
             break;
-        case 4:
-            metodo4();
+        case 4: {
+            static TipoApontadorEstrela ArvoreBStar = NULL;
+            if (ArvoreBStar == NULL) {
+                ArvoreBStar = ConstruirArvoreBStar(nomeArquivo, quantidade, &estatisticas, debug);
+
+                // Imprime a árvore se debug estiver ativo
+                if (debug) {
+                    printf("\nEstrutura da Arvore B*:\n");
+                    printArvoreBEstrela(ArvoreBStar, 0);
+                    printf("____________________________________\n");
+                }
+            }
+            TipoRegistro regPesquisa;
+            regPesquisa.chave = chave;
+            resultado = Pesquisa(&regPesquisa, ArvoreBStar, &estatisticas, debug);
+
             break;
+        }
+
+        // Exibe as estatísticas
+        finalizarEstatisticas(&estatisticas);
+        break;
         default:
             printf("Metodo inválido! Escolha entre 1, 2, 3 ou 4.\n");
             return 1;
     }
-             
-            
+
     printf("_______________________________________________________________\n");
-    if (resultado){
+    if (resultado) {
         printf("Nome do arquivo: %s\n", nomeArquivo);
         printf("Registro encontrado!\n");
-        lerRegistro(&registro);
+        lerRegistro(&registro);  // Usa a função lerRegistro de tipos.c
         finalizarEstatisticas(&estatisticas);
     } else {
         printf("Registro nao encontrado.\n");
     }
-    
 
+    fclose(arquivo);
     return 0;
 }

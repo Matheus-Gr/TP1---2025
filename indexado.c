@@ -7,8 +7,8 @@
 #define ITENSPAGINA 6 // Número de registros por página na busca indexada.
 
 // Função de pré-processamento para criar uma tabela de índices.
-Indice* preProcessarIndices(FILE* arquivo, int tamanho, int* nPaginas, Estatisticas* estatisticas, double* tempoPreProcessamento) {
-    clock_t inicio = clock(); // Marca o início do pré-processamento.
+Indice* preProcessarIndices(FILE* arquivo, int tamanho, int* nPaginas, Estatisticas* estatisticas) {
+    clock_t inicio = clock();
 
     *nPaginas = (tamanho + ITENSPAGINA - 1) / ITENSPAGINA;
 
@@ -28,33 +28,21 @@ Indice* preProcessarIndices(FILE* arquivo, int tamanho, int* nPaginas, Estatisti
         tabelaIndices[i].chave = tempoRegistro.chave;
     }
 
-    clock_t fim = clock(); // Marca o fim do pré-processamento.
-    *tempoPreProcessamento = ((double)(fim - inicio) / CLOCKS_PER_SEC) * 1000; // Converte para milissegundos.
-
+	clock_t fim = clock();
+    estatisticas->tempoPreProcessamento = ((double)(fim - inicio) / CLOCKS_PER_SEC) * 1000;
     return tabelaIndices;
 }
 
 // Realiza uma pesquisa indexada em um arquivo de registros.
-int pesquisaIndexada(
-    Registro* registro,
-    int tamanho,
-    int ordem,
-    FILE* arquivo,
-    Estatisticas* estatisticas,
-    int debug
-) {
+int pesquisaIndexada(Registro* registro, int tamanho, int ordem, FILE* arquivo, Estatisticas* estatisticas, int debug) {
     int nPaginas;
-    double tempoPreProcessamento = 0.0;
-
-    // Pré-processa os índices antes de realizar a busca.
-    Indice* tabelaIndices = preProcessarIndices(arquivo, tamanho, &nPaginas, estatisticas, &tempoPreProcessamento);
+    Indice* tabelaIndices = preProcessarIndices(arquivo, tamanho, &nPaginas, estatisticas);
     if (tabelaIndices == NULL) {
         return 0;
     }
 
-    printf("Tempo de pré-processamento: %.2f ms\n", tempoPreProcessamento);
-
     if (debug) {
+      printf("Tempo de pre-processamento: %.2f ms\n", estatisticas->tempoPreProcessamento);
         printf("Numero de paginas: %d\n", nPaginas);
         printf("Tabela de Indices:\n");
         printf("Pagina\tPosicao\tChave\n");

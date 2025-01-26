@@ -76,23 +76,11 @@ void criarArvore(FILE* arquivoEntrada, const char* nomeArquivoArvore) {
 }
 
 // Calcula o tempo de pré-processamento (criação da árvore binária)
-double calcularTempoPreProcessamento(FILE* arquivoEntrada, const char* nomeArquivoArvore) {
-    clock_t inicio, fim;
-    double tempoGasto;
-
-    // Inicia a contagem de tempo
-    inicio = clock();
-
-    // Cria a árvore binária
+void calcularTempoPreProcessamento(FILE* arquivoEntrada, const char* nomeArquivoArvore, Estatisticas* estatisticas) {
+    clock_t inicio = clock();
     criarArvore(arquivoEntrada, nomeArquivoArvore);
-
-    // Finaliza a contagem de tempo
-    fim = clock();
-
-    // Calcula o tempo gasto em milissegundos
-    tempoGasto = ((double)(fim - inicio) / CLOCKS_PER_SEC) * 1000.0;
-    //printf("tempo de pre processamento: %.2lf ms\n", tempoGasto);
-    return tempoGasto;
+    clock_t fim = clock();
+    estatisticas->tempoPreProcessamento = ((double)(fim - inicio) / CLOCKS_PER_SEC) * 1000.0;
 }
 
 // Busca um registro na árvore binária

@@ -12,7 +12,9 @@ void inicializarEstatisticas(Estatisticas *estatisticas) {
 void finalizarEstatisticas(Estatisticas *estatisticas) {
     estatisticas->tempoExecucao = (double)(clock() - estatisticas->inicio) * 1000 / CLOCKS_PER_SEC;
 
-    printf("Transferencias: %d\n", estatisticas->transferencias);
+    printf("\nEstatisticas:\n");
+    printf("Tempo de pre-processamento: %.2f ms\n", estatisticas->tempoPreProcessamento);
+    printf("Tempo de pesquisa: %.2f ms\n", estatisticas->tempoExecucao);
     printf("Comparacoes: %d\n", estatisticas->comparacoes);
-    printf("Tempo de execucao: %.2f ms\n", estatisticas->tempoExecucao);
+    printf("Transferencias: %d\n\n", estatisticas->transferencias);
 }
