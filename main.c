@@ -145,6 +145,8 @@ int main(int argc, char *argv[]) {
             }
 
             if (debug) printf("4) Pre-Processamento encerrado\n");
+            int profundidade = calculaProfundidade(arvore);
+            printf("Profundidade da Arvore B: %d\n", profundidade);
             if (debug) printf("5) Iniciando pesquisa\n");
             inicializarTimerPesquisa(&estatisticas);
             resultado = pesquisaArvoreB(&registro, arvore, &estatisticas);

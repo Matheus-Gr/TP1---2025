@@ -31,4 +31,6 @@ int pesquisaArvoreB(Registro *registro,
                     Apontador apontador,
                     Estatisticas *estatisticas);
 
+int calculaProfundidade(Apontador arvore);
+
 #endif

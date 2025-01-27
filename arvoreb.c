@@ -29,9 +29,6 @@ void InsereNaPagina(Apontador apontador, Registro Reg, Apontador ApDir, Estatist
 }
 
 void Ins(Registro registro, Apontador apontador, short *cresceu, Registro *regRetorno, Apontador *apRetorno, Estatisticas *estatisticas, int debug) {
-    estatisticas->profundidadeAB++;
-    if(debug && (estatisticas->profundidadeAB % 50000 == 0))
-        printf("Profundidade: %d\n", estatisticas->profundidadeAB);
 
     //i informa onde será inserido o registro
     long i = 0;
@@ -41,7 +38,6 @@ void Ins(Registro registro, Apontador apontador, short *cresceu, Registro *regRe
         *cresceu = 1;
         *regRetorno = registro;
         *apRetorno = NULL;
-        estatisticas->profundidadeAB--;
         return;
     }
 
@@ -53,21 +49,18 @@ void Ins(Registro registro, Apontador apontador, short *cresceu, Registro *regRe
     if (i < apontador->nFilhos && registro.chave == apontador->registros[i].chave) {
         estatisticas->comparacoesPP++;
         *cresceu = 0;
-        estatisticas->profundidadeAB--;
         return;
     }
 
     Ins(registro, apontador->ponteiros[i], cresceu, regRetorno, apRetorno, estatisticas, debug);
 
     if (!*cresceu){
-        estatisticas->profundidadeAB--;
         return;
     }
 
     if (apontador->nFilhos < MM) {
         InsereNaPagina(apontador, *regRetorno, *apRetorno, estatisticas);
         *cresceu = 0;
-        estatisticas->profundidadeAB--;
         return;
     }
 
@@ -99,7 +92,6 @@ void Ins(Registro registro, Apontador apontador, short *cresceu, Registro *regRe
 
     *regRetorno = apontador->registros[meio];
     *apRetorno = apTemp;
-    estatisticas->profundidadeAB--;
 }
 
 void Insere(Registro registro, Apontador *folha, Estatisticas *estatisticas, int debug) {
@@ -154,4 +146,9 @@ int pesquisaArvoreB(Registro *registro, Apontador apontador, Estatisticas *estat
     } else {
         return pesquisaArvoreB(registro, apontador->ponteiros[i], estatisticas);
     } 
+}
+
+int calculaProfundidade(Apontador arvore) {
+    if (arvore == NULL) return 0; // Árvore vazia tem profundidade 0
+    return 1 + calculaProfundidade(arvore->ponteiros[0]); // Desce pelo primeiro filho
 }
