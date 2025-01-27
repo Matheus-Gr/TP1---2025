@@ -21,7 +21,7 @@ void InsereNaPagina (Apontador apontador,
 
 void Ins(Registro registro,
          Apontador apontador,
-         short *sla,
+         short *cresceu,
          Registro *registro2, 
          Apontador *aporador2,
          Estatisticas *estatisticas,

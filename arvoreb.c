@@ -45,21 +45,28 @@ void Ins(Registro registro, Apontador apontador, short *cresceu, Registro *regRe
     }
 
     while (i < apontador->nFilhos && registro.chave > apontador->registros[i].chave) {
+        estatisticas->comparacoesPP++;
         i++;
     }
 
     if (i < apontador->nFilhos && registro.chave == apontador->registros[i].chave) {
+        estatisticas->comparacoesPP++;
         *cresceu = 0;
+        estatisticas->profundidadeAB--;
         return;
     }
 
     Ins(registro, apontador->ponteiros[i], cresceu, regRetorno, apRetorno, estatisticas, debug);
 
-    if (!*cresceu) return;
+    if (!*cresceu){
+        estatisticas->profundidadeAB--;
+        return;
+    }
 
     if (apontador->nFilhos < MM) {
         InsereNaPagina(apontador, *regRetorno, *apRetorno, estatisticas);
         *cresceu = 0;
+        estatisticas->profundidadeAB--;
         return;
     }
 
@@ -104,7 +111,7 @@ void Insere(Registro registro, Apontador *folha, Estatisticas *estatisticas, int
     Ins(registro, *folha, &cresceu, &regRetorno, &apRetorno, estatisticas, debug);
     
     estatisticas->comparacoesPP++;
-    if (cresceu) {  
+    if (cresceu) {
         apTemp = (Apontador) malloc(sizeof(Pagina));  
         if (apTemp == NULL) {  
             printf("Erro: Falha na alocacao de memoria em 'Insere'!\n");  
@@ -136,6 +143,7 @@ int pesquisaArvoreB(Registro *registro, Apontador apontador, Estatisticas *estat
     if (registro->chave == apontador->registros[i-1].chave) {
         *registro = apontador->registros[i-1];
         estatisticas->comparacoes++;
+        
         return 1;
     }
 
