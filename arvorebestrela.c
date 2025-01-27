@@ -219,6 +219,7 @@ void exibirItensArvoreBEstrela(Registro *registros, int quantidade) {
     for (int i = 0; i < quantidade; i++)
         printf("%d\n", registros[i].chave);
 }
+
 void printArvoreBEstrela(ApontadorEstrela Arvore, int nivel) {
     if (Arvore == NULL) return;
 
@@ -244,4 +245,10 @@ void printArvoreBEstrela(ApontadorEstrela Arvore, int nivel) {
         }
         printf("\n");
     }
+}
+
+int calculaProfundidadeBEstrela(ApontadorEstrela Arvore) {
+    if (Arvore == NULL) return 0; // Árvore vazia tem profundidade 0
+    if (Arvore->Pt == Externa) return 1; // Nó folha está na profundidade 1
+    return 1 + calculaProfundidadeBEstrela(Arvore->UU.U0.pi[0]); // Segue pelo primeiro filho
 }

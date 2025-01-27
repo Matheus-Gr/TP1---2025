@@ -40,4 +40,6 @@ void exibirItensArvoreBEstrela(Registro *registros, int quantidade);
 
 void printArvoreBEstrela(ApontadorEstrela Arvore, int nivel);
 
+int calculaProfundidadeBEstrela(ApontadorEstrela Arvore);
+
 #endif

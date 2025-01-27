@@ -79,6 +79,7 @@ int main(int argc, char *argv[]) {
     const char* arvorebin = "arvorebin.bin";
 
     int resultado = 0;
+    int profundidade = 0;
 
     inicializarEstatisticas(&estatisticas);
 
@@ -145,7 +146,7 @@ int main(int argc, char *argv[]) {
             }
 
             if (debug) printf("4) Pre-Processamento encerrado\n");
-            int profundidade = calculaProfundidade(arvore);
+            profundidade = calculaProfundidade(arvore);
             printf("Profundidade da Arvore B: %d\n", profundidade);
             if (debug) printf("5) Iniciando pesquisa\n");
             inicializarTimerPesquisa(&estatisticas);
@@ -175,6 +176,9 @@ int main(int argc, char *argv[]) {
             finalizarPreProcessamento(&estatisticas);
 
             if (debug) printf("4) Pre-Processamento encerrado\n");
+            profundidade = calculaProfundidadeBEstrela(arvoreEstrela);
+            printf("Profundidade da Arvore B*: %d\n", profundidade);
+
             if (debug) printf("5) Iniciando pesquisa\n");
             inicializarTimerPesquisa(&estatisticas);
             resultado = pesquisaBEstrela(&registro, arvoreEstrela, &estatisticas, debug);
