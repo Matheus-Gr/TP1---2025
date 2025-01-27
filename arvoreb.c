@@ -41,6 +41,7 @@ void Ins(Registro registro, Apontador apontador, short *cresceu, Registro *regRe
         *cresceu = 1;
         *regRetorno = registro;
         *apRetorno = NULL;
+        estatisticas->profundidadeAB--;
         return;
     }
 
