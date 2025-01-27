@@ -94,21 +94,25 @@ int main(int argc, char *argv[]) {
             finalizarEstatisticasPequisa(&estatisticas);
             break;
         case 2:
-            registros = (Registro *) malloc( quantidade * sizeof(Registro));
+            if (debug) printf("1) Alocando array de registros\n");
+            registros = (Registro *) malloc(quantidade * sizeof(Registro));
             estatisticas.transferenciasPP++;
             fread(registros, sizeof(Registro), quantidade, arquivo);
-            if(debug)
-                printf("Chave %d: %d\n", (quantidade - 10) , registros[(quantidade - 10)].chave);
+            
+            if (debug) {
+                printf("Ultima chave do arquivo: %d\n", registros[quantidade - 1].chave);
+                printf("2) Criando arvore binaria\n");
+            }
 
             criarArvore(registros, quantidade, arvorebin, &estatisticas, debug);
             finalizarPreProcessamento(&estatisticas);
-            if (debug) {
-                // lerArvore(arvorebin);
-            }
+
+            if (debug) printf("3) Pre-Processamento encerrado\n");
+            if (debug) printf("4) Iniciando pesquisa\n");
             inicializarTimerPesquisa(&estatisticas);
             resultado = buscarArvore(arvorebin, &registro, &estatisticas, debug);
             finalizarEstatisticasPequisa(&estatisticas);
-        break;
+            break;
         case 3:
             if (debug) printf("1) Inicializando arvore\n");
             inicializa(&arvore);
@@ -146,45 +150,34 @@ int main(int argc, char *argv[]) {
             resultado = pesquisaArvoreB(&registro, arvore, &estatisticas);
             finalizarEstatisticasPequisa(&estatisticas);
             break;
-        case 4: {
+        case 4: 
+            if (debug) printf("1) Inicializando arvore B*\n");
             inicializa_b_estrela(&arvoreEstrela);
-            if (debug) printf("Arvore inicializada!\n");
+
+            if (debug) printf("2) Alocando array de registros\n");
             registros = (Registro *) malloc( quantidade * sizeof(Registro));
             estatisticas.transferenciasPP++;
             fread(registros, sizeof(Registro), quantidade, arquivo);
 
-            if(debug)
-                printf("Array de registros alocado\n INSERINDO NA ARVORE...\n");
+            if(debug){
+                printf("Ultima chave do arquivo: %d\n", registros[quantidade - 1].chave);
+                printf("3) Inserindo registros na arvore\n");
+            }
 
             for(int i = 0; i < quantidade; i++)
                 Insere_b_estrela(registros[i], &arvoreEstrela, &estatisticas, debug);
             
-            printf("INSERIDO\n");
             fclose(arquivo);
             free(registros);
 
             finalizarPreProcessamento(&estatisticas);
 
-            if (arvore == NULL) {
-                printf("Arvore binaria nn foi criada corretamente!\n");
-                return 0;
-            }else {
-                printf("Arvore binaria criada corretamente!\n");
-                printf("Iniciando pesquisa...\n");
-            }
-            
+            if (debug) printf("4) Pre-Processamento encerrado\n");
+            if (debug) printf("5) Iniciando pesquisa\n");
             inicializarTimerPesquisa(&estatisticas);
-            resultado = pesquisaBEstrela(&registro,
-                                         arvoreEstrela, 
-                                         &estatisticas, 
-                                         debug);
+            resultado = pesquisaBEstrela(&registro, arvoreEstrela, &estatisticas, debug);
             finalizarEstatisticasPequisa(&estatisticas);
             break;
-        }
-
-        // Exibe as estatísticas
-        finalizarEstatisticasPequisa(&estatisticas);
-        break;
         default:
             printf("Metodo inválido! Escolha entre 1, 2, 3 ou 4.\n");
             return 1;

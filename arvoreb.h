@@ -24,7 +24,8 @@ void Ins(Registro registro,
          short *sla,
          Registro *registro2, 
          Apontador *aporador2,
-         Estatisticas *estatisticas);
+         Estatisticas *estatisticas,
+         int debug);
 
 int pesquisaArvoreB(Registro *registro,
                     Apontador apontador,

@@ -20,6 +20,7 @@ typedef struct {
     int transferenciasPP;   // Quantidade de transfericias no pré-processamento
     int comparacoesPP;      // Quantidade de comparações no pré-processamento
     double tempoExecucaoPP; // Tempo final de pré-processamento (ms)
+    int profundidadeAB;
 } Estatisticas;
 
 // Definição de Indice

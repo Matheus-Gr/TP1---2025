@@ -9,6 +9,8 @@ void inicializarEstatisticas(Estatisticas *estatisticas) {
     estatisticas->transferenciasPP = 0;
     estatisticas->comparacoesPP = 0;
     estatisticas->tempoExecucaoPP = 0;
+    estatisticas->inicioPP = clock();
+    estatisticas->profundidadeAB = 0;
 }
 
 void inicializarTimerPesquisa(Estatisticas *estatisticas){
@@ -16,7 +18,7 @@ void inicializarTimerPesquisa(Estatisticas *estatisticas){
 }
 
 void finalizarPreProcessamento(Estatisticas *estatisticas) {
-    estatisticas->tempoExecucaoPP = (double)(clock() - estatisticas->inicio) * 1000 / CLOCKS_PER_SEC;
+    estatisticas->tempoExecucaoPP = (double)(clock() - estatisticas->inicioPP) * 1000 / CLOCKS_PER_SEC;
 }
 
 void finalizarEstatisticasPequisa(Estatisticas *estatisticas){
@@ -27,7 +29,7 @@ void printarEstatisticas(const Estatisticas *estatisticas) {
     printf("=== Estatisticas de Pre-Processamento ===\n");
     printf("Transferencias (Pre-Processamento): %d\n", estatisticas->transferenciasPP);
     printf("Comparacoes (Pre-Processamento): %d\n", estatisticas->comparacoesPP);
-    printf("Tempo de Execucao (Pre-Processamento): %.2f ms\n", estatisticas->tempoExecucaoPP);
+    printf("Tempo de Execucao (Pre-Processamento): %.2f ms (%.2f s)\n", estatisticas->tempoExecucaoPP, estatisticas->tempoExecucaoPP / 1000.0);
     
     printf("=== Estatisticas ===\n");
     printf("Transferencias: %d\n", estatisticas->transferencias);
