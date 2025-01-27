@@ -29,7 +29,8 @@ int pesquisaBEstrela(Registro *x,
 
 void Insere_b_estrela(Registro Reg,
                       ApontadorEstrela *Ap,
-                      Estatisticas *estatisticas);
+                      Estatisticas *estatisticas,
+                      int debug);
 
 void inicializa_b_estrela(ApontadorEstrela *Arvore);
 

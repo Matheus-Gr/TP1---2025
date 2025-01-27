@@ -4,7 +4,6 @@
 
 void inicializa(Apontador *arvore){
     *arvore = NULL;
-    printf("Arvore inicializada!\n");
 }
 
 void InsereNaPagina(Apontador apontador, Registro Reg, Apontador ApDir, Estatisticas *estatisticas) {
@@ -103,12 +102,12 @@ void Ins(Registro registro, Apontador apontador, short *cresceu, Registro *regRe
     *apRetorno = apTemp;
 }
 
-void Insere(Registro registro, Apontador *folha, Estatisticas *estatisticas) {
+void Insere(Registro registro, Apontador *folha, Estatisticas *estatisticas, int debug) {
     short cresceu;
     Registro regRetorno;
     Pagina *apRetorno, *apTemp;
 
-    if (registro.chave % 100000 == 0) printf("Inserindo ->%d\n", registro.chave);
+    if (registro.chave % 100000 == 0 && debug) printf("Inserindo ->%d\n", registro.chave);
 
     Ins(registro, *folha, &cresceu, &regRetorno, &apRetorno, estatisticas);
     

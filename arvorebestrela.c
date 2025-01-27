@@ -172,7 +172,7 @@ void Ins_b_estrela(Registro Reg, ApontadorEstrela Ap, short *cresceu, TipoChave 
     }
 }
 
-void Insere_b_estrela(Registro Reg, ApontadorEstrela *Ap, Estatisticas *estatisticas) {
+void Insere_b_estrela(Registro Reg, ApontadorEstrela *Ap, Estatisticas *estatisticas, int debug) {
     if (*Ap == NULL) {
         PaginaEstrela *ApTemp = (PaginaEstrela *)malloc(sizeof(PaginaEstrela));
         ApTemp->Pt = Externa;
@@ -181,6 +181,8 @@ void Insere_b_estrela(Registro Reg, ApontadorEstrela *Ap, Estatisticas *estatist
         *Ap = ApTemp;
         return;
     }
+
+    if (Reg.chave % 100000 == 0 && debug) printf("Inserindo ->%d\n", Reg.chave);
 
     short Cresceu;
     TipoChave RegRetorno;

@@ -12,7 +12,7 @@ void inicializa(Apontador *arvore);
 
 void Insere(Registro registro,
             Apontador *apontador,
-            Estatisticas *estatisticas);
+            Estatisticas *estatisticas, int debug);
 
 void InsereNaPagina (Apontador apontador,
                      Registro registro, 

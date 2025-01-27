@@ -50,7 +50,6 @@ int main(int argc, char *argv[]) {
     char nomeArquivo[100];
     snprintf(nomeArquivo, sizeof(nomeArquivo), "./arquivos/arquivo-%d-%d.bin", quantidade, ordem);
 
-    printf("Nome do arquivo: %s\n", nomeArquivo);
 
     FILE *arquivo = fopen(nomeArquivo, "rb");
     if (arquivo == NULL) {
@@ -59,12 +58,12 @@ int main(int argc, char *argv[]) {
     }
 
     if (debug) {
+        printf("Nome do arquivo: %s\n", nomeArquivo);
         printf("Metodo escolhido: %d\n", metodo);
         printf("Quantidade de registros: %d\n", quantidade);
-        printf("Ordem do arquivo: %d\n", ordem);
+        printf("Ordem dos registros: %d\n", ordem);
         printf("Chave a ser pesquisada: %d\n", chave);
         printf("Opcao de imprimir chaves ativada.\n");
-        printf("____________________________________\n");
     }
 
     Registro registro;
@@ -111,19 +110,23 @@ int main(int argc, char *argv[]) {
             finalizarEstatisticasPequisa(&estatisticas);
         break;
         case 3:
+            if (debug) printf("1) Inicializando arvore\n");
             inicializa(&arvore);
+
+            if (debug) printf("2) Alocando array de registros\n");
             registros = (Registro *) malloc( quantidade * sizeof(Registro));
             estatisticas.transferenciasPP++;
             fread(registros, sizeof(Registro), quantidade, arquivo);
 
-            if(debug)
-                printf("Array de registros alocado\n INSERINDO NA ARVORE...\n");
-
+            if(debug){
+                printf("Ultima chave do arquivo: %d\n", registros[quantidade - 1].chave);
+                printf("3) Inserindo registros na arvore\n");
+            }
 
             for(int i = 0; i < quantidade; i++)
-                Insere(registros[i], &arvore, &estatisticas);
+                Insere(registros[i], &arvore, &estatisticas, debug);
             
-            printf("INSERIDO\n");
+
             fclose(arquivo);
             free(registros);
 
@@ -136,13 +139,16 @@ int main(int argc, char *argv[]) {
                 printf("Arvore binaria criada corretamente!\n");
                 printf("Iniciando pesquisa...\n");
             }
-            
+
+            if (debug) printf("4) Pre-Processamento encerrado\n");
+            if (debug) printf("5) Iniciando pesquisa\n");
             inicializarTimerPesquisa(&estatisticas);
             resultado = pesquisaArvoreB(&registro, arvore, &estatisticas);
             finalizarEstatisticasPequisa(&estatisticas);
             break;
         case 4: {
             inicializa_b_estrela(&arvoreEstrela);
+            if (debug) printf("Arvore inicializada!\n");
             registros = (Registro *) malloc( quantidade * sizeof(Registro));
             estatisticas.transferenciasPP++;
             fread(registros, sizeof(Registro), quantidade, arquivo);
@@ -151,7 +157,7 @@ int main(int argc, char *argv[]) {
                 printf("Array de registros alocado\n INSERINDO NA ARVORE...\n");
 
             for(int i = 0; i < quantidade; i++)
-                Insere_b_estrela(registros[i], &arvoreEstrela, &estatisticas);
+                Insere_b_estrela(registros[i], &arvoreEstrela, &estatisticas, debug);
             
             printf("INSERIDO\n");
             fclose(arquivo);
@@ -186,7 +192,6 @@ int main(int argc, char *argv[]) {
 
     printf("_______________________________________________________________\n");
     if (resultado) {
-        printf("Nome do arquivo: %s\n", nomeArquivo);
         printf("Registro encontrado!\n");
         lerRegistro(&registro);  // Usa a função lerRegistro de tipos.c
         printarEstatisticas(&estatisticas);

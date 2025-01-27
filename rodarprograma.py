@@ -3,7 +3,7 @@ import os
 
 
 comando_base = 'teste.exe'
-metodo = str(4)
+metodo = str(3)
 quantidade = str(2000000)
 ordem = str(3)
 chave = str(int(quantidade) - 10)

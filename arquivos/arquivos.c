@@ -58,8 +58,8 @@ void gerarArquivoBinario(const char *caminhoArquivo, int quantidadeRegistros, in
         }
 
         registro.chave = chave;
-        registro.dado1 = quantidadeRegistros + 13;
-        snprintf(registro.dado2, sizeof(registro.dado2), "Registro %d", chave);
+        registro.dado1 = chave + 5;
+        snprintf(registro.dado2, sizeof(registro.dado2), "Dado 2 do registro %d", chave);
 
         fwrite(&registro, sizeof(Registro), 1, arquivo);
     }
