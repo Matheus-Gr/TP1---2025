@@ -1,14 +1,14 @@
 #include "arvorebestrela.h"
 
-void inicializa_b_estrela(TipoApontadorEstrela *Arvore) {
+void inicializa_b_estrela(ApontadorEstrela *Arvore) {
     *Arvore = NULL;
 }
 
-bool Pesquisa(Registro *x, TipoApontadorEstrela Ap, Estatisticas *estatisticas, bool debug) {
+int pesquisaBEstrela(Registro *x, ApontadorEstrela Ap, Estatisticas *estatisticas, int debug) {
     int i;
-    TipoApontadorEstrela Pag = Ap;
+    ApontadorEstrela Pag = Ap;
 
-    if (Ap == NULL) return false;
+    if (Ap == NULL) return 0;
 
     if (Pag->Pt == Interna) {
         i = 1;
@@ -19,9 +19,9 @@ bool Pesquisa(Registro *x, TipoApontadorEstrela Ap, Estatisticas *estatisticas, 
         }
         estatisticas->comparacoes++;
         if (x->chave < Pag->UU.U0.ri[i - 1])
-            return Pesquisa(x, Pag->UU.U0.pi[i - 1], estatisticas, debug);
+            return pesquisaBEstrela(x, Pag->UU.U0.pi[i - 1], estatisticas, debug);
         else
-            return Pesquisa(x, Pag->UU.U0.pi[i], estatisticas, debug);
+            return pesquisaBEstrela(x, Pag->UU.U0.pi[i], estatisticas, debug);
     } else {
         i = 1;
         estatisticas->comparacoes++;
@@ -32,73 +32,73 @@ bool Pesquisa(Registro *x, TipoApontadorEstrela Ap, Estatisticas *estatisticas, 
         estatisticas->comparacoes++;
         if (x->chave == Pag->UU.U1.re[i - 1].chave) {
             *x = Pag->UU.U1.re[i - 1];
-            return true;
+            return 1;
         } else {
-            return false;
+            return 0;
         }
     }
 }
 
-void InsereNaPaginaExterna(TipoApontadorEstrela Ap, Registro Reg, Estatisticas *estatisticas) {
-    bool NaoAchouPosicao;
+void InsereNaPaginaExterna(ApontadorEstrela Ap, Registro Reg, Estatisticas *estatisticas) {
+    int NaoAchouPosicao;
     int k = Ap->UU.U1.ne;
     NaoAchouPosicao = (k > 0);
 
     while (NaoAchouPosicao) {
-        estatisticas->comparacoes++;
+        estatisticas->comparacoesPP++;
         if (Reg.chave > Ap->UU.U1.re[k - 1].chave) {
-            NaoAchouPosicao = false;
+            NaoAchouPosicao = 0;
             break;
         }
         Ap->UU.U1.re[k] = Ap->UU.U1.re[k - 1];
         k--;
-        if (k < 1) NaoAchouPosicao = false;
+        if (k < 1) NaoAchouPosicao = 0;
     }
 
     Ap->UU.U1.re[k] = Reg;
     Ap->UU.U1.ne++;
 }
 
-void InsereNaPaginaInterna(TipoApontadorEstrela Ap, TipoChave Reg, TipoApontadorEstrela ApDir, Estatisticas *estatisticas) {
-    bool NaoAchouPosicao;
+void InsereNaPaginaInterna(ApontadorEstrela Ap, TipoChave Reg, ApontadorEstrela ApDir, Estatisticas *estatisticas) {
+    int NaoAchouPosicao;
     int k = Ap->UU.U0.ni;
     NaoAchouPosicao = (k > 0);
 
     while (NaoAchouPosicao) {
-        estatisticas->comparacoes++;
+        estatisticas->comparacoesPP++;
         if (Reg >= Ap->UU.U0.ri[k - 1]) {
-            NaoAchouPosicao = false;
+            NaoAchouPosicao = 0;
             break;
         }
         Ap->UU.U0.ri[k] = Ap->UU.U0.ri[k - 1];
         Ap->UU.U0.pi[k + 1] = Ap->UU.U0.pi[k];
         k--;
-        if (k < 1) NaoAchouPosicao = false;
+        if (k < 1) NaoAchouPosicao = 0;
     }
     Ap->UU.U0.ri[k] = Reg;
     Ap->UU.U0.pi[k + 1] = ApDir;
     Ap->UU.U0.ni++;
 }
 
-void Ins_b_estrela(Registro Reg, TipoApontadorEstrela Ap, short *cresceu, TipoChave *RegRetorno, TipoApontadorEstrela *ApRetorno, Estatisticas *estatisticas) {
+void Ins_b_estrela(Registro Reg, ApontadorEstrela Ap, short *cresceu, TipoChave *RegRetorno, ApontadorEstrela *ApRetorno, Estatisticas *estatisticas) {
     long i = 1;
     long j;
-    TipoApontadorEstrela ApTemp;
+    ApontadorEstrela ApTemp;
 
+    estatisticas->comparacoesPP++;
     if (Ap->Pt == Externa) {
-        *cresceu = true;
+        *cresceu = 1;
         *RegRetorno = Reg.chave;
         *ApRetorno = NULL;
 
-        estatisticas->comparacoes++;
         while (i < Ap->UU.U1.ne && Reg.chave > Ap->UU.U1.re[i - 1].chave) {
+            estatisticas->comparacoesPP++;
             i++;
-            estatisticas->comparacoes++;
         }
 
-        estatisticas->comparacoes++;
+        estatisticas->comparacoesPP++;
         if (Reg.chave == Ap->UU.U1.re[i - 1].chave) {
-            *cresceu = false;
+            *cresceu = 0;
             return;
         }
 
@@ -106,11 +106,11 @@ void Ins_b_estrela(Registro Reg, TipoApontadorEstrela Ap, short *cresceu, TipoCh
 
         if (Ap->UU.U1.ne < MMB2) {
             InsereNaPaginaExterna(Ap, Reg, estatisticas);
-            *cresceu = false;
+            *cresceu = 0;
             return;
         }
 
-        ApTemp = (TipoApontadorEstrela)malloc(sizeof(TipoPaginaEstrela));
+        ApTemp = (ApontadorEstrela)malloc(sizeof(PaginaEstrela));
         ApTemp->UU.U1.ne = 0;
         ApTemp->Pt = Externa;
 
@@ -130,13 +130,13 @@ void Ins_b_estrela(Registro Reg, TipoApontadorEstrela Ap, short *cresceu, TipoCh
         *ApRetorno = ApTemp;
         return;
     } else {
-        estatisticas->comparacoes++;
+        estatisticas->comparacoesPP++;
         while (i < Ap->UU.U0.ni && Reg.chave > Ap->UU.U0.ri[i - 1]) {
             i++;
-            estatisticas->comparacoes++;
+            estatisticas->comparacoesPP++;
         }
 
-        estatisticas->comparacoes++;
+        estatisticas->comparacoesPP++;
         if (Reg.chave < Ap->UU.U0.ri[i - 1]) i--;
 
         Ins_b_estrela(Reg, Ap->UU.U0.pi[i], cresceu, RegRetorno, ApRetorno, estatisticas);
@@ -145,11 +145,11 @@ void Ins_b_estrela(Registro Reg, TipoApontadorEstrela Ap, short *cresceu, TipoCh
 
         if (Ap->UU.U0.ni < MMB) {
             InsereNaPaginaInterna(Ap, *RegRetorno, *ApRetorno, estatisticas);
-            *cresceu = false;
+            *cresceu = 0;
             return;
         }
 
-        ApTemp = (TipoApontadorEstrela)malloc(sizeof(TipoPaginaEstrela));
+        ApTemp = (ApontadorEstrela)malloc(sizeof(PaginaEstrela));
         ApTemp->Pt = Interna;
         ApTemp->UU.U0.ni = 0;
         ApTemp->UU.U0.pi[0] = NULL;
@@ -172,9 +172,9 @@ void Ins_b_estrela(Registro Reg, TipoApontadorEstrela Ap, short *cresceu, TipoCh
     }
 }
 
-void Insere_b_estrela(Registro Reg, TipoApontadorEstrela *Ap, Estatisticas *estatisticas) {
+void Insere_b_estrela(Registro Reg, ApontadorEstrela *Ap, Estatisticas *estatisticas) {
     if (*Ap == NULL) {
-        TipoPaginaEstrela *ApTemp = (TipoPaginaEstrela *)malloc(sizeof(TipoPaginaEstrela));
+        PaginaEstrela *ApTemp = (PaginaEstrela *)malloc(sizeof(PaginaEstrela));
         ApTemp->Pt = Externa;
         ApTemp->UU.U1.ne = 1;
         ApTemp->UU.U1.re[0] = Reg;
@@ -184,12 +184,13 @@ void Insere_b_estrela(Registro Reg, TipoApontadorEstrela *Ap, Estatisticas *esta
 
     short Cresceu;
     TipoChave RegRetorno;
-    TipoPaginaEstrela *ApRetorno = NULL, *ApTemp = NULL;
+    PaginaEstrela *ApRetorno = NULL, *ApTemp = NULL;
 
     Ins_b_estrela(Reg, *Ap, &Cresceu, &RegRetorno, &ApRetorno, estatisticas);
 
+    estatisticas->comparacoesPP++;
     if (Cresceu) {
-        ApTemp = (TipoPaginaEstrela *)malloc(sizeof(TipoPaginaEstrela));
+        ApTemp = (PaginaEstrela *)malloc(sizeof(PaginaEstrela));
         ApTemp->Pt = Interna;
         ApTemp->UU.U0.ni = 1;
         ApTemp->UU.U0.ri[0] = RegRetorno;
@@ -199,35 +200,7 @@ void Insere_b_estrela(Registro Reg, TipoApontadorEstrela *Ap, Estatisticas *esta
     }
 }
 
-TipoApontadorEstrela ConstruirArvoreBStar(char *nomeArquivo, int quantidade, Estatisticas *estatisticas, bool debug) {
-    FILE *arq = fopen(nomeArquivo, "rb");
-    if (arq == NULL) {
-        printf("Erro ao abrir arquivo\n");
-        return NULL;
-    }
-
-    Registro *registros = (Registro *)malloc(quantidade * sizeof(Registro));
-    fread(registros, quantidade, sizeof(Registro), arq);
-    estatisticas->transferencias += 1;
-
-    if (debug) {
-        exibirItensArvoreBEstrela(registros, quantidade);
-    }
-
-    TipoApontadorEstrela Arvore;
-    inicializa_b_estrela(&Arvore);
-
-    for (int i = 0; i < quantidade; i++) {
-        Insere_b_estrela(registros[i], &Arvore, estatisticas);
-    }
-
-    fclose(arq);
-    free(registros);
-
-    return Arvore;
-}
-
-void liberaArvoreBEstrela(TipoApontadorEstrela Arvore) {
+void liberaArvoreBEstrela(ApontadorEstrela Arvore) {
     if (Arvore == NULL) return;
 
     if (Arvore->Pt == Externa) {
@@ -244,7 +217,7 @@ void exibirItensArvoreBEstrela(Registro *registros, int quantidade) {
     for (int i = 0; i < quantidade; i++)
         printf("%d\n", registros[i].chave);
 }
-void printArvoreBEstrela(TipoApontadorEstrela Arvore, int nivel) {
+void printArvoreBEstrela(ApontadorEstrela Arvore, int nivel) {
     if (Arvore == NULL) return;
 
     // Imprime recuo para representar os níveis

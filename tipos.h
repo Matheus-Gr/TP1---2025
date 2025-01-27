@@ -55,22 +55,22 @@ typedef int TipoChave;
 
 typedef enum { Interna, Externa } TipoPagina;
 
-typedef struct TipoPaginaEstrela {
+typedef struct PaginaEstrela {
     TipoPagina Pt;
     union {
         struct {
             int ni; // Número de chaves na página interna
             TipoChave ri[MMB]; // Array de chaves
-            struct TipoPaginaEstrela *pi[MMB + 1]; // Ponteiros para páginas filhas
+            struct PaginaEstrela *pi[MMB + 1]; // Ponteiros para páginas filhas
         } U0;
         struct {
             int ne; // Número de registros na página externa
             Registro re[MMB2]; // Array de registros
         } U1;
     } UU;
-} TipoPaginaEstrela;
+} PaginaEstrela;
 
-typedef TipoPaginaEstrela *TipoApontadorEstrela;
+typedef PaginaEstrela *ApontadorEstrela;
 
 // Função para exibir um registro
 void lerRegistro(Registro* registro);

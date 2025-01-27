@@ -4,7 +4,7 @@ import random
 import struct
 
 quantidades = [2000000]
-situacoes = [3]
+situacoes = [1, 2, 3]
 comando_base = 'arquivos.exe'
 
 

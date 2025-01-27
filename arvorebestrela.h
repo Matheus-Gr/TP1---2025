@@ -2,47 +2,41 @@
 #define ARVOREBESTRELA_H
 
 #include "tipos.h"
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 // Protótipos das funções
-void InsereNaPaginaExterna(TipoApontadorEstrela Ap,
+void InsereNaPaginaExterna(ApontadorEstrela Ap,
                            Registro Reg,
                            Estatisticas *estatisticas);
 
-void InsereNaPaginaInterna(TipoApontadorEstrela Ap,
+void InsereNaPaginaInterna(ApontadorEstrela Ap,
                            TipoChave Reg, 
-                           TipoApontadorEstrela ApDir, 
+                           ApontadorEstrela ApDir, 
                            Estatisticas *estatisticas);
 
 void Ins_b_estrela(Registro Reg,
-                   TipoApontadorEstrela Ap,
+                   ApontadorEstrela Ap,
                    short *cresceu,
                    TipoChave *RegRetorno,
-                   TipoApontadorEstrela *ApRetorno,
+                   ApontadorEstrela *ApRetorno,
                    Estatisticas *estatisticas);
                    
-bool Pesquisa(Registro *x,
-              TipoApontadorEstrela Ap,
+int pesquisaBEstrela(Registro *x,
+              ApontadorEstrela Ap,
               Estatisticas *estatisticas,
-              bool debug);
+              int debug);
 
 void Insere_b_estrela(Registro Reg,
-                      TipoApontadorEstrela *Ap,
+                      ApontadorEstrela *Ap,
                       Estatisticas *estatisticas);
 
-void inicializa_b_estrela(TipoApontadorEstrela *Arvore);
+void inicializa_b_estrela(ApontadorEstrela *Arvore);
 
-TipoApontadorEstrela ConstruirArvoreBStar(char *nomeArquivo, 
-                                          int quantidade,
-                                          Estatisticas *estatisticas,
-                                          bool debug);
-
-void liberaArvoreBEstrela(TipoApontadorEstrela Arvore);
+void liberaArvoreBEstrela(ApontadorEstrela Arvore);
 
 void exibirItensArvoreBEstrela(Registro *registros, int quantidade);
 
-void printArvoreBEstrela(TipoApontadorEstrela Arvore, int nivel);
+void printArvoreBEstrela(ApontadorEstrela Arvore, int nivel);
 
 #endif

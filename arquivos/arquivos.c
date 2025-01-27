@@ -58,7 +58,7 @@ void gerarArquivoBinario(const char *caminhoArquivo, int quantidadeRegistros, in
         }
 
         registro.chave = chave;
-        registro.dado1 = rand() % 100000;
+        registro.dado1 = quantidadeRegistros + 13;
         snprintf(registro.dado2, sizeof(registro.dado2), "Registro %d", chave);
 
         fwrite(&registro, sizeof(Registro), 1, arquivo);

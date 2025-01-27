@@ -30,25 +30,6 @@ void lerArquivoBinario(const char *caminhoArquivo) {
     fclose(arquivo);
 }
 
-void metodo1() {
-    printf("Executando o Metodo 1: Acesso Sequencial Indexado\n");
-}
-
-void metodo2() {
-    printf("Executando o Metodo 2: Árvore Binária de Pesquisa para Memória Externa\n");
-    // Placeholder para implementação futura.
-}
-
-void metodo3() {
-    printf("Executando o Metodo 3: Árvore B\n");
-    // Placeholder para implementação futura.
-}
-
-void metodo4() {
-    printf("Executando o Metodo 4: Árvore B*\n");
-    // Placeholder para implementação futura.
-}
-
 int main(int argc, char *argv[]) {
     if (argc < 5) {
         printf("Uso: %s <metodo> <quantidade> <ordem> <chave> [-P]\n", argv[0]);
@@ -90,6 +71,7 @@ int main(int argc, char *argv[]) {
     registro.chave = chave;
 
     Apontador arvore;
+    ApontadorEstrela arvoreEstrela;
 
     Estatisticas estatisticas;
 
@@ -114,6 +96,7 @@ int main(int argc, char *argv[]) {
             break;
         case 2:
             registros = (Registro *) malloc( quantidade * sizeof(Registro));
+            estatisticas.transferenciasPP++;
             fread(registros, sizeof(Registro), quantidade, arquivo);
             if(debug)
                 printf("Chave %d: %d\n", (quantidade - 10) , registros[(quantidade - 10)].chave);
@@ -129,8 +112,12 @@ int main(int argc, char *argv[]) {
         break;
         case 3:
             inicializa(&arvore);
+            registros = (Registro *) malloc( quantidade * sizeof(Registro));
+            estatisticas.transferenciasPP++;
+            fread(registros, sizeof(Registro), quantidade, arquivo);
 
-            printf("INSERINDO NA ARVORE...\n");
+            if(debug)
+                printf("Array de registros alocado\n INSERINDO NA ARVORE...\n");
 
 
             for(int i = 0; i < quantidade; i++)
@@ -138,6 +125,9 @@ int main(int argc, char *argv[]) {
             
             printf("INSERIDO\n");
             fclose(arquivo);
+            free(registros);
+
+            finalizarPreProcessamento(&estatisticas);
 
             if (arvore == NULL) {
                 printf("Arvore binaria nn foi criada corretamente!\n");
@@ -146,25 +136,43 @@ int main(int argc, char *argv[]) {
                 printf("Arvore binaria criada corretamente!\n");
                 printf("Iniciando pesquisa...\n");
             }
-
+            
+            inicializarTimerPesquisa(&estatisticas);
             resultado = pesquisaArvoreB(&registro, arvore, &estatisticas);
+            finalizarEstatisticasPequisa(&estatisticas);
             break;
         case 4: {
-            static TipoApontadorEstrela ArvoreBStar = NULL;
-            if (ArvoreBStar == NULL) {
-                ArvoreBStar = ConstruirArvoreBStar(nomeArquivo, quantidade, &estatisticas, debug);
+            inicializa_b_estrela(&arvoreEstrela);
+            registros = (Registro *) malloc( quantidade * sizeof(Registro));
+            estatisticas.transferenciasPP++;
+            fread(registros, sizeof(Registro), quantidade, arquivo);
 
-                // Imprime a árvore se debug estiver ativo
-                if (debug) {
-                    printf("\nEstrutura da Arvore B*:\n");
-                    printArvoreBEstrela(ArvoreBStar, 0);
-                    printf("____________________________________\n");
-                }
+            if(debug)
+                printf("Array de registros alocado\n INSERINDO NA ARVORE...\n");
+
+            for(int i = 0; i < quantidade; i++)
+                Insere_b_estrela(registros[i], &arvoreEstrela, &estatisticas);
+            
+            printf("INSERIDO\n");
+            fclose(arquivo);
+            free(registros);
+
+            finalizarPreProcessamento(&estatisticas);
+
+            if (arvore == NULL) {
+                printf("Arvore binaria nn foi criada corretamente!\n");
+                return 0;
+            }else {
+                printf("Arvore binaria criada corretamente!\n");
+                printf("Iniciando pesquisa...\n");
             }
-            Registro regPesquisa;
-            regPesquisa.chave = chave;
-            resultado = Pesquisa(&regPesquisa, ArvoreBStar, &estatisticas, debug);
-
+            
+            inicializarTimerPesquisa(&estatisticas);
+            resultado = pesquisaBEstrela(&registro,
+                                         arvoreEstrela, 
+                                         &estatisticas, 
+                                         debug);
+            finalizarEstatisticasPequisa(&estatisticas);
             break;
         }
 

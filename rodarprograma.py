@@ -3,8 +3,8 @@ import os
 
 
 comando_base = 'teste.exe'
-metodo = str(2)
-quantidade = str(200000)
+metodo = str(4)
+quantidade = str(2000000)
 ordem = str(3)
 chave = str(int(quantidade) - 10)
 imprimir = '-P'

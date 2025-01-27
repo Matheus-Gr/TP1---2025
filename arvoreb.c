@@ -37,6 +37,7 @@ void Ins(Registro registro, Apontador apontador, short *cresceu, Registro *regRe
     Apontador apTemp;
 
     //verifica se a arovre esta vazia ou se chegou na folha
+    estatisticas->comparacoesPP++;
     if (apontador == NULL) {
         *cresceu = 1;
         *regRetorno = registro;
@@ -46,9 +47,11 @@ void Ins(Registro registro, Apontador apontador, short *cresceu, Registro *regRe
 
     //pesquisa na pagina se ele ja existe nela
     while (i < apontador->nFilhos && registro.chave > apontador->registros[i-1].chave) {
+        estatisticas->comparacoesPP++;
         i++;
     }
 
+    estatisticas->comparacoesPP++;
     if (registro.chave == apontador->registros[i-1].chave) {
         //Registro já esta presente
         *cresceu = 0;
@@ -56,12 +59,15 @@ void Ins(Registro registro, Apontador apontador, short *cresceu, Registro *regRe
     }
 
     //verifica se sera direcionado a direita ou esquerda
+    estatisticas->comparacoesPP++;
     if (registro.chave < apontador->registros[i-1].chave) i--;
 
     Ins(registro, apontador->ponteiros[i], cresceu, regRetorno, apRetorno, estatisticas);
 
+    estatisticas->comparacoesPP++;
     if (!*cresceu) return;
 
+    estatisticas->comparacoesPP++;
     if (apontador->nFilhos < MM) {
         InsereNaPagina(apontador, *regRetorno, *apRetorno, estatisticas);
         *cresceu = 0;
@@ -70,6 +76,7 @@ void Ins(Registro registro, Apontador apontador, short *cresceu, Registro *regRe
 
     // printMemoryUsage();
     apTemp = (Apontador) malloc(sizeof(Pagina));
+    estatisticas->comparacoesPP++;
     if (apTemp == NULL) {
         printf("Erro: Falha na alocacao de memoria em 'Ins'!\n");
         exit(1);
@@ -77,6 +84,7 @@ void Ins(Registro registro, Apontador apontador, short *cresceu, Registro *regRe
     apTemp->nFilhos = 0;
     apTemp->ponteiros[0] = NULL;
 
+    estatisticas->comparacoesPP++;
     if (i < M + 1) {
         InsereNaPagina(apTemp, apontador->registros[MM - 1], apontador->ponteiros[MM], estatisticas);
         apontador->nFilhos--;
@@ -104,6 +112,7 @@ void Insere(Registro registro, Apontador *folha, Estatisticas *estatisticas) {
 
     Ins(registro, *folha, &cresceu, &regRetorno, &apRetorno, estatisticas);
     
+    estatisticas->comparacoesPP++;
     if (cresceu) {
         apTemp = (Pagina *) malloc(sizeof(Pagina));
         if (apTemp == NULL) {
