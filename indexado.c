@@ -20,7 +20,7 @@ Indice* preProcessarIndices(FILE* arquivo, int tamanho, int* nPaginas, Estatisti
     Registro tempoRegistro;
     for (int i = 0; i < *nPaginas; i++) {
         estatisticas->comparacoesPP++;
-        fseek(arquivo, i * ITENSPAGINA * sizeof(Registro), SEEK_SET);
+        _fseeki64(arquivo, i * ITENSPAGINA * sizeof(Registro), SEEK_SET);
         estatisticas->transferenciasPP++;
         fread(&tempoRegistro, sizeof(Registro), 1, arquivo);
 
@@ -76,7 +76,7 @@ int pesquisaIndexada(Registro* registro, int tamanho, int ordem, FILE* arquivo, 
     }
 
     // Busca sequencial na página encontrada.
-    fseek(arquivo, tabelaIndices[pagina - 1].posicao * sizeof(Registro), SEEK_SET);
+    _fseeki64(arquivo, tabelaIndices[pagina - 1].posicao * sizeof(Registro), SEEK_SET);
     Registro tempoRegistro;
 
     estatisticas->comparacoes++;

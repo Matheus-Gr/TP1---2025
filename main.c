@@ -108,8 +108,8 @@ int main(int argc, char *argv[]) {
         case 2:
             criarArvore(arquivo, arvorebin, &estatisticas, debug);
             finalizarPreProcessamento(&estatisticas);
+            printf("Arvore criada\n");
             if (debug) {
-                printf("Arvore criada\n");
                 lerArvore(arvorebin);
             }
             inicializarTimerPesquisa(&estatisticas);

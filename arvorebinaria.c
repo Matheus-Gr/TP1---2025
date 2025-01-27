@@ -1,28 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
 #include <time.h>
 #include "tipos.h"
 
 // Atualiza os ponteiros da árvore binária após a inserção de um novo nó
 void atualizaPonteiros(FILE* arquivoArvore, NoBinario* itemInserir, Estatisticas *estatisticas) {
     // Calcula a quantidade de itens no arquivo da árvore
-    fseek(arquivoArvore, 0, SEEK_END);
-    long qtdItensArquivo = ftell(arquivoArvore) / sizeof(NoBinario);
-    fseek(arquivoArvore, 0, SEEK_SET);
+    _fseeki64(arquivoArvore, 0, SEEK_END);
+    int64_t qtdItensArquivo = ftell(arquivoArvore) / sizeof(NoBinario);
+    _fseeki64(arquivoArvore, 0, SEEK_SET);
 
     // Caso haja apenas um nó, não há ponteiros a serem atualizados
     estatisticas->comparacoesPP++;
     if (qtdItensArquivo == 1) return;
 
     NoBinario lido;
-    long ponteiro = 1; // Ponteiro inicial para o nó raiz
-    long desloc;
+    int64_t ponteiro = 1; // Ponteiro inicial para o nó raiz
+    int64_t desloc;
 
     // Percorre a árvore até encontrar uma posição para inserir o novo nó
     do {
         desloc = (ponteiro - 1) * sizeof(NoBinario);
-        fseek(arquivoArvore, desloc, SEEK_SET);
+        if (_fseeki64(arquivoArvore, desloc, SEEK_SET) != 0) {
+            perror("Erro ao posicionar o cursor no arquivo");
+            exit(1);
+        }
         estatisticas->transferenciasPP++;
         fread(&lido, sizeof(NoBinario), 1, arquivoArvore);
 
@@ -32,7 +36,7 @@ void atualizaPonteiros(FILE* arquivoArvore, NoBinario* itemInserir, Estatisticas
     } while (ponteiro != -1);
 
     // Retorna para o nó anterior
-    fseek(arquivoArvore, (long) -(sizeof(NoBinario)), SEEK_CUR);
+    _fseeki64(arquivoArvore, (long) -(sizeof(NoBinario)), SEEK_CUR);
 
     // Atualiza o ponteiro do nó pai para apontar para o novo nó
     estatisticas->comparacoesPP++;
@@ -56,7 +60,9 @@ void criarArvore(FILE* arquivoEntrada, const char* nomeArquivoArvore, Estatistic
     }
 
     Registro lido;
-
+    int itensinseridos = 0;
+    clock_t inicio = clock();
+    double tempoInsercao = 0.0;
     // Lê os registros do arquivo de entrada e insere na árvore
     while (fread(&lido, sizeof(Registro), 1, arquivoEntrada) == 1) {
         estatisticas->transferenciasPP++;
@@ -66,14 +72,21 @@ void criarArvore(FILE* arquivoEntrada, const char* nomeArquivoArvore, Estatistic
         no.direita = -1;
 
         // Insere o nó no final do arquivo
-        fseek(arquivoArvore, 0, SEEK_END);
+        _fseeki64(arquivoArvore, 0, SEEK_END);
         if (fwrite(&no, sizeof(NoBinario), 1, arquivoArvore) != 1) {
             perror("Erro ao escrever no arquivo");
             exit(1);
         }
 
+        if(debug && (itensinseridos % 50 == 0)){
+            tempoInsercao = (double)(clock() - inicio) * 1000 / CLOCKS_PER_SEC;
+            printf("Itens inseridos %d, tempo de insercao do lote %0.2f\n", itensinseridos, tempoInsercao);
+            inicio = clock();
+        }
+
         // Atualiza os ponteiros da árvore para incluir o novo nó
         atualizaPonteiros(arquivoArvore, &no, estatisticas);
+        itensinseridos++;
     }
 
     fclose(arquivoArvore);
@@ -92,13 +105,13 @@ int buscarArvore(const char* nomeArquivoArvore, Registro* registro, Estatisticas
     }
 
     NoBinario lido;
-    long ponteiro = 1; // Começa a busca pela raiz
+    int64_t  ponteiro = 1; // Começa a busca pela raiz
     long desloc;
 
     // Percorre a árvore até encontrar o registro ou atingir uma folha
     do {
         desloc = (ponteiro - 1) * sizeof(NoBinario);
-        fseek(arquivoArvore, desloc, SEEK_SET);
+        _fseeki64(arquivoArvore, desloc, SEEK_SET);
         fread(&lido, sizeof(NoBinario), 1, arquivoArvore);
         estatisticas->transferencias++;
 

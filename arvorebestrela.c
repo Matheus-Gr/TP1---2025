@@ -200,8 +200,6 @@ void Insere_b_estrela(TipoRegistro Reg, TipoApontadorEstrela *Ap, Estatisticas *
 }
 
 TipoApontadorEstrela ConstruirArvoreBStar(char *nomeArquivo, int quantidade, Estatisticas *estatisticas, bool debug) {
-    clock_t inicio = clock(); // Inicia a medição
-
     FILE *arq = fopen(nomeArquivo, "rb");
     if (arq == NULL) {
         printf("Erro ao abrir arquivo\n");
