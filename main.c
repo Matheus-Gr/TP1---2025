@@ -1,11 +1,13 @@
+#define __USE_MINGW_ANSI_STDIO 1
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "tipos.h"          // Inclui a definição de Registro e TipoRegistro
+#include "tipos.h"          // Inclui a definição de Registro e Registro
 #include "indexado.h"
 #include "estatisticas.h"
 #include "arvorebinaria.h"
 #include "arvorebestrela.h"
+#include "arvoreb.h"
 
 double prepross;
 
@@ -87,12 +89,17 @@ int main(int argc, char *argv[]) {
     Registro registro;
     registro.chave = chave;
 
+    Apontador arvore;
+
     Estatisticas estatisticas;
-    inicializarEstatisticas(&estatisticas);
+
+    Registro *registros = NULL;
 
     const char* arvorebin = "arvorebin.bin";
 
     int resultado = 0;
+
+    inicializarEstatisticas(&estatisticas);
 
     switch (metodo) {
         case 1:
@@ -106,18 +113,41 @@ int main(int argc, char *argv[]) {
             finalizarEstatisticasPequisa(&estatisticas);
             break;
         case 2:
-            criarArvore(arquivo, arvorebin, &estatisticas, debug);
+            registros = (Registro *) malloc( quantidade * sizeof(Registro));
+            fread(registros, sizeof(Registro), quantidade, arquivo);
+            if(debug)
+                printf("Chave %d: %d\n", (quantidade - 10) , registros[(quantidade - 10)].chave);
+
+            criarArvore(registros, quantidade, arvorebin, &estatisticas, debug);
             finalizarPreProcessamento(&estatisticas);
-            printf("Arvore criada\n");
             if (debug) {
-                lerArvore(arvorebin);
+                // lerArvore(arvorebin);
             }
             inicializarTimerPesquisa(&estatisticas);
             resultado = buscarArvore(arvorebin, &registro, &estatisticas, debug);
             finalizarEstatisticasPequisa(&estatisticas);
         break;
         case 3:
-            metodo3();
+            inicializa(&arvore);
+
+            printf("INSERINDO NA ARVORE...\n");
+
+
+            for(int i = 0; i < quantidade; i++)
+                Insere(registros[i], &arvore, &estatisticas);
+            
+            printf("INSERIDO\n");
+            fclose(arquivo);
+
+            if (arvore == NULL) {
+                printf("Arvore binaria nn foi criada corretamente!\n");
+                return 0;
+            }else {
+                printf("Arvore binaria criada corretamente!\n");
+                printf("Iniciando pesquisa...\n");
+            }
+
+            resultado = pesquisaArvoreB(&registro, arvore, &estatisticas);
             break;
         case 4: {
             static TipoApontadorEstrela ArvoreBStar = NULL;
@@ -131,7 +161,7 @@ int main(int argc, char *argv[]) {
                     printf("____________________________________\n");
                 }
             }
-            TipoRegistro regPesquisa;
+            Registro regPesquisa;
             regPesquisa.chave = chave;
             resultado = Pesquisa(&regPesquisa, ArvoreBStar, &estatisticas, debug);
 

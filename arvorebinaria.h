@@ -6,7 +6,7 @@
 #include "tipos.h" 
 
 
-void criarArvore(FILE* arquivoEntrada, const char* nomeArquivoArvore, Estatisticas *estatisticas, int debug);
+void criarArvore(Registro *registros, int quantidade, const char* nomeArquivoArvore, Estatisticas *estatisticas, int debug);
 
 int buscarArvore(const char* nomeArquivoArvore, Registro* registro, Estatisticas* estatisticas, int debug);
 

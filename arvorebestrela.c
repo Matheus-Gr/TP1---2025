@@ -4,7 +4,7 @@ void inicializa_b_estrela(TipoApontadorEstrela *Arvore) {
     *Arvore = NULL;
 }
 
-bool Pesquisa(TipoRegistro *x, TipoApontadorEstrela Ap, Estatisticas *estatisticas, bool debug) {
+bool Pesquisa(Registro *x, TipoApontadorEstrela Ap, Estatisticas *estatisticas, bool debug) {
     int i;
     TipoApontadorEstrela Pag = Ap;
 
@@ -39,7 +39,7 @@ bool Pesquisa(TipoRegistro *x, TipoApontadorEstrela Ap, Estatisticas *estatistic
     }
 }
 
-void InsereNaPaginaExterna(TipoApontadorEstrela Ap, TipoRegistro Reg, Estatisticas *estatisticas) {
+void InsereNaPaginaExterna(TipoApontadorEstrela Ap, Registro Reg, Estatisticas *estatisticas) {
     bool NaoAchouPosicao;
     int k = Ap->UU.U1.ne;
     NaoAchouPosicao = (k > 0);
@@ -80,7 +80,7 @@ void InsereNaPaginaInterna(TipoApontadorEstrela Ap, TipoChave Reg, TipoApontador
     Ap->UU.U0.ni++;
 }
 
-void Ins_b_estrela(TipoRegistro Reg, TipoApontadorEstrela Ap, short *cresceu, TipoChave *RegRetorno, TipoApontadorEstrela *ApRetorno, Estatisticas *estatisticas) {
+void Ins_b_estrela(Registro Reg, TipoApontadorEstrela Ap, short *cresceu, TipoChave *RegRetorno, TipoApontadorEstrela *ApRetorno, Estatisticas *estatisticas) {
     long i = 1;
     long j;
     TipoApontadorEstrela ApTemp;
@@ -172,7 +172,7 @@ void Ins_b_estrela(TipoRegistro Reg, TipoApontadorEstrela Ap, short *cresceu, Ti
     }
 }
 
-void Insere_b_estrela(TipoRegistro Reg, TipoApontadorEstrela *Ap, Estatisticas *estatisticas) {
+void Insere_b_estrela(Registro Reg, TipoApontadorEstrela *Ap, Estatisticas *estatisticas) {
     if (*Ap == NULL) {
         TipoPaginaEstrela *ApTemp = (TipoPaginaEstrela *)malloc(sizeof(TipoPaginaEstrela));
         ApTemp->Pt = Externa;
@@ -206,8 +206,8 @@ TipoApontadorEstrela ConstruirArvoreBStar(char *nomeArquivo, int quantidade, Est
         return NULL;
     }
 
-    TipoRegistro *registros = (TipoRegistro *)malloc(quantidade * sizeof(TipoRegistro));
-    fread(registros, quantidade, sizeof(TipoRegistro), arq);
+    Registro *registros = (Registro *)malloc(quantidade * sizeof(Registro));
+    fread(registros, quantidade, sizeof(Registro), arq);
     estatisticas->transferencias += 1;
 
     if (debug) {
@@ -240,7 +240,7 @@ void liberaArvoreBEstrela(TipoApontadorEstrela Arvore) {
     }
 }
 
-void exibirItensArvoreBEstrela(TipoRegistro *registros, int quantidade) {
+void exibirItensArvoreBEstrela(Registro *registros, int quantidade) {
     for (int i = 0; i < quantidade; i++)
         printf("%d\n", registros[i].chave);
 }

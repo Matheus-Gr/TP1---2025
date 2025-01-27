@@ -9,7 +9,7 @@
 void atualizaPonteiros(FILE* arquivoArvore, NoBinario* itemInserir, Estatisticas *estatisticas) {
     // Calcula a quantidade de itens no arquivo da árvore
     _fseeki64(arquivoArvore, 0, SEEK_END);
-    int64_t qtdItensArquivo = ftell(arquivoArvore) / sizeof(NoBinario);
+    int64_t qtdItensArquivo = _ftelli64(arquivoArvore) / sizeof(NoBinario);
     _fseeki64(arquivoArvore, 0, SEEK_SET);
 
     // Caso haja apenas um nó, não há ponteiros a serem atualizados
@@ -51,7 +51,11 @@ void atualizaPonteiros(FILE* arquivoArvore, NoBinario* itemInserir, Estatisticas
 }
 
 // Cria uma árvore binária a partir de um arquivo de entrada
-void criarArvore(FILE* arquivoEntrada, const char* nomeArquivoArvore, Estatisticas *estatisticas, int debug) {
+void criarArvore(Registro *registros,
+                 int quantidade,
+                 const char* nomeArquivoArvore,
+                 Estatisticas *estatisticas, int debug) {
+
     // Abre o arquivo da árvore binária para escrita
     FILE* arquivoArvore = fopen(nomeArquivoArvore, "wb+");
     if (!arquivoArvore) {
@@ -59,15 +63,14 @@ void criarArvore(FILE* arquivoEntrada, const char* nomeArquivoArvore, Estatistic
         exit(1);
     }
 
-    Registro lido;
     int itensinseridos = 0;
     clock_t inicio = clock();
     double tempoInsercao = 0.0;
-    // Lê os registros do arquivo de entrada e insere na árvore
-    while (fread(&lido, sizeof(Registro), 1, arquivoEntrada) == 1) {
+
+    for (int i = 0; i < quantidade; i++) {
         estatisticas->transferenciasPP++;
         NoBinario no;
-        no.registro = lido;
+        no.registro = registros[i];
         no.esquerda = -1;
         no.direita = -1;
 
@@ -78,9 +81,9 @@ void criarArvore(FILE* arquivoEntrada, const char* nomeArquivoArvore, Estatistic
             exit(1);
         }
 
-        if(debug && (itensinseridos % 50 == 0)){
+        if(debug && (itensinseridos % 50000 == 0)){
             tempoInsercao = (double)(clock() - inicio) * 1000 / CLOCKS_PER_SEC;
-            printf("Itens inseridos %d, tempo de insercao do lote %0.2f\n", itensinseridos, tempoInsercao);
+            printf("Itens inseridos %d, tempo de insercao do lote %0.2f ms\n", itensinseridos, tempoInsercao);
             inicio = clock();
         }
 

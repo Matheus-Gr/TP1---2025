@@ -19,7 +19,7 @@ void lerIndicesDoArquivo(const char *nomeArquivo, int *indices, int quantidadeRe
             exit(1);
         }
 
-        printf("Indice %d: %d\n", i, indices[i]);
+        // printf("Indice %d: %d\n", i, indices[i]);
     }
 
     fclose(arquivo);

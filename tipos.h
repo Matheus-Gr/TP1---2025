@@ -10,9 +10,6 @@ typedef struct {
     char dado2[5000];       // Dado 2 (cadeia de 5000 caracteres)
 } Registro;
 
-// TipoRegistro é um alias para Registro
-typedef Registro TipoRegistro;
-
 // Definição de Estatisticas
 typedef struct {
     int transferencias;     // Quantidade de transfericias na pesquisa
@@ -37,6 +34,43 @@ typedef struct {
     int esquerda;           // Índice do filho esquerdo
     int direita;            // Índice do filho direito
 } NoBinario;
+
+#define M 2
+#define MM 2 * M
+
+typedef struct Pagina* Apontador;
+
+typedef struct Pagina {
+    short nFilhos;
+    Registro registros[MM];
+    Apontador ponteiros[MM + 1];
+} Pagina;
+
+#define MB 3
+#define MMB (2 * MB)
+#define MB2 3
+#define MMB2 (2 * MB2)
+
+typedef int TipoChave;
+
+typedef enum { Interna, Externa } TipoPagina;
+
+typedef struct TipoPaginaEstrela {
+    TipoPagina Pt;
+    union {
+        struct {
+            int ni; // Número de chaves na página interna
+            TipoChave ri[MMB]; // Array de chaves
+            struct TipoPaginaEstrela *pi[MMB + 1]; // Ponteiros para páginas filhas
+        } U0;
+        struct {
+            int ne; // Número de registros na página externa
+            Registro re[MMB2]; // Array de registros
+        } U1;
+    } UU;
+} TipoPaginaEstrela;
+
+typedef TipoPaginaEstrela *TipoApontadorEstrela;
 
 // Função para exibir um registro
 void lerRegistro(Registro* registro);
