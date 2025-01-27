@@ -15,5 +15,3 @@ subprocess.run(['gcc', '-D_FILE_OFFSET_BITS=64', '-D_LARGEFILE_SOURCE',
                '-D_LARGEFILE64_SOURCE', '-m64', '*.c', '-o', comando_base, '-Wall'])
 subprocess.run([comando_base, metodo, quantidade, ordem, chave, imprimir])
 os.remove(comando_base)
-# if metodo == 2:
-#     os.remove("arvorebin.bin")

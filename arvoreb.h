@@ -10,10 +10,6 @@
 
 void inicializa(Apontador *arvore);
 
-void criaArvoreB(Apontador arvore,
-                 FILE* arquivoEntrada,
-                 Estatisticas *estatisticas);
-
 void Insere(Registro registro,
             Apontador *apontador,
             Estatisticas *estatisticas);
