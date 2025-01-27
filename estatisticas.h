@@ -6,6 +6,12 @@
 
 void inicializarEstatisticas(Estatisticas *estatisticas);
 
-void finalizarEstatisticas(Estatisticas *estatisticas);
+void inicializarTimerPesquisa(Estatisticas *estatisticas);
+
+void finalizarPreProcessamento(Estatisticas *estatisticas);
+
+void finalizarEstatisticasPequisa(Estatisticas *estatisticas);
+
+void printarEstatisticas(const Estatisticas *estatisticas);
 
 #endif

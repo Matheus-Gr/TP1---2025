@@ -5,13 +5,14 @@
 #include "tipos.h"
 
 // Atualiza os ponteiros da árvore binária após a inserção de um novo nó
-void atualizaPonteiros(FILE* arquivoArvore, NoBinario* itemInserir) {
+void atualizaPonteiros(FILE* arquivoArvore, NoBinario* itemInserir, Estatisticas *estatisticas) {
     // Calcula a quantidade de itens no arquivo da árvore
     fseek(arquivoArvore, 0, SEEK_END);
     long qtdItensArquivo = ftell(arquivoArvore) / sizeof(NoBinario);
     fseek(arquivoArvore, 0, SEEK_SET);
 
     // Caso haja apenas um nó, não há ponteiros a serem atualizados
+    estatisticas->comparacoesPP++;
     if (qtdItensArquivo == 1) return;
 
     NoBinario lido;
@@ -22,16 +23,19 @@ void atualizaPonteiros(FILE* arquivoArvore, NoBinario* itemInserir) {
     do {
         desloc = (ponteiro - 1) * sizeof(NoBinario);
         fseek(arquivoArvore, desloc, SEEK_SET);
+        estatisticas->transferenciasPP++;
         fread(&lido, sizeof(NoBinario), 1, arquivoArvore);
 
         // Decide para qual lado (esquerda ou direita) seguir
+        estatisticas->comparacoesPP++;
         ponteiro = (itemInserir->registro.chave > lido.registro.chave) ? lido.direita : lido.esquerda;
     } while (ponteiro != -1);
 
     // Retorna para o nó anterior
-    fseek(arquivoArvore, -(sizeof(NoBinario)), SEEK_CUR);
+    fseek(arquivoArvore, (long) -(sizeof(NoBinario)), SEEK_CUR);
 
     // Atualiza o ponteiro do nó pai para apontar para o novo nó
+    estatisticas->comparacoesPP++;
     if (itemInserir->registro.chave > lido.registro.chave)
         lido.direita = qtdItensArquivo;
     else
@@ -43,7 +47,7 @@ void atualizaPonteiros(FILE* arquivoArvore, NoBinario* itemInserir) {
 }
 
 // Cria uma árvore binária a partir de um arquivo de entrada
-void criarArvore(FILE* arquivoEntrada, const char* nomeArquivoArvore) {
+void criarArvore(FILE* arquivoEntrada, const char* nomeArquivoArvore, Estatisticas *estatisticas, int debug) {
     // Abre o arquivo da árvore binária para escrita
     FILE* arquivoArvore = fopen(nomeArquivoArvore, "wb+");
     if (!arquivoArvore) {
@@ -55,6 +59,7 @@ void criarArvore(FILE* arquivoEntrada, const char* nomeArquivoArvore) {
 
     // Lê os registros do arquivo de entrada e insere na árvore
     while (fread(&lido, sizeof(Registro), 1, arquivoEntrada) == 1) {
+        estatisticas->transferenciasPP++;
         NoBinario no;
         no.registro = lido;
         no.esquerda = -1;
@@ -68,19 +73,13 @@ void criarArvore(FILE* arquivoEntrada, const char* nomeArquivoArvore) {
         }
 
         // Atualiza os ponteiros da árvore para incluir o novo nó
-        atualizaPonteiros(arquivoArvore, &no);
+        atualizaPonteiros(arquivoArvore, &no, estatisticas);
     }
 
     fclose(arquivoArvore);
-    printf("Arvore binaria criada com sucesso no arquivo: %s\n", nomeArquivoArvore);
-}
-
-// Calcula o tempo de pré-processamento (criação da árvore binária)
-void calcularTempoPreProcessamento(FILE* arquivoEntrada, const char* nomeArquivoArvore, Estatisticas* estatisticas) {
-    clock_t inicio = clock();
-    criarArvore(arquivoEntrada, nomeArquivoArvore);
-    clock_t fim = clock();
-    estatisticas->tempoPreProcessamento = ((double)(fim - inicio) / CLOCKS_PER_SEC) * 1000.0;
+    if (debug){
+        printf("Arvore binaria criada com sucesso no arquivo: %s\n", nomeArquivoArvore);
+    }
 }
 
 // Busca um registro na árvore binária
@@ -88,7 +87,7 @@ int buscarArvore(const char* nomeArquivoArvore, Registro* registro, Estatisticas
     // Abre o arquivo da árvore binária para leitura
     FILE* arquivoArvore = fopen(nomeArquivoArvore, "rb");
     if (!arquivoArvore) {
-        perror("Erro ao abrir o arquivo da árvore binária");
+        perror("Erro ao abrir o arquivo da arvore binária");
         exit(1);
     }
 
@@ -101,18 +100,18 @@ int buscarArvore(const char* nomeArquivoArvore, Registro* registro, Estatisticas
         desloc = (ponteiro - 1) * sizeof(NoBinario);
         fseek(arquivoArvore, desloc, SEEK_SET);
         fread(&lido, sizeof(NoBinario), 1, arquivoArvore);
-        estatisticas->transferencias += 1;
+        estatisticas->transferencias++;
 
         // Verifica se encontrou o registro
+        estatisticas->comparacoes++;
         if (registro->chave == lido.registro.chave) {
-            estatisticas->comparacoes += 1;
             *registro = lido.registro;
             return 1; // Registro encontrado
         }
 
         // Decide para qual lado da árvore seguir
+        estatisticas->comparacoes++;
         ponteiro = (registro->chave > lido.registro.chave) ? lido.direita : lido.esquerda;
-        estatisticas->comparacoes += 1;
 
     } while (ponteiro != -1);
 
@@ -123,7 +122,7 @@ int buscarArvore(const char* nomeArquivoArvore, Registro* registro, Estatisticas
 void lerArvore(const char* nomeArquivoArvore) {
     FILE* arquivoArvore = fopen(nomeArquivoArvore, "rb");
     if (!arquivoArvore) {
-        perror("Erro ao abrir o arquivo da árvore binária");
+        perror("Erro ao abrir o arquivo da arvore binaria");
         return;
     }
 

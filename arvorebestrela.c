@@ -226,9 +226,6 @@ TipoApontadorEstrela ConstruirArvoreBStar(char *nomeArquivo, int quantidade, Est
     fclose(arq);
     free(registros);
 
-    clock_t fim = clock(); // Finaliza a medição
-    estatisticas->tempoPreProcessamento = (double)(fim - inicio) * 1000 / CLOCKS_PER_SEC;
-
     return Arvore;
 }
 

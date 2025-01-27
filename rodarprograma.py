@@ -3,10 +3,10 @@ import os
 
 # Nome do executável gerado após a compilação
 comando_base = 'pesquisa.exe'  # Nome do executável
-metodo = str(4)                # Método 4: Árvore B*
-quantidade = str(2000)         # Quantidade de registros
-ordem = str(1)                 # Ordem ascendente
-chave = str(1998)              # Chave a ser pesquisada
+metodo = str(1)                # Método 4: Árvore B*
+quantidade = str(2000000)         # Quantidade de registros
+ordem = str(2)                 # Ordem ascendente
+chave = str(1999908)              # Chave a ser pesquisada
 imprimir = '-P'                # Opção para imprimir chaves pesquisadas
 
 # Lista de arquivos .c para compilar
@@ -21,7 +21,8 @@ arquivos_c = [
 ]
 
 # Verifica se todos os arquivos .c existem
-arquivos_faltando = [arquivo for arquivo in arquivos_c if not os.path.exists(arquivo)]
+arquivos_faltando = [
+    arquivo for arquivo in arquivos_c if not os.path.exists(arquivo)]
 if arquivos_faltando:
     print("Erro: Os seguintes arquivos não foram encontrados:")
     for arquivo in arquivos_faltando:

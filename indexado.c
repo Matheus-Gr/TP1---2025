@@ -1,5 +1,6 @@
 #include "indexado.h"
 #include "tipos.h"
+#include "estatisticas.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
@@ -8,8 +9,6 @@
 
 // Função de pré-processamento para criar uma tabela de índices.
 Indice* preProcessarIndices(FILE* arquivo, int tamanho, int* nPaginas, Estatisticas* estatisticas) {
-    clock_t inicio = clock();
-
     *nPaginas = (tamanho + ITENSPAGINA - 1) / ITENSPAGINA;
 
     Indice* tabelaIndices = malloc(*nPaginas * sizeof(Indice));
@@ -20,29 +19,31 @@ Indice* preProcessarIndices(FILE* arquivo, int tamanho, int* nPaginas, Estatisti
 
     Registro tempoRegistro;
     for (int i = 0; i < *nPaginas; i++) {
+        estatisticas->comparacoesPP++;
         fseek(arquivo, i * ITENSPAGINA * sizeof(Registro), SEEK_SET);
-        estatisticas->transferencias++;
+        estatisticas->transferenciasPP++;
         fread(&tempoRegistro, sizeof(Registro), 1, arquivo);
 
         tabelaIndices[i].posicao = i * ITENSPAGINA;
         tabelaIndices[i].chave = tempoRegistro.chave;
     }
 
-	clock_t fim = clock();
-    estatisticas->tempoPreProcessamento = ((double)(fim - inicio) / CLOCKS_PER_SEC) * 1000;
+    finalizarPreProcessamento(estatisticas);
     return tabelaIndices;
 }
 
 // Realiza uma pesquisa indexada em um arquivo de registros.
 int pesquisaIndexada(Registro* registro, int tamanho, int ordem, FILE* arquivo, Estatisticas* estatisticas, int debug) {
     int nPaginas;
+
     Indice* tabelaIndices = preProcessarIndices(arquivo, tamanho, &nPaginas, estatisticas);
+
+    inicializarTimerPesquisa(estatisticas);
     if (tabelaIndices == NULL) {
         return 0;
     }
 
     if (debug) {
-      printf("Tempo de pre-processamento: %.2f ms\n", estatisticas->tempoPreProcessamento);
         printf("Numero de paginas: %d\n", nPaginas);
         printf("Tabela de Indices:\n");
         printf("Pagina\tPosicao\tChave\n");
@@ -54,6 +55,7 @@ int pesquisaIndexada(Registro* registro, int tamanho, int ordem, FILE* arquivo, 
     int pagina = -1;
 
     // Encontra a página que possivelmente contém o registro desejado.
+    estatisticas->comparacoes++;
     for (int i = 0; i < nPaginas; i++) {
         estatisticas->comparacoes++;
         if ((ordem == 1 && tabelaIndices[i].chave > registro->chave) ||
@@ -67,6 +69,7 @@ int pesquisaIndexada(Registro* registro, int tamanho, int ordem, FILE* arquivo, 
         printf("A chave %d esta na pagina %d.\n", registro->chave, pagina);
     }
 
+    estatisticas->comparacoes++;
     if (pagina == -1) {
         free(tabelaIndices);
         return 0;
@@ -75,11 +78,16 @@ int pesquisaIndexada(Registro* registro, int tamanho, int ordem, FILE* arquivo, 
     // Busca sequencial na página encontrada.
     fseek(arquivo, tabelaIndices[pagina - 1].posicao * sizeof(Registro), SEEK_SET);
     Registro tempoRegistro;
+
+    estatisticas->comparacoes++;
     for (int i = 0; i < ITENSPAGINA; i++) {
+        estatisticas->comparacoes++;
+
         estatisticas->transferencias++;
         if (fread(&tempoRegistro, sizeof(Registro), 1, arquivo) != 1) {
             break; 
         }
+        
         estatisticas->comparacoes++;
         if (tempoRegistro.chave == registro->chave) {
             *registro = tempoRegistro;

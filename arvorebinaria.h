@@ -6,13 +6,11 @@
 #include "tipos.h" 
 
 
-void criarArvore(FILE* arquivoEntrada, const char* nomeArquivoArvore);
-
-void calcularTempoPreProcessamento(FILE* arquivoEntrada, const char* nomeArquivoArvore, Estatisticas* estatisticas);
+void criarArvore(FILE* arquivoEntrada, const char* nomeArquivoArvore, Estatisticas *estatisticas, int debug);
 
 int buscarArvore(const char* nomeArquivoArvore, Registro* registro, Estatisticas* estatisticas, int debug);
 
-void atualizaPonteiros(FILE* arquivoArvore, NoBinario* itemInserir);
+void atualizaPonteiros(FILE* arquivoArvore, NoBinario* itemInserir, Estatisticas *estatisticas);
 
 void lerArvore(const char* nomeArquivoArvore);
 

@@ -103,12 +103,18 @@ int main(int argc, char *argv[]) {
                 arquivo,
                 &estatisticas,
                 debug);
+            finalizarEstatisticasPequisa(&estatisticas);
             break;
         case 2:
-            calcularTempoPreProcessamento(arquivo, arvorebin, &estatisticas); // Adicione o 3º argumento
-        printf("Arvore criada\n");
-        if (debug) lerArvore(arvorebin);
-        resultado = buscarArvore(arvorebin, &registro, &estatisticas, debug);
+            criarArvore(arquivo, arvorebin, &estatisticas, debug);
+            finalizarPreProcessamento(&estatisticas);
+            if (debug) {
+                printf("Arvore criada\n");
+                lerArvore(arvorebin);
+            }
+            inicializarTimerPesquisa(&estatisticas);
+            resultado = buscarArvore(arvorebin, &registro, &estatisticas, debug);
+            finalizarEstatisticasPequisa(&estatisticas);
         break;
         case 3:
             metodo3();
@@ -133,7 +139,7 @@ int main(int argc, char *argv[]) {
         }
 
         // Exibe as estatísticas
-        finalizarEstatisticas(&estatisticas);
+        finalizarEstatisticasPequisa(&estatisticas);
         break;
         default:
             printf("Metodo inválido! Escolha entre 1, 2, 3 ou 4.\n");
@@ -145,7 +151,7 @@ int main(int argc, char *argv[]) {
         printf("Nome do arquivo: %s\n", nomeArquivo);
         printf("Registro encontrado!\n");
         lerRegistro(&registro);  // Usa a função lerRegistro de tipos.c
-        finalizarEstatisticas(&estatisticas);
+        printarEstatisticas(&estatisticas);
     } else {
         printf("Registro nao encontrado.\n");
     }
