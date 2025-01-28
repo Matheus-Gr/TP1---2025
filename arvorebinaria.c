@@ -38,6 +38,7 @@ void atualizaPonteiros(FILE* arquivoArvore, NoBinario* itemInserir, Estatisticas
     // Retorna para o nó anterior
     _fseeki64(arquivoArvore, (int64_t) -(sizeof(NoBinario)), SEEK_CUR);
 
+
     // Atualiza o ponteiro do nó pai para apontar para o novo nó
     estatisticas->comparacoesPP++;
     if (itemInserir->registro.chave > lido.registro.chave)

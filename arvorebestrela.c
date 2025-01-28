@@ -11,6 +11,7 @@ void inicializa_b_estrela(ApontadorEstrela *Arvore) {
     *Arvore = NULL;  // Árvore inicia vazia
 }
 
+
 /*-----------------------------------------------------------*/
 /* Função: pesquisaBEstrela                                  */
 /* Descrição: Busca um registro, diferenciando páginas       */

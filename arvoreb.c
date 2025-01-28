@@ -13,6 +13,7 @@ void inicializa(Apontador *arvore) {
     *arvore = NULL;  // Árvore inicia vazia
 }
 
+
 /*-----------------------------------------------------------*/
 /* Função: InsereNaPagina                                    */
 /* Descrição: Insere um registro em uma página não cheia,    */
