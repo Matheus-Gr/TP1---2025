@@ -1,3 +1,8 @@
+/**
+ * @file arvorebestrela.h
+ * @brief Definição da estrutura da árvore B* e funções relacionadas à manipulação da árvore.
+ */
+
 #ifndef ARVOREBESTRELA_H
 #define ARVOREBESTRELA_H
 
@@ -11,8 +16,8 @@ void InsereNaPaginaExterna(ApontadorEstrela Ap,
                            Estatisticas *estatisticas);
 
 void InsereNaPaginaInterna(ApontadorEstrela Ap,
-                           TipoChave Reg, 
-                           ApontadorEstrela ApDir, 
+                           TipoChave Reg,
+                           ApontadorEstrela ApDir,
                            Estatisticas *estatisticas);
 
 void Ins_b_estrela(Registro Reg,
@@ -21,11 +26,11 @@ void Ins_b_estrela(Registro Reg,
                    TipoChave *RegRetorno,
                    ApontadorEstrela *ApRetorno,
                    Estatisticas *estatisticas);
-                   
+
 int pesquisaBEstrela(Registro *x,
-              ApontadorEstrela Ap,
-              Estatisticas *estatisticas,
-              int debug);
+                     ApontadorEstrela Ap,
+                     Estatisticas *estatisticas,
+                     int debug);
 
 void Insere_b_estrela(Registro Reg,
                       ApontadorEstrela *Ap,
