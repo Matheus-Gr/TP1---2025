@@ -127,5 +127,3 @@ Este projeto, desenvolvido para a disciplina de Estruturas de Dados II, tem como
 - `rodarprograma.py` — Compila, executa e analisa os resultados dos experimentos.
 
 ---
-
-Se precisar de ajuda para configurar o ambiente, exemplos de comandos, ou documentação adicional, é só avisar!
