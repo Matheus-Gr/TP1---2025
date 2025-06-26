@@ -1,0 +1,9 @@
+var searchData=
+[
+  ['lerarquivobinario_0',['lerArquivoBinario',['../arquivos_8c.html#a75ca0ca96b88c3e8075eed84df2be802',1,'lerArquivoBinario(const char *caminhoArquivo):&#160;arquivos.c'],['../arquivos_8h.html#a75ca0ca96b88c3e8075eed84df2be802',1,'lerArquivoBinario(const char *caminhoArquivo):&#160;arquivos.c'],['../main_8c.html#a75ca0ca96b88c3e8075eed84df2be802',1,'lerArquivoBinario(const char *caminhoArquivo):&#160;main.c']]],
+  ['lerarvore_1',['lerArvore',['../arvorebinaria_8c.html#afc10f7b8d7af044c95f40c8b33491516',1,'lerArvore(const char *nomeArquivoArvore):&#160;arvorebinaria.c'],['../arvorebinaria_8h.html#afc10f7b8d7af044c95f40c8b33491516',1,'lerArvore(const char *nomeArquivoArvore):&#160;arvorebinaria.c']]],
+  ['lerindicesdoarquivo_2',['lerIndicesDoArquivo',['../arquivos_8c.html#abd72b10b9d27242e131de707f3bd81d6',1,'lerIndicesDoArquivo(const char *nomeArquivo, int *indices, int quantidadeRegistros):&#160;arquivos.c'],['../arquivos_8h.html#abd72b10b9d27242e131de707f3bd81d6',1,'lerIndicesDoArquivo(const char *nomeArquivo, int *indices, int quantidadeRegistros):&#160;arquivos.c']]],
+  ['lerregistro_3',['lerRegistro',['../tipos_8c.html#aa4253145dc5feee61e8cae2e5131c54b',1,'lerRegistro(Registro *registro):&#160;tipos.c'],['../tipos_8h.html#aa4253145dc5feee61e8cae2e5131c54b',1,'lerRegistro(Registro *registro):&#160;tipos.c']]],
+  ['liberaarvorebestrela_4',['liberaArvoreBEstrela',['../arvorebestrela_8c.html#a7169203de55b6d99353199df44a31e00',1,'liberaArvoreBEstrela(ApontadorEstrela Arvore):&#160;arvorebestrela.c'],['../arvorebestrela_8h.html#a7169203de55b6d99353199df44a31e00',1,'liberaArvoreBEstrela(ApontadorEstrela Arvore):&#160;arvorebestrela.c']]],
+  ['limpar_5farquivos_5',['limpar_arquivos',['../namespacerodarprograma.html#aa4d99d72e10617080f25a73921e0b988',1,'rodarprograma']]]
+];

@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TP1 Estruturas de Dados: Código-Fonte de tipos.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">TP1 Estruturas de Dados
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('tipos_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">tipos.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="tipos_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#ifndef TIPOS_H</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#define TIPOS_H</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;time.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span></div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="struct_registro.html">   15</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="struct_registro.html#a026c7c33609481f3e9373f65f523d7f3">   17</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_registro.html#a026c7c33609481f3e9373f65f523d7f3">chave</a>;        </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="struct_registro.html#a042944dacf17c3696b76fa8e881bb694">   18</a></span>    <span class="keywordtype">long</span> <a class="code hl_variable" href="struct_registro.html#a042944dacf17c3696b76fa8e881bb694">dado1</a>;       </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="struct_registro.html#af7503aadbc06a9444f47278ffb12a086">   19</a></span>    <span class="keywordtype">char</span> <a class="code hl_variable" href="struct_registro.html#af7503aadbc06a9444f47278ffb12a086">dado2</a>[1000]; </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="struct_registro.html#acc06cc7e7547123479ccd4ae23946a22">   20</a></span>    <span class="keywordtype">char</span> <a class="code hl_variable" href="struct_registro.html#acc06cc7e7547123479ccd4ae23946a22">dado3</a>[5000]; </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>} <a class="code hl_struct" href="struct_registro.html">Registro</a>;</div>
+</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span></div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="};">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="struct_estatisticas.html">   29</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>{</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="struct_estatisticas.html#acee15e74f5933b8aad5d8ad87cb54442">   31</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_estatisticas.html#acee15e74f5933b8aad5d8ad87cb54442">transferencias</a>;     </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="struct_estatisticas.html#a94b6be77167116f2345137fafb805cac">   32</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_estatisticas.html#a94b6be77167116f2345137fafb805cac">comparacoes</a>;        </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="struct_estatisticas.html#ae08aecd85e94b7900ee92a02cc25a8e0">   33</a></span>    clock_t <a class="code hl_variable" href="struct_estatisticas.html#ae08aecd85e94b7900ee92a02cc25a8e0">inicio</a>;         </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="struct_estatisticas.html#aafdf36fd6f9bea38ead712e910974828">   34</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="struct_estatisticas.html#aafdf36fd6f9bea38ead712e910974828">tempoExecucao</a>;   </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="struct_estatisticas.html#abf7c6390a4db46c9937ed75953dbabb2">   35</a></span>    clock_t <a class="code hl_variable" href="struct_estatisticas.html#abf7c6390a4db46c9937ed75953dbabb2">inicioPP</a>;       </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="struct_estatisticas.html#a9b6f97e3c4e74be130dad477b197f972">   36</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_estatisticas.html#a9b6f97e3c4e74be130dad477b197f972">transferenciasPP</a>;   </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="struct_estatisticas.html#a5d251c12dfa613a97762dfa2f9e5dce4">   37</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_estatisticas.html#a5d251c12dfa613a97762dfa2f9e5dce4">comparacoesPP</a>;      </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="struct_estatisticas.html#aeb2e120d0cd0bb473cee7fd54f5d6649">   38</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="struct_estatisticas.html#aeb2e120d0cd0bb473cee7fd54f5d6649">tempoExecucaoPP</a>; </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>} <a class="code hl_struct" href="struct_estatisticas.html">Estatisticas</a>;</div>
+</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="foldopen" id="foldopen00046" data-start="{" data-end="};">
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="struct_indice.html">   46</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>{</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="struct_indice.html#abb6f7b070fe4b85c417a245050c840d1">   48</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_indice.html#abb6f7b070fe4b85c417a245050c840d1">posicao</a>; </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="struct_indice.html#a44fd06c5f83e22766424278d52bda17c">   49</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_indice.html#a44fd06c5f83e22766424278d52bda17c">chave</a>;   </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>} <a class="code hl_struct" href="struct_indice.html">Indice</a>;</div>
+</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span></div>
+<div class="foldopen" id="foldopen00055" data-start="{" data-end="};">
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="struct_no_binario.html">   55</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>{</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="struct_no_binario.html#a54889e357e072c6829fd4f9530f6f755">   57</a></span>    <a class="code hl_struct" href="struct_registro.html">Registro</a> <a class="code hl_variable" href="struct_no_binario.html#a54889e357e072c6829fd4f9530f6f755">registro</a>; </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="struct_no_binario.html#aee81c65f8ba8ad4a2d47f6948d21a00d">   58</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_no_binario.html#aee81c65f8ba8ad4a2d47f6948d21a00d">esquerda</a>;      </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="struct_no_binario.html#a2798f40482b5437413b89809f0d0c273">   59</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_no_binario.html#a2798f40482b5437413b89809f0d0c273">direita</a>;       </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>} <a class="code hl_struct" href="struct_no_binario.html">NoBinario</a>;</div>
+</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">// Definições para Árvore B</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="tipos_8h.html#a52037c938e3c1b126c6277da5ca689d0">   63</a></span><span class="preprocessor">#define M 2</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="tipos_8h.html#afdc383f8992f4a960bb22998f57b6d37">   64</a></span><span class="preprocessor">#define MM 2 * M</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="tipos_8h.html#a825ac99bff14e3febd4e3fdd37c23bfc">   66</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_pagina.html">Pagina</a> *<a class="code hl_typedef" href="tipos_8h.html#a825ac99bff14e3febd4e3fdd37c23bfc">Apontador</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span></div>
+<div class="foldopen" id="foldopen00073" data-start="{" data-end="};">
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="struct_pagina.html">   73</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_pagina.html">Pagina</a></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>{</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="struct_pagina.html#ad66e219dcac65bf5c98fdb1cf1deeb33">   75</a></span>    <span class="keywordtype">short</span> <a class="code hl_variable" href="struct_pagina.html#ad66e219dcac65bf5c98fdb1cf1deeb33">nFilhos</a>;               </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="struct_pagina.html#a9ded85022db87651a1b13b101fa4d547">   76</a></span>    <a class="code hl_struct" href="struct_registro.html">Registro</a> <a class="code hl_variable" href="struct_pagina.html#a9ded85022db87651a1b13b101fa4d547">registros</a>[<a class="code hl_define" href="tipos_8h.html#afdc383f8992f4a960bb22998f57b6d37">MM</a>];      </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="struct_pagina.html#aa110c4c46aabec47a13adecab20f377b">   77</a></span>    <a class="code hl_typedef" href="tipos_8h.html#a825ac99bff14e3febd4e3fdd37c23bfc">Apontador</a> <a class="code hl_variable" href="struct_pagina.html#aa110c4c46aabec47a13adecab20f377b">ponteiros</a>[<a class="code hl_define" href="tipos_8h.html#afdc383f8992f4a960bb22998f57b6d37">MM</a> + 1]; </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="tipos_8h.html#ae46e96a179b43f947d0c28749eba51ca">   78</a></span>} <a class="code hl_struct" href="struct_pagina.html">Pagina</a>;</div>
+</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">// Definições para Árvore B*</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="tipos_8h.html#aa6b38d492364d98453284934ed7caee9">   81</a></span><span class="preprocessor">#define MB 3</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="tipos_8h.html#a48e7c1e96778d2b311ee4521ae9ad3f9">   82</a></span><span class="preprocessor">#define MMB (2 * MB)</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="tipos_8h.html#ad580ed2f02169ce54a37c7ea882eea43">   83</a></span><span class="preprocessor">#define MB2 3</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="tipos_8h.html#a8633e146fa6cb6cb1423c70f2b0001ce">   84</a></span><span class="preprocessor">#define MMB2 (2 * MB2)</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="tipos_8h.html#a9ccce69e41919f4028f1e29b39b9d83a">   86</a></span><span class="keyword">typedef</span> <span class="keywordtype">int</span> <a class="code hl_typedef" href="tipos_8h.html#a9ccce69e41919f4028f1e29b39b9d83a">TipoChave</a>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span></div>
+<div class="foldopen" id="foldopen00091" data-start="{" data-end="};">
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="tipos_8h.html#a43e0a24e63b7ae0e6ce6b4686d875419">   91</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>{</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="tipos_8h.html#a43e0a24e63b7ae0e6ce6b4686d875419a73c2510f49d29a48c9d81bddcb06f309">   93</a></span>    <a class="code hl_enumvalue" href="tipos_8h.html#a43e0a24e63b7ae0e6ce6b4686d875419a73c2510f49d29a48c9d81bddcb06f309">Interna</a>, </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="tipos_8h.html#a43e0a24e63b7ae0e6ce6b4686d875419a3f9c0ef611ddc658c4d90a84d7591281">   94</a></span>    <a class="code hl_enumvalue" href="tipos_8h.html#a43e0a24e63b7ae0e6ce6b4686d875419a3f9c0ef611ddc658c4d90a84d7591281">Externa</a>  </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>} <a class="code hl_enumeration" href="tipos_8h.html#a43e0a24e63b7ae0e6ce6b4686d875419">TipoPagina</a>;</div>
+</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span></div>
+<div class="foldopen" id="foldopen00102" data-start="{" data-end="};">
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="struct_pagina_estrela.html">  102</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_pagina_estrela.html">PaginaEstrela</a></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>{</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="struct_pagina_estrela.html#a2294ab692a05098ee95dcff7db8b2029">  104</a></span>    <a class="code hl_enumeration" href="tipos_8h.html#a43e0a24e63b7ae0e6ce6b4686d875419">TipoPagina</a> <a class="code hl_variable" href="struct_pagina_estrela.html#a2294ab692a05098ee95dcff7db8b2029">Pt</a>; </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keyword">union</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keyword">struct</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="struct_pagina_estrela.html#a74ade1e7c2c2b86ab5bb3ee138c40861">  109</a></span>            <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_pagina_estrela.html#a74ade1e7c2c2b86ab5bb3ee138c40861">ni</a>;                            </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="struct_pagina_estrela.html#a065fa11399e76cae69ef1279607c38af">  110</a></span>            <a class="code hl_typedef" href="tipos_8h.html#a9ccce69e41919f4028f1e29b39b9d83a">TipoChave</a> <a class="code hl_variable" href="struct_pagina_estrela.html#a065fa11399e76cae69ef1279607c38af">ri</a>[<a class="code hl_define" href="tipos_8h.html#a48e7c1e96778d2b311ee4521ae9ad3f9">MMB</a>];                 </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="struct_pagina_estrela.html#a64cd7207ce00fefe74cf58d39da33551">  111</a></span>            <span class="keyword">struct </span><a class="code hl_struct" href="struct_pagina_estrela.html">PaginaEstrela</a> *<a class="code hl_variable" href="struct_pagina_estrela.html#a64cd7207ce00fefe74cf58d39da33551">pi</a>[<a class="code hl_define" href="tipos_8h.html#a48e7c1e96778d2b311ee4521ae9ad3f9">MMB</a> + 1]; </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="struct_pagina_estrela.html#ae5155333d62d716c16e54ee501d9ebf6">  112</a></span>        } <a class="code hl_variable" href="struct_pagina_estrela.html#ae5155333d62d716c16e54ee501d9ebf6">U0</a>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keyword">struct</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="struct_pagina_estrela.html#a89bd9d5d63611c81631fc0c033317119">  115</a></span>            <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_pagina_estrela.html#a89bd9d5d63611c81631fc0c033317119">ne</a>;            </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="struct_pagina_estrela.html#ad7e78c029a1683bbe419b2d3c507bd3f">  116</a></span>            <a class="code hl_struct" href="struct_registro.html">Registro</a> <a class="code hl_variable" href="struct_pagina_estrela.html#ad7e78c029a1683bbe419b2d3c507bd3f">re</a>[<a class="code hl_define" href="tipos_8h.html#a8633e146fa6cb6cb1423c70f2b0001ce">MMB2</a>]; </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="struct_pagina_estrela.html#ada406540ac1f48e1094b7900995cdc91">  117</a></span>        } <a class="code hl_variable" href="struct_pagina_estrela.html#ada406540ac1f48e1094b7900995cdc91">U1</a>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="struct_pagina_estrela.html#ac33b31b3a78d6907f9497e8b846c26da">  118</a></span>    } <a class="code hl_variable" href="struct_pagina_estrela.html#ac33b31b3a78d6907f9497e8b846c26da">UU</a>;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="tipos_8h.html#a5dd8147d897f590e392a1f6e024fbb71">  119</a></span>} <a class="code hl_struct" href="struct_pagina_estrela.html">PaginaEstrela</a>;</div>
+</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">  124</a></span><span class="keyword">typedef</span> <a class="code hl_struct" href="struct_pagina_estrela.html">PaginaEstrela</a> *<a class="code hl_typedef" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a>;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="keywordtype">void</span> <a class="code hl_function" href="tipos_8h.html#aa4253145dc5feee61e8cae2e5131c54b">lerRegistro</a>(<a class="code hl_struct" href="struct_registro.html">Registro</a> *registro);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="astruct_estatisticas_html"><div class="ttname"><a href="struct_estatisticas.html">Estatisticas</a></div><div class="ttdoc">Estrutura para armazenar estatísticas de operações.</div><div class="ttdef"><b>Definição</b> tipos.h:30</div></div>
+<div class="ttc" id="astruct_estatisticas_html_a5d251c12dfa613a97762dfa2f9e5dce4"><div class="ttname"><a href="struct_estatisticas.html#a5d251c12dfa613a97762dfa2f9e5dce4">Estatisticas::comparacoesPP</a></div><div class="ttdeci">int comparacoesPP</div><div class="ttdoc">Quantidade de comparações no pré-processamento.</div><div class="ttdef"><b>Definição</b> tipos.h:37</div></div>
+<div class="ttc" id="astruct_estatisticas_html_a94b6be77167116f2345137fafb805cac"><div class="ttname"><a href="struct_estatisticas.html#a94b6be77167116f2345137fafb805cac">Estatisticas::comparacoes</a></div><div class="ttdeci">int comparacoes</div><div class="ttdoc">Quantidade de comparações na pesquisa.</div><div class="ttdef"><b>Definição</b> tipos.h:32</div></div>
+<div class="ttc" id="astruct_estatisticas_html_a9b6f97e3c4e74be130dad477b197f972"><div class="ttname"><a href="struct_estatisticas.html#a9b6f97e3c4e74be130dad477b197f972">Estatisticas::transferenciasPP</a></div><div class="ttdeci">int transferenciasPP</div><div class="ttdoc">Quantidade de transferências no pré-processamento.</div><div class="ttdef"><b>Definição</b> tipos.h:36</div></div>
+<div class="ttc" id="astruct_estatisticas_html_aafdf36fd6f9bea38ead712e910974828"><div class="ttname"><a href="struct_estatisticas.html#aafdf36fd6f9bea38ead712e910974828">Estatisticas::tempoExecucao</a></div><div class="ttdeci">double tempoExecucao</div><div class="ttdoc">Tempo final de execução (ms)</div><div class="ttdef"><b>Definição</b> tipos.h:34</div></div>
+<div class="ttc" id="astruct_estatisticas_html_abf7c6390a4db46c9937ed75953dbabb2"><div class="ttname"><a href="struct_estatisticas.html#abf7c6390a4db46c9937ed75953dbabb2">Estatisticas::inicioPP</a></div><div class="ttdeci">clock_t inicioPP</div><div class="ttdoc">Tempo inicial do pré-processamento.</div><div class="ttdef"><b>Definição</b> tipos.h:35</div></div>
+<div class="ttc" id="astruct_estatisticas_html_acee15e74f5933b8aad5d8ad87cb54442"><div class="ttname"><a href="struct_estatisticas.html#acee15e74f5933b8aad5d8ad87cb54442">Estatisticas::transferencias</a></div><div class="ttdeci">int transferencias</div><div class="ttdoc">Quantidade de transferências na pesquisa.</div><div class="ttdef"><b>Definição</b> tipos.h:31</div></div>
+<div class="ttc" id="astruct_estatisticas_html_ae08aecd85e94b7900ee92a02cc25a8e0"><div class="ttname"><a href="struct_estatisticas.html#ae08aecd85e94b7900ee92a02cc25a8e0">Estatisticas::inicio</a></div><div class="ttdeci">clock_t inicio</div><div class="ttdoc">Tempo inicial da pesquisa.</div><div class="ttdef"><b>Definição</b> tipos.h:33</div></div>
+<div class="ttc" id="astruct_estatisticas_html_aeb2e120d0cd0bb473cee7fd54f5d6649"><div class="ttname"><a href="struct_estatisticas.html#aeb2e120d0cd0bb473cee7fd54f5d6649">Estatisticas::tempoExecucaoPP</a></div><div class="ttdeci">double tempoExecucaoPP</div><div class="ttdoc">Tempo final de pré-processamento (ms)</div><div class="ttdef"><b>Definição</b> tipos.h:38</div></div>
+<div class="ttc" id="astruct_indice_html"><div class="ttname"><a href="struct_indice.html">Indice</a></div><div class="ttdoc">Estrutura para índice de arquivos.</div><div class="ttdef"><b>Definição</b> tipos.h:47</div></div>
+<div class="ttc" id="astruct_indice_html_a44fd06c5f83e22766424278d52bda17c"><div class="ttname"><a href="struct_indice.html#a44fd06c5f83e22766424278d52bda17c">Indice::chave</a></div><div class="ttdeci">int chave</div><div class="ttdoc">Chave do registro.</div><div class="ttdef"><b>Definição</b> tipos.h:49</div></div>
+<div class="ttc" id="astruct_indice_html_abb6f7b070fe4b85c417a245050c840d1"><div class="ttname"><a href="struct_indice.html#abb6f7b070fe4b85c417a245050c840d1">Indice::posicao</a></div><div class="ttdeci">int posicao</div><div class="ttdoc">Posição no arquivo.</div><div class="ttdef"><b>Definição</b> tipos.h:48</div></div>
+<div class="ttc" id="astruct_no_binario_html"><div class="ttname"><a href="struct_no_binario.html">NoBinario</a></div><div class="ttdoc">Estrutura de nó para árvore binária armazenada em arquivo.</div><div class="ttdef"><b>Definição</b> tipos.h:56</div></div>
+<div class="ttc" id="astruct_no_binario_html_a2798f40482b5437413b89809f0d0c273"><div class="ttname"><a href="struct_no_binario.html#a2798f40482b5437413b89809f0d0c273">NoBinario::direita</a></div><div class="ttdeci">int direita</div><div class="ttdoc">Índice do filho direito.</div><div class="ttdef"><b>Definição</b> tipos.h:59</div></div>
+<div class="ttc" id="astruct_no_binario_html_a54889e357e072c6829fd4f9530f6f755"><div class="ttname"><a href="struct_no_binario.html#a54889e357e072c6829fd4f9530f6f755">NoBinario::registro</a></div><div class="ttdeci">Registro registro</div><div class="ttdoc">Registro armazenado no nó</div><div class="ttdef"><b>Definição</b> tipos.h:57</div></div>
+<div class="ttc" id="astruct_no_binario_html_aee81c65f8ba8ad4a2d47f6948d21a00d"><div class="ttname"><a href="struct_no_binario.html#aee81c65f8ba8ad4a2d47f6948d21a00d">NoBinario::esquerda</a></div><div class="ttdeci">int esquerda</div><div class="ttdoc">Índice do filho esquerdo.</div><div class="ttdef"><b>Definição</b> tipos.h:58</div></div>
+<div class="ttc" id="astruct_pagina_estrela_html"><div class="ttname"><a href="struct_pagina_estrela.html">PaginaEstrela</a></div><div class="ttdoc">Estrutura de página para Árvore B*.</div><div class="ttdef"><b>Definição</b> tipos.h:103</div></div>
+<div class="ttc" id="astruct_pagina_estrela_html_a065fa11399e76cae69ef1279607c38af"><div class="ttname"><a href="struct_pagina_estrela.html#a065fa11399e76cae69ef1279607c38af">PaginaEstrela::ri</a></div><div class="ttdeci">TipoChave ri[MMB]</div><div class="ttdoc">Array de chaves.</div><div class="ttdef"><b>Definição</b> tipos.h:110</div></div>
+<div class="ttc" id="astruct_pagina_estrela_html_a2294ab692a05098ee95dcff7db8b2029"><div class="ttname"><a href="struct_pagina_estrela.html#a2294ab692a05098ee95dcff7db8b2029">PaginaEstrela::Pt</a></div><div class="ttdeci">TipoPagina Pt</div><div class="ttdoc">Tipo da página (interna ou externa)</div><div class="ttdef"><b>Definição</b> tipos.h:104</div></div>
+<div class="ttc" id="astruct_pagina_estrela_html_a64cd7207ce00fefe74cf58d39da33551"><div class="ttname"><a href="struct_pagina_estrela.html#a64cd7207ce00fefe74cf58d39da33551">PaginaEstrela::pi</a></div><div class="ttdeci">struct PaginaEstrela * pi[MMB+1]</div><div class="ttdoc">Ponteiros para páginas filhas.</div><div class="ttdef"><b>Definição</b> tipos.h:111</div></div>
+<div class="ttc" id="astruct_pagina_estrela_html_a74ade1e7c2c2b86ab5bb3ee138c40861"><div class="ttname"><a href="struct_pagina_estrela.html#a74ade1e7c2c2b86ab5bb3ee138c40861">PaginaEstrela::ni</a></div><div class="ttdeci">int ni</div><div class="ttdoc">Número de chaves na página interna.</div><div class="ttdef"><b>Definição</b> tipos.h:109</div></div>
+<div class="ttc" id="astruct_pagina_estrela_html_a89bd9d5d63611c81631fc0c033317119"><div class="ttname"><a href="struct_pagina_estrela.html#a89bd9d5d63611c81631fc0c033317119">PaginaEstrela::ne</a></div><div class="ttdeci">int ne</div><div class="ttdoc">Número de registros na página externa.</div><div class="ttdef"><b>Definição</b> tipos.h:115</div></div>
+<div class="ttc" id="astruct_pagina_estrela_html_ac33b31b3a78d6907f9497e8b846c26da"><div class="ttname"><a href="struct_pagina_estrela.html#ac33b31b3a78d6907f9497e8b846c26da">PaginaEstrela::UU</a></div><div class="ttdeci">union PaginaEstrela::@375277252112176125203202142347111066132043132306 UU</div></div>
+<div class="ttc" id="astruct_pagina_estrela_html_ad7e78c029a1683bbe419b2d3c507bd3f"><div class="ttname"><a href="struct_pagina_estrela.html#ad7e78c029a1683bbe419b2d3c507bd3f">PaginaEstrela::re</a></div><div class="ttdeci">Registro re[MMB2]</div><div class="ttdoc">Array de registros.</div><div class="ttdef"><b>Definição</b> tipos.h:116</div></div>
+<div class="ttc" id="astruct_pagina_estrela_html_ada406540ac1f48e1094b7900995cdc91"><div class="ttname"><a href="struct_pagina_estrela.html#ada406540ac1f48e1094b7900995cdc91">PaginaEstrela::U1</a></div><div class="ttdeci">struct PaginaEstrela::@375277252112176125203202142347111066132043132306::@030242115341155226104356154035207130003050207201 U1</div></div>
+<div class="ttc" id="astruct_pagina_estrela_html_ae5155333d62d716c16e54ee501d9ebf6"><div class="ttname"><a href="struct_pagina_estrela.html#ae5155333d62d716c16e54ee501d9ebf6">PaginaEstrela::U0</a></div><div class="ttdeci">struct PaginaEstrela::@375277252112176125203202142347111066132043132306::@133264360246162075370112022065312114062022030125 U0</div></div>
+<div class="ttc" id="astruct_pagina_html"><div class="ttname"><a href="struct_pagina.html">Pagina</a></div><div class="ttdoc">Estrutura de página para árvore B.</div><div class="ttdef"><b>Definição</b> tipos.h:74</div></div>
+<div class="ttc" id="astruct_pagina_html_a9ded85022db87651a1b13b101fa4d547"><div class="ttname"><a href="struct_pagina.html#a9ded85022db87651a1b13b101fa4d547">Pagina::registros</a></div><div class="ttdeci">Registro registros[MM]</div><div class="ttdoc">Vetor de registros.</div><div class="ttdef"><b>Definição</b> tipos.h:76</div></div>
+<div class="ttc" id="astruct_pagina_html_aa110c4c46aabec47a13adecab20f377b"><div class="ttname"><a href="struct_pagina.html#aa110c4c46aabec47a13adecab20f377b">Pagina::ponteiros</a></div><div class="ttdeci">Apontador ponteiros[MM+1]</div><div class="ttdoc">Ponteiros para filhos.</div><div class="ttdef"><b>Definição</b> tipos.h:77</div></div>
+<div class="ttc" id="astruct_pagina_html_ad66e219dcac65bf5c98fdb1cf1deeb33"><div class="ttname"><a href="struct_pagina.html#ad66e219dcac65bf5c98fdb1cf1deeb33">Pagina::nFilhos</a></div><div class="ttdeci">short nFilhos</div><div class="ttdoc">Número de registros na página.</div><div class="ttdef"><b>Definição</b> tipos.h:75</div></div>
+<div class="ttc" id="astruct_registro_html"><div class="ttname"><a href="struct_registro.html">Registro</a></div><div class="ttdoc">Estrutura que representa um registro de dados.</div><div class="ttdef"><b>Definição</b> tipos.h:16</div></div>
+<div class="ttc" id="astruct_registro_html_a026c7c33609481f3e9373f65f523d7f3"><div class="ttname"><a href="struct_registro.html#a026c7c33609481f3e9373f65f523d7f3">Registro::chave</a></div><div class="ttdeci">int chave</div><div class="ttdoc">Chave de pesquisa.</div><div class="ttdef"><b>Definição</b> tipos.h:17</div></div>
+<div class="ttc" id="astruct_registro_html_a042944dacf17c3696b76fa8e881bb694"><div class="ttname"><a href="struct_registro.html#a042944dacf17c3696b76fa8e881bb694">Registro::dado1</a></div><div class="ttdeci">long dado1</div><div class="ttdoc">Dado 1 (inteiro longo)</div><div class="ttdef"><b>Definição</b> tipos.h:18</div></div>
+<div class="ttc" id="astruct_registro_html_acc06cc7e7547123479ccd4ae23946a22"><div class="ttname"><a href="struct_registro.html#acc06cc7e7547123479ccd4ae23946a22">Registro::dado3</a></div><div class="ttdeci">char dado3[5000]</div><div class="ttdoc">Dado 3 (cadeia de 5000 caracteres)</div><div class="ttdef"><b>Definição</b> tipos.h:20</div></div>
+<div class="ttc" id="astruct_registro_html_af7503aadbc06a9444f47278ffb12a086"><div class="ttname"><a href="struct_registro.html#af7503aadbc06a9444f47278ffb12a086">Registro::dado2</a></div><div class="ttdeci">char dado2[1000]</div><div class="ttdoc">Dado 2 (cadeia de 1000 caracteres)</div><div class="ttdef"><b>Definição</b> tipos.h:19</div></div>
+<div class="ttc" id="atipos_8h_html_a43e0a24e63b7ae0e6ce6b4686d875419"><div class="ttname"><a href="tipos_8h.html#a43e0a24e63b7ae0e6ce6b4686d875419">TipoPagina</a></div><div class="ttdeci">TipoPagina</div><div class="ttdoc">Enumeração para diferenciar páginas internas e externas na Árvore B*.</div><div class="ttdef"><b>Definição</b> tipos.h:92</div></div>
+<div class="ttc" id="atipos_8h_html_a43e0a24e63b7ae0e6ce6b4686d875419a3f9c0ef611ddc658c4d90a84d7591281"><div class="ttname"><a href="tipos_8h.html#a43e0a24e63b7ae0e6ce6b4686d875419a3f9c0ef611ddc658c4d90a84d7591281">Externa</a></div><div class="ttdeci">@ Externa</div><div class="ttdoc">Página externa (folha, contém registros)</div><div class="ttdef"><b>Definição</b> tipos.h:94</div></div>
+<div class="ttc" id="atipos_8h_html_a43e0a24e63b7ae0e6ce6b4686d875419a73c2510f49d29a48c9d81bddcb06f309"><div class="ttname"><a href="tipos_8h.html#a43e0a24e63b7ae0e6ce6b4686d875419a73c2510f49d29a48c9d81bddcb06f309">Interna</a></div><div class="ttdeci">@ Interna</div><div class="ttdoc">Página interna (contém chaves e ponteiros)</div><div class="ttdef"><b>Definição</b> tipos.h:93</div></div>
+<div class="ttc" id="atipos_8h_html_a48e7c1e96778d2b311ee4521ae9ad3f9"><div class="ttname"><a href="tipos_8h.html#a48e7c1e96778d2b311ee4521ae9ad3f9">MMB</a></div><div class="ttdeci">#define MMB</div><div class="ttdef"><b>Definição</b> tipos.h:82</div></div>
+<div class="ttc" id="atipos_8h_html_a4f293def9c349e7b76bac1e6297542f4"><div class="ttname"><a href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a></div><div class="ttdeci">PaginaEstrela * ApontadorEstrela</div><div class="ttdoc">Ponteiro para página da Árvore B*.</div><div class="ttdef"><b>Definição</b> tipos.h:124</div></div>
+<div class="ttc" id="atipos_8h_html_a825ac99bff14e3febd4e3fdd37c23bfc"><div class="ttname"><a href="tipos_8h.html#a825ac99bff14e3febd4e3fdd37c23bfc">Apontador</a></div><div class="ttdeci">struct Pagina * Apontador</div><div class="ttdef"><b>Definição</b> tipos.h:66</div></div>
+<div class="ttc" id="atipos_8h_html_a8633e146fa6cb6cb1423c70f2b0001ce"><div class="ttname"><a href="tipos_8h.html#a8633e146fa6cb6cb1423c70f2b0001ce">MMB2</a></div><div class="ttdeci">#define MMB2</div><div class="ttdef"><b>Definição</b> tipos.h:84</div></div>
+<div class="ttc" id="atipos_8h_html_a9ccce69e41919f4028f1e29b39b9d83a"><div class="ttname"><a href="tipos_8h.html#a9ccce69e41919f4028f1e29b39b9d83a">TipoChave</a></div><div class="ttdeci">int TipoChave</div><div class="ttdef"><b>Definição</b> tipos.h:86</div></div>
+<div class="ttc" id="atipos_8h_html_aa4253145dc5feee61e8cae2e5131c54b"><div class="ttname"><a href="tipos_8h.html#aa4253145dc5feee61e8cae2e5131c54b">lerRegistro</a></div><div class="ttdeci">void lerRegistro(Registro *registro)</div><div class="ttdoc">Exibe um registro na saída padrão.</div><div class="ttdef"><b>Definição</b> tipos.c:4</div></div>
+<div class="ttc" id="atipos_8h_html_afdc383f8992f4a960bb22998f57b6d37"><div class="ttname"><a href="tipos_8h.html#afdc383f8992f4a960bb22998f57b6d37">MM</a></div><div class="ttdeci">#define MM</div><div class="ttdef"><b>Definição</b> tipos.h:64</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="tipos_8h.html">tipos.h</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

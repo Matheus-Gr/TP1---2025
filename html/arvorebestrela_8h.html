@@ -1,0 +1,468 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TP1 Estruturas de Dados: Referência ao ficheiro arvorebestrela.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">TP1 Estruturas de Dados
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('arvorebestrela_8h.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referência ao ficheiro arvorebestrela.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Definicao da estrutura da arvore B* e funcoes relacionadas a manipulacao da arvore.  
+<a href="#details">Mais...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="tipos_8h_source.html">tipos.h</a>&quot;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+</div>
+<p><a href="arvorebestrela_8h_source.html">Ir para o código fonte deste ficheiro.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:a91ccd4cb427be91b3e7d8dd07857214a" id="r_a91ccd4cb427be91b3e7d8dd07857214a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91ccd4cb427be91b3e7d8dd07857214a">inicializa_b_estrela</a> (<a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a> *Arvore)</td></tr>
+<tr class="memdesc:a91ccd4cb427be91b3e7d8dd07857214a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa a raiz da arvore B* como NULL.  <br /></td></tr>
+<tr class="memitem:a6ab8743985583c176caeff2e4f74e3cb" id="r_a6ab8743985583c176caeff2e4f74e3cb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ab8743985583c176caeff2e4f74e3cb">pesquisaBEstrela</a> (<a class="el" href="struct_registro.html">Registro</a> *x, <a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a> Ap, <a class="el" href="struct_estatisticas.html">Estatisticas</a> *estatisticas, int debug)</td></tr>
+<tr class="memdesc:a6ab8743985583c176caeff2e4f74e3cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Busca um registro na arvore B*.  <br /></td></tr>
+<tr class="memitem:a6e752b0b16cb7f6fbc7e90710c58fc4b" id="r_a6e752b0b16cb7f6fbc7e90710c58fc4b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e752b0b16cb7f6fbc7e90710c58fc4b">InsereNaPaginaExterna</a> (<a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a> Ap, <a class="el" href="struct_registro.html">Registro</a> Reg, <a class="el" href="struct_estatisticas.html">Estatisticas</a> *estatisticas)</td></tr>
+<tr class="memdesc:a6e752b0b16cb7f6fbc7e90710c58fc4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insere um registro em uma folha nao cheia da arvore B*.  <br /></td></tr>
+<tr class="memitem:a488a084a727410d40d9da57236c6b871" id="r_a488a084a727410d40d9da57236c6b871"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a488a084a727410d40d9da57236c6b871">InsereNaPaginaInterna</a> (<a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a> Ap, <a class="el" href="tipos_8h.html#a9ccce69e41919f4028f1e29b39b9d83a">TipoChave</a> Reg, <a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a> ApDir, <a class="el" href="struct_estatisticas.html">Estatisticas</a> *estatisticas)</td></tr>
+<tr class="memdesc:a488a084a727410d40d9da57236c6b871"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insere uma chave em uma pagina interna nao cheia da arvore B*.  <br /></td></tr>
+<tr class="memitem:a2df19395886057e86938b395d873f851" id="r_a2df19395886057e86938b395d873f851"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2df19395886057e86938b395d873f851">Ins_b_estrela</a> (<a class="el" href="struct_registro.html">Registro</a> Reg, <a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a> Ap, short *cresceu, <a class="el" href="tipos_8h.html#a9ccce69e41919f4028f1e29b39b9d83a">TipoChave</a> *RegRetorno, <a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a> *ApRetorno, <a class="el" href="struct_estatisticas.html">Estatisticas</a> *estatisticas)</td></tr>
+<tr class="memdesc:a2df19395886057e86938b395d873f851"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funcao recursiva de insercao na arvore B* (com splits otimizados).  <br /></td></tr>
+<tr class="memitem:aa125a7c6787b934b1186b7a35e785a11" id="r_aa125a7c6787b934b1186b7a35e785a11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa125a7c6787b934b1186b7a35e785a11">Insere_b_estrela</a> (<a class="el" href="struct_registro.html">Registro</a> Reg, <a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a> *Ap, <a class="el" href="struct_estatisticas.html">Estatisticas</a> *estatisticas, int debug)</td></tr>
+<tr class="memdesc:aa125a7c6787b934b1186b7a35e785a11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funcao principal de insercao na arvore B*.  <br /></td></tr>
+<tr class="memitem:a7169203de55b6d99353199df44a31e00" id="r_a7169203de55b6d99353199df44a31e00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7169203de55b6d99353199df44a31e00">liberaArvoreBEstrela</a> (<a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a> Arvore)</td></tr>
+<tr class="memdesc:a7169203de55b6d99353199df44a31e00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Libera toda a memoria alocada para a arvore B*.  <br /></td></tr>
+<tr class="memitem:a9cb6ea5b3636c51ca323051226cd9cce" id="r_a9cb6ea5b3636c51ca323051226cd9cce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9cb6ea5b3636c51ca323051226cd9cce">printArvoreBEstrela</a> (<a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a> Arvore, int nivel)</td></tr>
+<tr class="memdesc:a9cb6ea5b3636c51ca323051226cd9cce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exibe a estrutura da arvore B* de forma hierarquica (para depuracao).  <br /></td></tr>
+<tr class="memitem:a08bc8ab7281d5d9ddf0f784750e36e04" id="r_a08bc8ab7281d5d9ddf0f784750e36e04"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08bc8ab7281d5d9ddf0f784750e36e04">calculaProfundidadeBEstrela</a> (<a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a> Arvore)</td></tr>
+<tr class="memdesc:a08bc8ab7281d5d9ddf0f784750e36e04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula a profundidade (altura) da arvore B*.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descrição detalhada</h2>
+<div class="textblock"><p>Definicao da estrutura da arvore B* e funcoes relacionadas a manipulacao da arvore. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentação das funções</h2>
+<a id="a08bc8ab7281d5d9ddf0f784750e36e04" name="a08bc8ab7281d5d9ddf0f784750e36e04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08bc8ab7281d5d9ddf0f784750e36e04">&#9670;&#160;</a></span>calculaProfundidadeBEstrela()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int calculaProfundidadeBEstrela </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a></td>          <td class="paramname"><span class="paramname"><em>Arvore</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calcula a profundidade (altura) da arvore B*. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Arvore</td><td>Raiz da arvore. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Profundidade da arvore (0 se vazia). </dd></dl>
+
+</div>
+</div>
+<a id="a91ccd4cb427be91b3e7d8dd07857214a" name="a91ccd4cb427be91b3e7d8dd07857214a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91ccd4cb427be91b3e7d8dd07857214a">&#9670;&#160;</a></span>inicializa_b_estrela()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void inicializa_b_estrela </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a> *</td>          <td class="paramname"><span class="paramname"><em>Arvore</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inicializa a raiz da arvore B* como NULL. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Arvore</td><td>Ponteiro para a raiz da arvore. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2df19395886057e86938b395d873f851" name="a2df19395886057e86938b395d873f851"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2df19395886057e86938b395d873f851">&#9670;&#160;</a></span>Ins_b_estrela()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Ins_b_estrela </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_registro.html">Registro</a></td>          <td class="paramname"><span class="paramname"><em>Reg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a></td>          <td class="paramname"><span class="paramname"><em>Ap</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">short *</td>          <td class="paramname"><span class="paramname"><em>cresceu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="tipos_8h.html#a9ccce69e41919f4028f1e29b39b9d83a">TipoChave</a> *</td>          <td class="paramname"><span class="paramname"><em>RegRetorno</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a> *</td>          <td class="paramname"><span class="paramname"><em>ApRetorno</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_estatisticas.html">Estatisticas</a> *</td>          <td class="paramname"><span class="paramname"><em>estatisticas</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funcao recursiva de insercao na arvore B* (com splits otimizados). </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Reg</td><td><a class="el" href="struct_registro.html" title="Estrutura que representa um registro de dados.">Registro</a> a ser inserido. </td></tr>
+    <tr><td class="paramname">Ap</td><td><a class="el" href="struct_pagina.html" title="Estrutura de página para árvore B.">Pagina</a> atual. </td></tr>
+    <tr><td class="paramname">cresceu</td><td>Flag de crescimento da arvore. </td></tr>
+    <tr><td class="paramname">RegRetorno</td><td>Chave promovida apos split. </td></tr>
+    <tr><td class="paramname">ApRetorno</td><td>Nova pagina apos split. </td></tr>
+    <tr><td class="paramname">estatisticas</td><td>Ponteiro para a estrutura de estatisticas. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa125a7c6787b934b1186b7a35e785a11" name="aa125a7c6787b934b1186b7a35e785a11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa125a7c6787b934b1186b7a35e785a11">&#9670;&#160;</a></span>Insere_b_estrela()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Insere_b_estrela </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_registro.html">Registro</a></td>          <td class="paramname"><span class="paramname"><em>Reg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a> *</td>          <td class="paramname"><span class="paramname"><em>Ap</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_estatisticas.html">Estatisticas</a> *</td>          <td class="paramname"><span class="paramname"><em>estatisticas</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>debug</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funcao principal de insercao na arvore B*. </p>
+<p>Cria a raiz se a arvore estiver vazia. </p><dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Reg</td><td><a class="el" href="struct_registro.html" title="Estrutura que representa um registro de dados.">Registro</a> a ser inserido. </td></tr>
+    <tr><td class="paramname">Ap</td><td>Ponteiro para a raiz da arvore. </td></tr>
+    <tr><td class="paramname">estatisticas</td><td>Ponteiro para a estrutura de estatisticas. </td></tr>
+    <tr><td class="paramname">debug</td><td>Se diferente de zero, imprime informacoes de depuracao. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6e752b0b16cb7f6fbc7e90710c58fc4b" name="a6e752b0b16cb7f6fbc7e90710c58fc4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e752b0b16cb7f6fbc7e90710c58fc4b">&#9670;&#160;</a></span>InsereNaPaginaExterna()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InsereNaPaginaExterna </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a></td>          <td class="paramname"><span class="paramname"><em>Ap</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_registro.html">Registro</a></td>          <td class="paramname"><span class="paramname"><em>Reg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_estatisticas.html">Estatisticas</a> *</td>          <td class="paramname"><span class="paramname"><em>estatisticas</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Insere um registro em uma folha nao cheia da arvore B*. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Ap</td><td><a class="el" href="struct_pagina.html" title="Estrutura de página para árvore B.">Pagina</a> externa (folha). </td></tr>
+    <tr><td class="paramname">Reg</td><td><a class="el" href="struct_registro.html" title="Estrutura que representa um registro de dados.">Registro</a> a ser inserido. </td></tr>
+    <tr><td class="paramname">estatisticas</td><td>Ponteiro para a estrutura de estatisticas. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a488a084a727410d40d9da57236c6b871" name="a488a084a727410d40d9da57236c6b871"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a488a084a727410d40d9da57236c6b871">&#9670;&#160;</a></span>InsereNaPaginaInterna()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InsereNaPaginaInterna </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a></td>          <td class="paramname"><span class="paramname"><em>Ap</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="tipos_8h.html#a9ccce69e41919f4028f1e29b39b9d83a">TipoChave</a></td>          <td class="paramname"><span class="paramname"><em>Reg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a></td>          <td class="paramname"><span class="paramname"><em>ApDir</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_estatisticas.html">Estatisticas</a> *</td>          <td class="paramname"><span class="paramname"><em>estatisticas</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Insere uma chave em uma pagina interna nao cheia da arvore B*. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Ap</td><td><a class="el" href="struct_pagina.html" title="Estrutura de página para árvore B.">Pagina</a> interna. </td></tr>
+    <tr><td class="paramname">Reg</td><td>Chave a ser inserida. </td></tr>
+    <tr><td class="paramname">ApDir</td><td>Ponteiro para o filho direito. </td></tr>
+    <tr><td class="paramname">estatisticas</td><td>Ponteiro para a estrutura de estatisticas. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7169203de55b6d99353199df44a31e00" name="a7169203de55b6d99353199df44a31e00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7169203de55b6d99353199df44a31e00">&#9670;&#160;</a></span>liberaArvoreBEstrela()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void liberaArvoreBEstrela </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a></td>          <td class="paramname"><span class="paramname"><em>Arvore</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Libera toda a memoria alocada para a arvore B*. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Arvore</td><td>Raiz da arvore. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6ab8743985583c176caeff2e4f74e3cb" name="a6ab8743985583c176caeff2e4f74e3cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ab8743985583c176caeff2e4f74e3cb">&#9670;&#160;</a></span>pesquisaBEstrela()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int pesquisaBEstrela </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_registro.html">Registro</a> *</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a></td>          <td class="paramname"><span class="paramname"><em>Ap</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_estatisticas.html">Estatisticas</a> *</td>          <td class="paramname"><span class="paramname"><em>estatisticas</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>debug</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Busca um registro na arvore B*. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Ponteiro para o registro a ser buscado (chave deve estar preenchida). </td></tr>
+    <tr><td class="paramname">Ap</td><td>Ponteiro para a raiz da arvore. </td></tr>
+    <tr><td class="paramname">estatisticas</td><td>Ponteiro para a estrutura de estatisticas. </td></tr>
+    <tr><td class="paramname">debug</td><td>Se diferente de zero, imprime informacoes de depuracao. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>1 se o registro foi encontrado, 0 caso contrario. </dd></dl>
+
+</div>
+</div>
+<a id="a9cb6ea5b3636c51ca323051226cd9cce" name="a9cb6ea5b3636c51ca323051226cd9cce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cb6ea5b3636c51ca323051226cd9cce">&#9670;&#160;</a></span>printArvoreBEstrela()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printArvoreBEstrela </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="tipos_8h.html#a4f293def9c349e7b76bac1e6297542f4">ApontadorEstrela</a></td>          <td class="paramname"><span class="paramname"><em>Arvore</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nivel</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Exibe a estrutura da arvore B* de forma hierarquica (para depuracao). </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Arvore</td><td>Raiz da arvore. </td></tr>
+    <tr><td class="paramname">nivel</td><td>Profundidade atual (para indentacao). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="arvorebestrela_8h.html">arvorebestrela.h</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

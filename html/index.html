@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TP1 Estruturas de Dados: Projeto de Pesquisa em Arquivos Binários com Estruturas de Dados</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">TP1 Estruturas de Dados
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('index.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">Projeto de Pesquisa em Arquivos Binários com Estruturas de Dados </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a></p>
+<p>Este projeto, desenvolvido para a disciplina de Estruturas de Dados II, tem como objetivo comparar o desempenho de diferentes métodos de pesquisa em arquivos binários de registros. O sistema permite a geração, manipulação e busca eficiente de dados utilizando diversas estruturas clássicas de indexação e árvores.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+Objetivo</h1>
+<ul>
+<li>Implementar e comparar métodos de pesquisa em arquivos binários, incluindo:<ul>
+<li>Pesquisa Sequencial Indexada</li>
+<li>Árvore Binária (em arquivo)</li>
+<li>Árvore B (em memória)</li>
+<li>Árvore B* (em memória)</li>
+</ul>
+</li>
+<li>Coletar estatísticas detalhadas de desempenho: número de comparações, transferências e tempo de execução.</li>
+</ul>
+<hr  />
+<h1 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+Como Utilizar</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+Manualmente</h2>
+<ol type="1">
+<li><p class="startli"><b>Compilar gerador de arquivos</b></p>
+<p class="startli">Compile o script <span class="tt">gerar_arquivos.c</span> para gerar os arquivos binários de teste:</p>
+<div class="fragment"><div class="line">cd arquivos</div>
+<div class="line">gcc *.c -o gerar_arquivos.exe -Wall</div>
+</div><!-- fragment --></li>
+<li><p class="startli"><b>Gerar arquivos de teste</b></p>
+<p class="startli">Execute o gerador para criar os arquivos binários:</p>
+<div class="fragment"><div class="line">gerar_arquivos.exe gerar &lt;quantidade&gt; &lt;ordem&gt;</div>
+</div><!-- fragment --><ul>
+<li><span class="tt">&lt;quantidade&gt;</span>: número de registros a serem gerados</li>
+<li><span class="tt">&lt;ordem&gt;</span>: <span class="tt">1</span> (crescente), <span class="tt">2</span> (decrescente), <span class="tt">3</span> (aleatório)</li>
+</ul>
+<p class="startli">Para ler arquivos já existentes:</p>
+<div class="fragment"><div class="line">gerar_arquivos.exe ler &lt;nome_arquivo_sem_extensao&gt;</div>
+</div><!-- fragment --><ul>
+<li><span class="tt">&lt;nome_arquivo_sem_extensao&gt;</span>: nome do arquivo a ser lido (sem extensão <span class="tt">.bin</span>)</li>
+</ul>
+</li>
+<li><p class="startli"><b>Compilar o projeto</b></p>
+<div class="fragment"><div class="line">gcc -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -m64 *.c -o app.exe -Wall</div>
+</div><!-- fragment --></li>
+<li><p class="startli"><b>Executar o programa</b></p>
+<p class="startli">Rode o executável informando o método, quantidade, ordem e chave:</p>
+<div class="fragment"><div class="line">app.exe &lt;metodo&gt; &lt;quantidade&gt; &lt;ordem&gt; &lt;chave&gt; [-P]</div>
+</div><!-- fragment --><ul>
+<li><span class="tt">&lt;metodo&gt;</span>: <span class="tt">1</span> (sequencial indexada), <span class="tt">2</span> (árvore binária), <span class="tt">3</span> (árvore B), <span class="tt">4</span> (árvore B*)</li>
+<li><span class="tt">&lt;quantidade&gt;</span>: número de registros a serem processados</li>
+<li><span class="tt">&lt;ordem&gt;</span>: <span class="tt">1</span> (crescente), <span class="tt">2</span> (decrescente), <span class="tt">3</span> (aleatório)</li>
+<li><span class="tt">&lt;chave&gt;</span>: valor da chave a ser buscada</li>
+<li><span class="tt">-P</span>: opcional, para imprimir estatísticas detalhadas</li>
+</ul>
+</li>
+</ol>
+<hr  />
+<h2 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+Usar Scripts Automáticos</h2>
+<ol type="1">
+<li><p class="startli"><b>Gerar arquivos de teste</b></p>
+<div class="fragment"><div class="line">cd arquivos</div>
+<div class="line">python gerartodos.py</div>
+</div><!-- fragment --></li>
+<li><p class="startli"><b>Executar os experimentos</b></p>
+<div class="fragment"><div class="line">python rodarprograma.py</div>
+</div><!-- fragment --></li>
+</ol>
+<hr  />
+<h1 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
+Estrutura do Projeto</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
+Diretórios e Arquivos</h2>
+<ul>
+<li><span class="tt">main.c</span> — Função principal, responsável por orquestrar a execução e interação com o usuário.</li>
+<li><span class="tt">tipos.h/.c</span> — Definição dos tipos de dados e estruturas utilizadas no projeto.</li>
+<li><span class="tt">arvoreb.h/.c</span>, <span class="tt">arvorebestrela.h/.c</span>, <span class="tt">arvorebinaria.h/.c</span>, <span class="tt">indexado.h/.c</span> — Implementações das estruturas de dados para pesquisa e indexação.</li>
+<li><span class="tt">gerar_arquivos.c</span> — Geração de arquivos binários de teste.</li>
+<li><span class="tt">estatisticas.h/.c</span> — Funções para coleta e impressão de estatísticas.</li>
+<li><span class="tt">arquivos/</span> — Diretório contendo arquivos binários gerados e scripts relacionados.</li>
+<li><span class="tt">graficos/</span> — Diretório com gráficos gerados a partir dos resultados.</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
+Scripts Python</h2>
+<ul>
+<li><span class="tt">gerartodos.py</span> — Gera arquivos de teste automaticamente.</li>
+<li><span class="tt">rodarprograma.py</span> — Compila, executa e analisa os resultados dos experimentos.</li>
+</ul>
+<hr  />
+ </div></div><!-- PageDoc -->
+<a href="doxygen_crawl.html"></a>
+</div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

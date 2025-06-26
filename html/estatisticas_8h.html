@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TP1 Estruturas de Dados: Referência ao ficheiro estatisticas.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">TP1 Estruturas de Dados
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('estatisticas_8h.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referência ao ficheiro estatisticas.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Definição da estrutura <a class="el" href="struct_estatisticas.html" title="Estrutura para armazenar estatísticas de operações.">Estatisticas</a> e funções relacionadas à coleta de estatísticas.  
+<a href="#details">Mais...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="tipos_8h_source.html">tipos.h</a>&quot;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+</div>
+<p><a href="estatisticas_8h_source.html">Ir para o código fonte deste ficheiro.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:a923fc6f230060f75496cb18213d49ea9" id="r_a923fc6f230060f75496cb18213d49ea9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a923fc6f230060f75496cb18213d49ea9">inicializarEstatisticas</a> (<a class="el" href="struct_estatisticas.html">Estatisticas</a> *estatisticas)</td></tr>
+<tr class="memdesc:a923fc6f230060f75496cb18213d49ea9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa todos os campos da estrutura <a class="el" href="struct_estatisticas.html" title="Estrutura para armazenar estatísticas de operações.">Estatisticas</a> com zero e inicia o timer do pré-processamento.  <br /></td></tr>
+<tr class="memitem:ad8393fdea3870fd6c91e251c0391f3ee" id="r_ad8393fdea3870fd6c91e251c0391f3ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8393fdea3870fd6c91e251c0391f3ee">inicializarTimerPesquisa</a> (<a class="el" href="struct_estatisticas.html">Estatisticas</a> *estatisticas)</td></tr>
+<tr class="memdesc:ad8393fdea3870fd6c91e251c0391f3ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicia o timer para medir o tempo de execução da pesquisa.  <br /></td></tr>
+<tr class="memitem:a37f916ff7203556020be8911b8e3305d" id="r_a37f916ff7203556020be8911b8e3305d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37f916ff7203556020be8911b8e3305d">finalizarPreProcessamento</a> (<a class="el" href="struct_estatisticas.html">Estatisticas</a> *estatisticas)</td></tr>
+<tr class="memdesc:a37f916ff7203556020be8911b8e3305d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finaliza o tempo de pré-processamento, calculando o tempo decorrido desde o início.  <br /></td></tr>
+<tr class="memitem:a2cfc6ccc1d6f0490bc085695c7f7729b" id="r_a2cfc6ccc1d6f0490bc085695c7f7729b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2cfc6ccc1d6f0490bc085695c7f7729b">finalizarEstatisticasPequisa</a> (<a class="el" href="struct_estatisticas.html">Estatisticas</a> *estatisticas)</td></tr>
+<tr class="memdesc:a2cfc6ccc1d6f0490bc085695c7f7729b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finaliza o tempo de execução da pesquisa, calculando o tempo decorrido desde o início.  <br /></td></tr>
+<tr class="memitem:a73d1b03170f17bea0e956c7e4b070a4e" id="r_a73d1b03170f17bea0e956c7e4b070a4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73d1b03170f17bea0e956c7e4b070a4e">printarEstatisticas</a> (const <a class="el" href="struct_estatisticas.html">Estatisticas</a> *estatisticas)</td></tr>
+<tr class="memdesc:a73d1b03170f17bea0e956c7e4b070a4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imprime na tela as estatísticas de pré-processamento e de pesquisa.  <br /></td></tr>
+<tr class="memitem:a8e861d5d8cf77193ba5ec196a1be6f43" id="r_a8e861d5d8cf77193ba5ec196a1be6f43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e861d5d8cf77193ba5ec196a1be6f43">salvarEstatisticas</a> (int metodo, int quantidade, int ordem, int chave, const <a class="el" href="struct_estatisticas.html">Estatisticas</a> *estatisticas, const char *caminhoArquivo)</td></tr>
+<tr class="memdesc:a8e861d5d8cf77193ba5ec196a1be6f43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Salva as estatísticas em um arquivo texto, adicionando uma nova linha com os dados do experimento.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descrição detalhada</h2>
+<div class="textblock"><p>Definição da estrutura <a class="el" href="struct_estatisticas.html" title="Estrutura para armazenar estatísticas de operações.">Estatisticas</a> e funções relacionadas à coleta de estatísticas. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentação das funções</h2>
+<a id="a2cfc6ccc1d6f0490bc085695c7f7729b" name="a2cfc6ccc1d6f0490bc085695c7f7729b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cfc6ccc1d6f0490bc085695c7f7729b">&#9670;&#160;</a></span>finalizarEstatisticasPequisa()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void finalizarEstatisticasPequisa </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_estatisticas.html">Estatisticas</a> *</td>          <td class="paramname"><span class="paramname"><em>estatisticas</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finaliza o tempo de execução da pesquisa, calculando o tempo decorrido desde o início. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">estatisticas</td><td>Ponteiro para a estrutura <a class="el" href="struct_estatisticas.html" title="Estrutura para armazenar estatísticas de operações.">Estatisticas</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a37f916ff7203556020be8911b8e3305d" name="a37f916ff7203556020be8911b8e3305d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37f916ff7203556020be8911b8e3305d">&#9670;&#160;</a></span>finalizarPreProcessamento()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void finalizarPreProcessamento </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_estatisticas.html">Estatisticas</a> *</td>          <td class="paramname"><span class="paramname"><em>estatisticas</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finaliza o tempo de pré-processamento, calculando o tempo decorrido desde o início. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">estatisticas</td><td>Ponteiro para a estrutura <a class="el" href="struct_estatisticas.html" title="Estrutura para armazenar estatísticas de operações.">Estatisticas</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a923fc6f230060f75496cb18213d49ea9" name="a923fc6f230060f75496cb18213d49ea9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a923fc6f230060f75496cb18213d49ea9">&#9670;&#160;</a></span>inicializarEstatisticas()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void inicializarEstatisticas </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_estatisticas.html">Estatisticas</a> *</td>          <td class="paramname"><span class="paramname"><em>estatisticas</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inicializa todos os campos da estrutura <a class="el" href="struct_estatisticas.html" title="Estrutura para armazenar estatísticas de operações.">Estatisticas</a> com zero e inicia o timer do pré-processamento. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">estatisticas</td><td>Ponteiro para a estrutura <a class="el" href="struct_estatisticas.html" title="Estrutura para armazenar estatísticas de operações.">Estatisticas</a> a ser inicializada. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad8393fdea3870fd6c91e251c0391f3ee" name="ad8393fdea3870fd6c91e251c0391f3ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8393fdea3870fd6c91e251c0391f3ee">&#9670;&#160;</a></span>inicializarTimerPesquisa()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void inicializarTimerPesquisa </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_estatisticas.html">Estatisticas</a> *</td>          <td class="paramname"><span class="paramname"><em>estatisticas</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inicia o timer para medir o tempo de execução da pesquisa. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">estatisticas</td><td>Ponteiro para a estrutura <a class="el" href="struct_estatisticas.html" title="Estrutura para armazenar estatísticas de operações.">Estatisticas</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a73d1b03170f17bea0e956c7e4b070a4e" name="a73d1b03170f17bea0e956c7e4b070a4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73d1b03170f17bea0e956c7e4b070a4e">&#9670;&#160;</a></span>printarEstatisticas()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printarEstatisticas </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_estatisticas.html">Estatisticas</a> *</td>          <td class="paramname"><span class="paramname"><em>estatisticas</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Imprime na tela as estatísticas de pré-processamento e de pesquisa. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">estatisticas</td><td>Ponteiro constante para a estrutura <a class="el" href="struct_estatisticas.html" title="Estrutura para armazenar estatísticas de operações.">Estatisticas</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8e861d5d8cf77193ba5ec196a1be6f43" name="a8e861d5d8cf77193ba5ec196a1be6f43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e861d5d8cf77193ba5ec196a1be6f43">&#9670;&#160;</a></span>salvarEstatisticas()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void salvarEstatisticas </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>metodo</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>quantidade</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ordem</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>chave</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_estatisticas.html">Estatisticas</a> *</td>          <td class="paramname"><span class="paramname"><em>estatisticas</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>caminhoArquivo</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Salva as estatísticas em um arquivo texto, adicionando uma nova linha com os dados do experimento. </p>
+<p>O formato da linha é: {metodo}-{quantidade}-{ordem}-{chave}-{transferenciasPP}-{comparacoesPP}-{tempoExecucaoPP}-{transferencias}-{comparacoes}-{tempoExecucao}<br  />
+ </p><dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">metodo</td><td>Método de pesquisa utilizado. </td></tr>
+    <tr><td class="paramname">quantidade</td><td>Quantidade de registros. </td></tr>
+    <tr><td class="paramname">ordem</td><td>Situação de ordem do arquivo. </td></tr>
+    <tr><td class="paramname">chave</td><td>Chave pesquisada. </td></tr>
+    <tr><td class="paramname">estatisticas</td><td>Ponteiro constante para a estrutura <a class="el" href="struct_estatisticas.html" title="Estrutura para armazenar estatísticas de operações.">Estatisticas</a>. </td></tr>
+    <tr><td class="paramname">caminhoArquivo</td><td>Caminho do arquivo onde as estatísticas serão salvas. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="estatisticas_8h.html">estatisticas.h</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>
