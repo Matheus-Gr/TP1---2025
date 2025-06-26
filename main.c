@@ -149,7 +149,10 @@ int main(int argc, char *argv[])
         finalizarPreProcessamento(&estatisticas);
 
         if (debug)
+        {
+            lerArvore(arvorebin);
             printf("3) Pre-Processamento encerrado\n");
+        }
         if (debug)
             printf("4) Iniciando pesquisa\n");
         inicializarTimerPesquisa(&estatisticas);

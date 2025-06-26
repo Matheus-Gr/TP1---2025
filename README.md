@@ -50,13 +50,15 @@ Este projeto, desenvolvido para a disciplina de Estruturas de Dados II, tem como
    ```
 
    - `<quantidade>`: número de registros a serem gerados
-   - `<ordem>`: `0` (ordenado), `1` (reverso), `2` (aleatório)
+   - `<ordem>`: `1` (crescente), `2` (decrescente), `3` (aleatório)
 
    Para ler arquivos já existentes:
 
    ```bash
    gerar_arquivos.exe ler <nome_arquivo_sem_extensao>
    ```
+
+   - `<nome_arquivo_sem_extensao>`: nome do arquivo a ser lido (sem extensão `.bin`)
 
 3. **Compilar o projeto**
 
@@ -71,6 +73,12 @@ Este projeto, desenvolvido para a disciplina de Estruturas de Dados II, tem como
    ```bash
    app.exe <metodo> <quantidade> <ordem> <chave> [-P]
    ```
+
+   - `<metodo>`: `1` (sequencial indexada), `2` (árvore binária), `3` (árvore B), `4` (árvore B\*)
+   - `<quantidade>`: número de registros a serem processados
+   - `<ordem>`: `1` (crescente), `2` (decrescente), `3` (aleatório)
+   - `<chave>`: valor da chave a ser buscada
+   - `-P`: opcional, para imprimir estatísticas detalhadas
 
 ---
 
