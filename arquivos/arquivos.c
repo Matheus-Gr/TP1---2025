@@ -67,7 +67,7 @@ void gerarArquivoBinario(const char *caminhoArquivo, int quantidadeRegistros, in
         }
         else
         {
-            fprintf(stderr, "Situação inválida!\n");
+            fprintf(stderr, "Situacao invalida!\n");
             exit(1);
         }
 
